@@ -13,7 +13,6 @@ public class Rotation : MonoBehaviour
         Vector3 pos = (mousePos - transform.position).normalized;
         float angelRot = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
         angelRot -= 90;
-        Debug.Log(angelRot);
 
         Quaternion finalRot = Quaternion.Euler(0, 0, angelRot);
         transform.rotation = Quaternion.Slerp(transform.rotation, finalRot, rotationSpeed * Time.deltaTime);
