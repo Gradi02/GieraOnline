@@ -5,7 +5,6 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public float shotCooldown;
-    public StartManager startManager;
 
     private float nextFire = 0;
     private bool startCol = false;
@@ -15,13 +14,6 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        //Aktywuj strzelanie
-        if (!startManager.started) return;
-        else if (!startCol)
-        {
-            nextFire = Time.time + 1;
-            startCol = true;
-        }
 
 
         //Strzelanie
