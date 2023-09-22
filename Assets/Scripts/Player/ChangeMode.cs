@@ -1,0 +1,71 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ChangeMode : MonoBehaviour
+{
+    [SerializeField] private RawImage modeImg;
+    [SerializeField] private GameObject modeTime;
+    private float waitTime = 10;
+    private float changeTime = 0;
+    private int modeInt = 1;
+    void Start()
+    {
+        modeImg.color = Color.white;
+        modeTime.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Time.time >= changeTime)
+        {
+            modeTime.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Alpha1) && modeInt != 1)
+            {
+                SetMode("air");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && modeInt != 2)
+            {
+                SetMode("water");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && modeInt != 3)
+            {
+                SetMode("fire");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && modeInt != 4)
+            {              
+                SetMode("nature");
+            }
+        }
+    }
+
+    private void SetMode(string mode)
+    {
+        changeTime = Time.time + waitTime;
+        if (mode == "air")
+        {
+            modeImg.color = Color.white;
+            modeTime.SetActive(false);
+            modeInt = 1;
+        }
+        else if(mode == "water")
+        {
+            modeImg.color = Color.blue;
+            modeTime.SetActive(false);
+            modeInt = 2;
+        }
+        else if (mode == "fire")
+        {
+            modeImg.color = Color.red;
+            modeTime.SetActive(false);
+            modeInt = 3;
+        }
+        else if (mode == "nature")
+        {
+            modeImg.color = Color.green;
+            modeTime.SetActive(false);
+            modeInt = 4;
+        }
+    }
+}
