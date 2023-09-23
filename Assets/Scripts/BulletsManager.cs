@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BulletsManager : MonoBehaviour
 {
-    private float bulletSpeed = 6;
+    public float bulletSpeed = 10;
+    public ParticleSystem bulletparticle;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -12,6 +13,6 @@ public class BulletsManager : MonoBehaviour
 
     void Update()
     {
-        transform.position += bulletSpeed * Time.deltaTime * transform.up;
+        transform.position += bulletSpeed * Time.deltaTime * transform.right;
     }
 }

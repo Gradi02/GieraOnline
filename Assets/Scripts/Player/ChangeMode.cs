@@ -68,4 +68,14 @@ public class ChangeMode : MonoBehaviour
             modeInt = 4;
         }
     }
+
+    public Color GetColor()
+    {
+        if(modeInt == 1) return Color.white;
+        else if(modeInt == 2) return Color.blue;
+        else if(modeInt == 3) return Color.red;
+        else if(modeInt == 4) return Color.green;
+
+        return Color.black;
+    }
 }
