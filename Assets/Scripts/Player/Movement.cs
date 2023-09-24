@@ -10,14 +10,15 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private Sprite[] rotationSprites = new Sprite[8];
-
+    [SerializeField] private Transform spawner;
     public float speed;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = false;
+        spawner.transform.localPosition = new Vector3(1.1f, 2, 0);
     }
 
     private void Update()
@@ -36,32 +37,15 @@ public class Movement : MonoBehaviour
 
     private void SetRotationSprite()
     {
-        /*
-        [0] góra
-        [1] góra prawo
-        [2] prawo
-        [3] dó³ prawo
-        [4] dó³
-        [5] dó³ lewo
-        [6] lewo
-        [7] góra lewo
-        */
-
-        if (horizontal == 0 && vertical > 0) spriteRenderer.sprite = rotationSprites[0];
-        else if (horizontal > 0 && vertical > 0) spriteRenderer.sprite = rotationSprites[1];
-        else if (horizontal > 0 && vertical == 0)
+        if (horizontal > 0)
         {
-            spriteRenderer.sprite = rotationSprites[2];
             spriteRenderer.flipX = false;
+            spawner.transform.localPosition = new Vector3(1.1f, 2, 0);
         }
-        else if (horizontal > 0 && vertical < 0) spriteRenderer.sprite = rotationSprites[3];
-        else if (horizontal == 0 && vertical < 0) spriteRenderer.sprite = rotationSprites[4];
-        else if (horizontal < 0 && vertical < 0) spriteRenderer.sprite = rotationSprites[5];
-        else if (horizontal < 0 && vertical == 0)
+        else if (horizontal < 0)
         {
-            spriteRenderer.sprite = rotationSprites[6]; 
             spriteRenderer.flipX = true;
+            spawner.transform.localPosition = new Vector3(-1.1f, 2, 0);
         }
-        else if (horizontal < 0 && vertical > 0) spriteRenderer.sprite = rotationSprites[7];
     }
 }

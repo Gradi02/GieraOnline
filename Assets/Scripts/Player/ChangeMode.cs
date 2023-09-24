@@ -78,4 +78,9 @@ public class ChangeMode : MonoBehaviour
 
         return Color.black;
     }
+
+    public int GetMode()
+    {
+        return modeInt;
+    }    
 }
