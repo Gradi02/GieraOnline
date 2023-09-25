@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BulletsManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class BulletsManager : MonoBehaviour
     private int currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
     private int damage;
 
-    [SerializeField] private Transform pfDamagePopup;
+    [SerializeField] private GameObject pfDamagePopup;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -109,9 +110,9 @@ public class BulletsManager : MonoBehaviour
                 }
             }
 
-            Transform DmgPopupTransform = Instantiate(pfDamagePopup, this.transform.position, Quaternion.identity);
-            DamagePopup damagePopup = DmgPopupTransform.GetComponent<DamagePopup>();
-            damagePopup.Setup(damage);
+            GameObject DmgPopup = Instantiate(pfDamagePopup, this.transform.position, Quaternion.identity);
+            DmgPopup.GetComponent<TextMeshPro>().text = damage.ToString();
+
             Destroy(this.gameObject);
         }
     }

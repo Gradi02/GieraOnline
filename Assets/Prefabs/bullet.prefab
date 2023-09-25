@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 12
   bulletparticle: {fileID: 8732016818668097540}
-  pfDamagePopup: {fileID: 418340525633310367, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
+  pfDamagePopup: {fileID: 7111166188261828388, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
 --- !u!50 &534636713532068337
 Rigidbody2D:
   serializedVersion: 4
