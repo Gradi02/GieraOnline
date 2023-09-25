@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour
 {
     public int hp = 20;
     public int mana = 0;
-    private float damage = 8;
+    private int damage = 8;
     public Slider mana_slider;
     public Slider hp_slider;
 

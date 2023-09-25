@@ -8,7 +8,9 @@ public class BulletsManager : MonoBehaviour
     public ParticleSystem bulletparticle;
     private GameObject player;
     private int currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
-    private float damage;
+    private int damage;
+
+    [SerializeField] private Transform pfDamagePopup;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -17,7 +19,7 @@ public class BulletsManager : MonoBehaviour
         ParticleSystem ps = bulletparticle.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule col = bulletparticle.main;
         col.startColor = player.GetComponent<ChangeMode>().GetColor();
-        damage = player.GetComponent<PlayerInfo>().GetDamage();
+        damage = (int)player.GetComponent<PlayerInfo>().GetDamage();
     }
 
     void Update()
@@ -107,6 +109,9 @@ public class BulletsManager : MonoBehaviour
                 }
             }
 
+            Transform DmgPopupTransform = Instantiate(pfDamagePopup, this.transform.position, Quaternion.identity);
+            DamagePopup damagePopup = DmgPopupTransform.GetComponent<DamagePopup>();
+            damagePopup.Setup(damage);
             Destroy(this.gameObject);
         }
     }
