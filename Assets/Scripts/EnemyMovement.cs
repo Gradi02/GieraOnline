@@ -19,7 +19,15 @@ public class EnemyMovement : MonoBehaviour
         if ((player != null) && (enemyInfo != null) && (enemyInfo.canMove))
         {
             //movement
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemyInfo.speed * Time.deltaTime);
+            if (Vector2.Distance(player.transform.position, transform.position) > 6)
+            {
+                Vector3 dir = (player.transform.position - transform.position).normalized;
+                GetComponent<Rigidbody2D>().velocity = dir * enemyInfo.speed;
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
 
             //flipX
             Vector3 rot = player.transform.position - transform.position;
