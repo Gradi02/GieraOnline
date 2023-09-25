@@ -8,6 +8,7 @@ public class EnemyInfo : MonoBehaviour
     public float health;
     [Min(1)] public float speed;
     public types type;
+    private PlayerInfo info;
 
     public enum types
     {
@@ -22,11 +23,16 @@ public class EnemyInfo : MonoBehaviour
 
     void Start()
     {
+        info = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
         this.tag = "Enemy";
     }
 
     void Update()
     {
-        if(health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            if(info.mana<20) info.mana += 1;
+            Destroy(gameObject);
+        }
     }
 }
