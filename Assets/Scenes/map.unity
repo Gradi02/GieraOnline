@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 361947489}
   - component: {fileID: 361947492}
   - component: {fileID: 361947491}
+  - component: {fileID: 361947493}
   m_Layer: 7
   m_Name: slime_fire
   m_TagString: Enemy
@@ -562,7 +563,7 @@ Transform:
   m_GameObject: {fileID: 361947486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.786966, y: 3.4198525, z: 0}
+  m_LocalPosition: {x: 18.75, y: 3.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -600,8 +601,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Size: {x: 2.9, y: 1.7}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 2.2, y: 1.1}
   m_Direction: 1
 --- !u!50 &361947490
 Rigidbody2D:
@@ -628,7 +629,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &361947491
 MonoBehaviour:
@@ -645,6 +646,8 @@ MonoBehaviour:
   health: 20
   speed: 3
   type: 2
+  damage: 0
+  attackSpeed: 0
   canMove: 1
 --- !u!114 &361947492
 MonoBehaviour:
@@ -658,6 +661,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &361947493
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361947486}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &402984021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1148,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.064941, y: -679}
-  m_SizeDelta: {x: 2187.8396, y: 800}
+  m_SizeDelta: {x: 2245.5, y: 663}
   m_Pivot: {x: 0.5, y: 0.49999988}
 --- !u!114 &621655573
 MonoBehaviour:
@@ -1183,6 +1202,7 @@ GameObject:
   - component: {fileID: 657267704}
   - component: {fileID: 657267707}
   - component: {fileID: 657267706}
+  - component: {fileID: 657267708}
   m_Layer: 7
   m_Name: slime_air
   m_TagString: Enemy
@@ -1289,8 +1309,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Size: {x: 2.9, y: 1.7}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 2.2, y: 1.1}
   m_Direction: 1
 --- !u!50 &657267705
 Rigidbody2D:
@@ -1317,7 +1337,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &657267706
 MonoBehaviour:
@@ -1334,6 +1354,8 @@ MonoBehaviour:
   health: 20
   speed: 5
   type: 0
+  damage: 0
+  attackSpeed: 0
   canMove: 1
 --- !u!114 &657267707
 MonoBehaviour:
@@ -1347,6 +1369,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &657267708
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657267701}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &665139032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7460,7 +7498,7 @@ Transform:
   m_GameObject: {fileID: 1564293557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: -10}
+  m_LocalPosition: {x: 0, y: 0.95, z: -10}
   m_LocalScale: {x: 2, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7537,7 +7575,7 @@ Transform:
   m_GameObject: {fileID: 1568202235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 0, z: -10}
+  m_LocalPosition: {x: 0.95, y: 0, z: -10}
   m_LocalScale: {x: 0.1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7614,7 +7652,7 @@ Transform:
   m_GameObject: {fileID: 1568612419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 0, z: -10}
+  m_LocalPosition: {x: -0.95, y: 0, z: -10}
   m_LocalScale: {x: 0.1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7885,6 +7923,7 @@ GameObject:
   - component: {fileID: 1737349245}
   - component: {fileID: 1737349248}
   - component: {fileID: 1737349247}
+  - component: {fileID: 1737349249}
   m_Layer: 7
   m_Name: slime_water
   m_TagString: Enemy
@@ -7953,7 +7992,7 @@ Transform:
   m_GameObject: {fileID: 1737349242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.087658, y: -5.742708, z: 0}
+  m_LocalPosition: {x: 13.050692, y: -5.602561, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7991,8 +8030,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Size: {x: 2.9, y: 1.7}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 2.2, y: 1.1}
   m_Direction: 1
 --- !u!50 &1737349246
 Rigidbody2D:
@@ -8019,7 +8058,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1737349247
 MonoBehaviour:
@@ -8034,8 +8073,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  speed: 3
+  speed: 3.1
   type: 1
+  damage: 0
+  attackSpeed: 0
   canMove: 1
 --- !u!114 &1737349248
 MonoBehaviour:
@@ -8049,6 +8090,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &1737349249
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737349242}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1740684239
 GameObject:
   m_ObjectHideFlags: 0
@@ -8063,6 +8120,7 @@ GameObject:
   - component: {fileID: 1740684242}
   - component: {fileID: 1740684245}
   - component: {fileID: 1740684244}
+  - component: {fileID: 1740684246}
   m_Layer: 7
   m_Name: slime_nature
   m_TagString: Enemy
@@ -8131,7 +8189,7 @@ Transform:
   m_GameObject: {fileID: 1740684239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.919664, y: -3.9084253, z: 0}
+  m_LocalPosition: {x: 17.882698, y: -3.768278, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8169,8 +8227,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Size: {x: 2.9, y: 1.7}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 2.2, y: 1.1}
   m_Direction: 1
 --- !u!50 &1740684243
 Rigidbody2D:
@@ -8197,7 +8255,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1740684244
 MonoBehaviour:
@@ -8212,8 +8270,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  speed: 3
+  speed: 2.9
   type: 3
+  damage: 0
+  attackSpeed: 0
   canMove: 1
 --- !u!114 &1740684245
 MonoBehaviour:
@@ -8227,6 +8287,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &1740684246
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740684239}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c39de8e2d24d2fc409e396c7956222e4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1798628267
 GameObject:
   m_ObjectHideFlags: 0
@@ -8253,7 +8329,7 @@ Transform:
   m_GameObject: {fileID: 1798628267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9, z: -10}
+  m_LocalPosition: {x: 0, y: -0.95, z: -10}
   m_LocalScale: {x: 2, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

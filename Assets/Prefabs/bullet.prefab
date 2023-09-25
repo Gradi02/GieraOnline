@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1377165411767486301}
   - component: {fileID: 534636713532068337}
   - component: {fileID: -6197353801921730080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3366769980049409461}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3757629630063169901}
   - component: {fileID: 8732016818668097540}
   - component: {fileID: 5984330864898457730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

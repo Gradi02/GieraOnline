@@ -8,7 +8,8 @@ public class EnemyInfo : MonoBehaviour
     public float health;
     [Min(1)] public float speed;
     public types type;
-    private PlayerInfo info;
+    public float damage;
+    public float attackSpeed;
 
     public enum types
     {
@@ -20,6 +21,7 @@ public class EnemyInfo : MonoBehaviour
 
     [Header("Enemy Settings")]
     public bool canMove = true;
+    private PlayerInfo info;
 
     void Start()
     {
@@ -34,5 +36,7 @@ public class EnemyInfo : MonoBehaviour
             if(info.mana<20) info.mana += 1;
             Destroy(gameObject);
         }
+
+       
     }
 }

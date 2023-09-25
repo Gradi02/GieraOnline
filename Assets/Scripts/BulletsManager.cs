@@ -17,13 +17,13 @@ public class BulletsManager : MonoBehaviour
         ParticleSystem ps = bulletparticle.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule col = bulletparticle.main;
         col.startColor = player.GetComponent<ChangeMode>().GetColor();
+        damage = player.GetComponent<PlayerInfo>().GetDamage();
     }
 
     void Update()
     {
         transform.position += bulletSpeed * Time.deltaTime * transform.right;
         currentMode = player.GetComponent<ChangeMode>().GetMode();
-        damage = player.GetComponent<PlayerInfo>().GetDamage();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
