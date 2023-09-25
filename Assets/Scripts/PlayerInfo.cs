@@ -25,7 +25,7 @@ public class PlayerInfo : MonoBehaviour
         mana_slider.value = mana;
         hp_slider.value = hp;
 
-        hp_txt.text = hp.ToString();
-        mana_txt.text = mana.ToString();
+        hp_txt.text = "Health: " + hp.ToString();
+        mana_txt.text = "Mana: " + mana.ToString();
     }
 }
