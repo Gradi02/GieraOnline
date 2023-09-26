@@ -79,8 +79,13 @@ public class ChangeMode : MonoBehaviour
         return Color.black;
     }
 
-    public int GetMode()
+    public EnemyInfo.types GetMode()
     {
-        return modeInt;
+        if (modeInt == 1) return EnemyInfo.types.Air;
+        else if (modeInt == 2) return EnemyInfo.types.Water;
+        else if (modeInt == 3) return EnemyInfo.types.Fire;
+        else if (modeInt == 4) return EnemyInfo.types.Nature;
+        
+        return EnemyInfo.types.Air;
     }    
 }

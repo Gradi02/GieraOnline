@@ -8,8 +8,9 @@ public class BulletsManager : MonoBehaviour
     public float bulletSpeed = 10;
     public ParticleSystem bulletparticle;
     private GameObject player;
-    private int currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
+    private EnemyInfo.types currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
     private int damage;
+    private PlayerInfo info;
 
     [SerializeField] private GameObject pfDamagePopup;
     void Start()
@@ -20,7 +21,8 @@ public class BulletsManager : MonoBehaviour
         ParticleSystem ps = bulletparticle.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule col = bulletparticle.main;
         col.startColor = player.GetComponent<ChangeMode>().GetColor();
-        damage = (int)player.GetComponent<PlayerInfo>().GetDamage();
+        damage = player.GetComponent<PlayerInfo>().GetDamage();
+        info = player.GetComponent<PlayerInfo>();
     }
 
     void Update()
@@ -33,85 +35,34 @@ public class BulletsManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if(collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
+            int damageDelta = (int)Mathf.Round(info.GetDamage() * Random.Range(1.0f, (float)info.GetMultiplier()));
+            if (Random.Range(0, 100) <= info.GetCritChance()) damageDelta *= info.GetCritMulti();
+
+            if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
             {
-                if(currentMode == 1)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
-                else if(currentMode == 2)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage/2;
-                }
-                else if (currentMode == 3)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
-                else if (currentMode == 4)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage*2;
-                }
+                if (currentMode == EnemyInfo.types.Air) damageDelta /= 4;
+                else if (currentMode == EnemyInfo.types.Nature) damageDelta *= 2;
             }
             else if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Water)
             {
-                if (currentMode == 1)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage*2;
-                }
-                else if (currentMode == 2)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
-                else if (currentMode == 3)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage/2;
-                }
-                else if (currentMode == 4)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
+                if (currentMode == EnemyInfo.types.Water) damageDelta /= 4;
+                else if (currentMode == EnemyInfo.types.Air) damageDelta *= 2;
             }
             else if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Fire)
             {
-                if (currentMode == 1)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
-                else if (currentMode == 2)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage*2;
-                }
-                else if (currentMode == 3)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
-                else if (currentMode == 4)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage/2;
-                }
+                if (currentMode == EnemyInfo.types.Fire) damageDelta /= 4;
+                else if (currentMode == EnemyInfo.types.Water) damageDelta *= 2;
             }
             else if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Nature)
             {
-                if (currentMode == 1)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage/2;
-                }
-                else if (currentMode == 2)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
-                else if (currentMode == 3)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage*2;
-                }
-                else if (currentMode == 4)
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().health -= damage;
-                }
+                if (currentMode == EnemyInfo.types.Nature) damageDelta /= 4;
+                else if (currentMode == EnemyInfo.types.Fire) damageDelta *= 2;
             }
 
+            collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
             GameObject DmgPopup = Instantiate(pfDamagePopup, this.transform.position, Quaternion.identity);
-            DmgPopup.GetComponent<TextMeshPro>().text = damage.ToString();
+            DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
+            if (damageDelta > info.GetDamage() * 4) DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
 
             Destroy(this.gameObject);
         }

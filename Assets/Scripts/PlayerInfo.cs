@@ -9,15 +9,41 @@ public class PlayerInfo : MonoBehaviour
     public int hp = 20;
     public int mana = 0;
     private int damage = 8;
+    private int critChance = 5;
+    private int critMultiplier = 3;
+    private int damageMultiplier = 2;
+    private int speed = 6;
+
+
     public Slider mana_slider;
     public Slider hp_slider;
 
     public TextMeshProUGUI hp_txt;
     public TextMeshProUGUI mana_txt;
 
-    public float GetDamage()
+    public int GetDamage()
     {
         return damage;
+    }
+
+    public int GetCritChance()
+    {
+        return critChance;
+    }
+
+    public int GetMultiplier()
+    {
+        return damageMultiplier;
+    }
+
+    public int GetSpeed()
+    {
+        return speed;
+    }
+
+    public int GetCritMulti()
+    {
+        return critMultiplier;
     }
 
     private void Update()

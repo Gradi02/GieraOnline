@@ -10,21 +10,22 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private Transform spawner;
-    public float speed;
+    [SerializeField] private Transform wand;
+    private float speed;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = false;
-        spawner.transform.localPosition = new Vector3(1.1f, 2, 0);
+        wand.transform.localPosition = new Vector3(0.6f, -0.5f, 0);
     }
 
     private void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        speed = GetComponent<PlayerInfo>().GetSpeed();
 
         SetRotationSprite();
     }
@@ -40,12 +41,12 @@ public class Movement : MonoBehaviour
         if (horizontal > 0)
         {
             spriteRenderer.flipX = false;
-            spawner.transform.localPosition = new Vector3(1.1f, 2, 0);
+            wand.transform.localPosition = new Vector3(0.6f, -0.5f, 0);
         }
         else if (horizontal < 0)
         {
             spriteRenderer.flipX = true;
-            spawner.transform.localPosition = new Vector3(-1.1f, 2, 0);
+            wand.transform.localPosition = new Vector3(-0.6f, -0.5f, 0);
         }
     }
 }
