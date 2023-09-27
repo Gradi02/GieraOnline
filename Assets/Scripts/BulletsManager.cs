@@ -12,6 +12,12 @@ public class BulletsManager : MonoBehaviour
     private int damage;
     private PlayerInfo info;
 
+
+
+
+
+
+
     [SerializeField] private GameObject pfDamagePopup;
     void Start()
     {
@@ -62,9 +68,11 @@ public class BulletsManager : MonoBehaviour
             collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
             GameObject DmgPopup = Instantiate(pfDamagePopup, this.transform.position, Quaternion.identity);
             DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
+            
             if (damageDelta > info.GetDamage() * 4) DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
 
             Destroy(this.gameObject);
         }
+
     }
 }
