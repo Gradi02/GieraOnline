@@ -8,9 +8,9 @@ public class EnemySorting : MonoBehaviour
     {
         foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            int layer = Mathf.RoundToInt(enemy.transform.position.y);
+            int layer = Mathf.RoundToInt(enemy.transform.position.y*100);
 
-            enemy.GetComponent<SpriteRenderer>().sortingOrder = -layer -(int)enemy.transform.position.y%100;
+            enemy.GetComponent<SpriteRenderer>().sortingOrder = -layer;
         }
     }
 }

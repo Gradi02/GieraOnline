@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4921284821385908626}
   - component: {fileID: 7346329897593757897}
   - component: {fileID: -4894465710713251386}
+  - component: {fileID: 1817028543670634878}
   m_Layer: 0
   m_Name: pfDamagePopup
   m_TagString: Untagged
@@ -78,7 +79,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10000
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7346329897593757897
 MonoBehaviour:
@@ -184,4 +185,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c81d4b2ea5427489c23c285a9c50fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMeshPro: {fileID: 7346329897593757897}
+--- !u!50 &1817028543670634878
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111166188261828388}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

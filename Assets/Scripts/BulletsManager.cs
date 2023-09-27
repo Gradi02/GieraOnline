@@ -5,18 +5,11 @@ using TMPro;
 
 public class BulletsManager : MonoBehaviour
 {
-    public float bulletSpeed = 10;
+    public float bulletSpeed = 15;
     public ParticleSystem bulletparticle;
     private GameObject player;
     private EnemyInfo.types currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
-    private int damage;
     private PlayerInfo info;
-
-
-
-
-
-
 
     [SerializeField] private GameObject pfDamagePopup;
     void Start()
@@ -27,7 +20,6 @@ public class BulletsManager : MonoBehaviour
         ParticleSystem ps = bulletparticle.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule col = bulletparticle.main;
         col.startColor = player.GetComponent<ChangeMode>().GetColor();
-        damage = player.GetComponent<PlayerInfo>().GetDamage();
         info = player.GetComponent<PlayerInfo>();
     }
 
@@ -39,10 +31,15 @@ public class BulletsManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        bool crit = false;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             int damageDelta = (int)Mathf.Round(info.GetDamage() * Random.Range(1.0f, (float)info.GetMultiplier()));
-            if (Random.Range(0, 100) <= info.GetCritChance()) damageDelta *= info.GetCritMulti();
+            if (Random.Range(0, 100) <= info.GetCritChance())
+            {
+                damageDelta *= info.GetCritMulti();
+                crit = true;
+            }
 
             if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
             {
@@ -66,10 +63,16 @@ public class BulletsManager : MonoBehaviour
             }
 
             collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
-            GameObject DmgPopup = Instantiate(pfDamagePopup, this.transform.position, Quaternion.identity);
+            GameObject DmgPopup = Instantiate(pfDamagePopup, collision.transform.position, Quaternion.identity);
             DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
-            
-            if (damageDelta > info.GetDamage() * 4) DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
+            DmgPopup.GetComponent<DmgPopup>().SetVelocity(bulletSpeed * Time.deltaTime * transform.right);
+
+            if (crit)
+            {
+                DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
+                DmgPopup.GetComponent<TextMeshPro>().fontStyle = TMPro.FontStyles.Bold;
+                DmgPopup.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
+            }
 
             Destroy(this.gameObject);
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class waves : MonoBehaviour
 {
-    int wave = 1;
+    private static int wave = 1;
     public GameObject enemy_water;
     public GameObject enemy_air;
     public GameObject enemy_fire;

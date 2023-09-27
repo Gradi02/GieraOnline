@@ -5,41 +5,30 @@ using UnityEngine;
 
 public class DmgPopup : MonoBehaviour
 {
-    public TextMeshPro textMeshPro;
+    private TextMeshPro text;
     private float startFontSize = 20f;
-    private float endFontSize = 0f;
-    private float duration = 1f;
-    private bool wait = true;
+    private float speed = 8;
+    private Vector2 velocity;
+    private float offsetSpeed = 5;
 
-    void Start()
+    private void Start()
     {
-        StartCoroutine(Wait());
+        text = GetComponent<TextMeshPro>();
+        text.fontSize = startFontSize;
     }
 
-    IEnumerator ChangeFontSizeOverTime()
+    private void Update()
     {
-        float elapsedTime = 0f;
+        text.fontSize -= speed * Time.deltaTime;
+        speed += 20 * Time.deltaTime;    
+        transform.Translate(velocity * offsetSpeed * Time.deltaTime);
 
-        while (elapsedTime < duration)
-        {
-            float newSize = Mathf.Lerp(startFontSize, endFontSize, elapsedTime / duration);
-            textMeshPro.fontSize = newSize;
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        Destroy(gameObject);
+        if(text.fontSize <= 0) Destroy(gameObject);
     }
 
-    IEnumerator Wait()
+    public void SetVelocity(Vector2 vel)
     {
-        yield return new WaitForSeconds(0.5f); // 
-        wait = false;
-
-        if (!wait)
-        {
-            StartCoroutine(ChangeFontSizeOverTime());
-        }
+        velocity = vel;
+        Debug.Log(velocity);
     }
 }

@@ -34,9 +34,14 @@ public class EnemyInfo : MonoBehaviour
         if (health <= 0)
         {
             if(info.mana<20) info.mana += 1;
-            Destroy(gameObject);
+            DestroyEnemy();
         }
 
        
+    }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }
