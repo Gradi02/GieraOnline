@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    public float shotCooldown;
-
     private float nextFire = 0;
+
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform spawnTransform;
@@ -14,10 +13,11 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
+        if (!waves.spawning) return;
         //Strzelanie
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFire)
         {
-            nextFire = Time.time + shotCooldown;
+            nextFire = Time.time + GetComponent<PlayerInfo>().GetGunCooldown();
             particle.Play();
 
             Vector3 mousePos = Input.mousePosition;

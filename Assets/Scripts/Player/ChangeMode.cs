@@ -7,7 +7,6 @@ public class ChangeMode : MonoBehaviour
 {
     [SerializeField] private RawImage modeImg;
     [SerializeField] private GameObject modeTime;
-    private float waitTime = 10;
     private float changeTime = 0;
     private int modeInt = 1;
     void Start()
@@ -42,7 +41,7 @@ public class ChangeMode : MonoBehaviour
 
     private void SetMode(string mode)
     {
-        changeTime = Time.time + waitTime;
+        changeTime = Time.time + GetComponent<PlayerInfo>().GetModeCooldown();
         if (mode == "air")
         {
             modeImg.color = Color.white;

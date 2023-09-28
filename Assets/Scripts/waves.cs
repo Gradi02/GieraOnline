@@ -5,23 +5,28 @@ using TMPro;
 
 public class waves : MonoBehaviour
 {
-    private static int wave = 0;
-    private static int currentWaveEnemy = 3;
-    private static int currentEnemyTypes = 3;
+    public static int wave = 0;
+    public static int currentWaveEnemy = 3;
+    public static int currentEnemyLevel = 1;
 
-    private bool spawning = false;
+    public static bool spawning = false;
 
     private GameObject player;
-    private float nextSpawn = 0;
-    private float spawnTime = 5;
+    private float nextSpawn = 1;
+    private float spawnTime = 4;
+    private float timer = 0;
 
     [SerializeField] private GameObject spawner;
     [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private GameObject upgradeUI;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         spawning = false;
+        timerText.text = "Next: 20s";
+        upgradeUI.SetActive(true);
     }
 
     [ContextMenu("start")]
@@ -29,16 +34,32 @@ public class waves : MonoBehaviour
     {
         wave++;
         waveText.text = "Wave " + wave;
+        SetTime();
+        timerText.text = timer.ToString();
         spawning = true;
+        upgradeUI.SetActive(false);
     }
+
     [ContextMenu("timesup")]
     public void TimesUp()
     {
         spawning = false;
 
-        foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        wave++;
+        SetTime();
+        timerText.text = "Next: " + timer.ToString() + "s";
+        timer = 0;
+        wave--;
+        upgradeUI.SetActive(true);
+
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             enemy.GetComponent<EnemyInfo>().DestroyEnemy();
+        }
+
+        foreach(GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
+        {
+            Destroy(spawner);
         }
     }
 
@@ -53,11 +74,33 @@ public class waves : MonoBehaviour
                 for(int i = 0; i < currentWaveEnemy; i++)
                 {
                     Vector2 spawnPos = RandomCord();
-                    int enemyType = Random.Range(0, currentEnemyTypes);
-                    GameObject spawnerPos = Instantiate(spawner, spawnPos, Quaternion.identity);
+                    Instantiate(spawner, spawnPos, Quaternion.identity);
                 }
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (spawning)
+        {
+            timer -= Time.fixedDeltaTime;
+            timerText.text = Mathf.FloorToInt(timer).ToString();
+
+            if (timer <= 0) TimesUp();
+        }
+    }
+
+    private void SetTime()
+    {
+        if (wave == 1) timer = 20;
+        else if (wave == 2) timer = 25;
+        else if(wave == 3 || wave == 4) timer = 30;
+        else if(wave == 5 || wave == 6) timer = 40;
+        else if(wave == 7 || wave == 8) timer = 50;
+        else if(wave > 8 && wave <= 20) timer = 60;
+        else if(wave > 20 && wave <= 40) timer = 70;
+        else timer = 80;
     }
 
     private Vector2 RandomCord() 

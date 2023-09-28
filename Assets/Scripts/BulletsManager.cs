@@ -67,6 +67,11 @@ public class BulletsManager : MonoBehaviour
             DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
             DmgPopup.GetComponent<DmgPopup>().SetVelocity(bulletSpeed * Time.deltaTime * transform.right);
 
+            if(damageDelta > (info.GetDamage() * (info.GetMultiplier() - (0.25f * info.GetMultiplier()))))
+            {
+                DmgPopup.GetComponent<TextMeshPro>().color = Color.yellow;
+            }
+
             if (crit)
             {
                 DmgPopup.GetComponent<TextMeshPro>().color = Color.red;

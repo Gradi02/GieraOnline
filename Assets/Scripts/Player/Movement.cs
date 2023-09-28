@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        if (!waves.spawning) return;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         speed = GetComponent<PlayerInfo>().GetSpeed();
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!waves.spawning) return;
         Vector3 newPos = new Vector2(speed * horizontal * Time.fixedDeltaTime, speed * vertical * Time.fixedDeltaTime);
         rb.MovePosition(rb.transform.position + newPos);
     }

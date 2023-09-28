@@ -24,7 +24,7 @@ public class upgrades_text : MonoBehaviour
                  "\r\ncrit Multiplier:" + player.GetCritMulti().ToString() +
                  "\r\ndamage Multiplier:" + player.GetMultiplier().ToString() +
                  "\r\nspeed:" + player.GetSpeed().ToString() + 
-                 "\r\n\r\nEnemies killed:" + "tu powinna byc funkcja lol";
+                 "\r\n\r\nEnemies killed:" + player.enemyKilled;
     }
 
     void upgradeHP()

@@ -11,8 +11,10 @@ public class EnemyInfo : MonoBehaviour
     public float damage;
     public float attackSpeed;
 
-    private bool destroy = false;
 
+    [Header("Others")]
+    [SerializeField] private GameObject particle;
+    private bool destroy = false;
     public enum types
     {
         Air,
@@ -36,6 +38,7 @@ public class EnemyInfo : MonoBehaviour
         if (health <= 0 && !destroy)
         {
             if(info.mana<20) info.mana += 1;
+            info.enemyKilled++;
             DestroyEnemy();
         }
 
@@ -53,10 +56,10 @@ public class EnemyInfo : MonoBehaviour
     public void DestroyEnemy()
     {
         GetComponent<EnemyMovement>().enabled = false;
-        transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
         GetComponent<Animation>().enabled = false;
         GetComponent<SpriteRenderer>().color = Color.black;
         destroy = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Instantiate(particle, transform.position, transform.rotation);
     }
 }

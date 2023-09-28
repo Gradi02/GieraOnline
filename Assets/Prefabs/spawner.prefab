@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7178638629055237882}
   - component: {fileID: 7411107339870223282}
+  - component: {fileID: 8710783230271535803}
   m_Layer: 0
   m_Name: spawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8710783230271535803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901442385088989767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686ea3bfdc2f31548afdba0947ba9347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeToSpawn: 1
+  Airtypes:
+  - {fileID: 7284304837345861462, guid: 9be27eb02d0e30d4b9090a2c98c1afc0, type: 3}
+  Watertypes:
+  - {fileID: 4475544869638742600, guid: d48686f175448194089778e707a927bd, type: 3}
+  Firetypes:
+  - {fileID: 2110284731021545226, guid: 5cd9961bc94e7c64f8fcda1abca89f85, type: 3}
+  Naturetypes:
+  - {fileID: 4223711750177830973, guid: 152a1166971c4a945842448fbb0df1c4, type: 3}
