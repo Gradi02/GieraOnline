@@ -24,14 +24,14 @@ public class waves : MonoBehaviour
         spawning = false;
     }
 
-    [ContextMenu("test")]
+    [ContextMenu("start")]
     public void WaveStart()
     {
         wave++;
         waveText.text = "Wave " + wave;
         spawning = true;
     }
-
+    [ContextMenu("timesup")]
     public void TimesUp()
     {
         spawning = false;
