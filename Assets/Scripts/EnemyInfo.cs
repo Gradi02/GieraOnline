@@ -11,6 +11,8 @@ public class EnemyInfo : MonoBehaviour
     public float damage;
     public float attackSpeed;
 
+    private bool destroy = false;
+
     public enum types
     {
         Air,
@@ -31,17 +33,30 @@ public class EnemyInfo : MonoBehaviour
 
     void Update()
     {
-        if (health <= 0)
+        if (health <= 0 && !destroy)
         {
             if(info.mana<20) info.mana += 1;
             DestroyEnemy();
         }
 
-       
+        if(destroy)
+        {
+            transform.localScale -= new Vector3(Time.deltaTime,Time.deltaTime,Time.deltaTime);
+            float obecnyKat = transform.rotation.eulerAngles.z;
+            float nowyKat = obecnyKat + 90 * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, 0, nowyKat);
+
+            if (transform.localScale.x <= 0.1f) Destroy(gameObject);
+        }
     }
 
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
+        GetComponent<EnemyMovement>().enabled = false;
+        transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+        GetComponent<Animation>().enabled = false;
+        GetComponent<SpriteRenderer>().color = Color.black;
+        destroy = true;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 }
