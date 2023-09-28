@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
 {
+
+
+
     [Header("Enemy Stats")]
     public float health;
     [Min(1)] public float speed;

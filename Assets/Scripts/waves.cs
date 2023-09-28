@@ -20,6 +20,7 @@ public class waves : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject upgradeUI;
+    [SerializeField] private GameObject PlayUI;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class waves : MonoBehaviour
         spawning = false;
         timerText.text = "Next: 20s";
         upgradeUI.SetActive(true);
+        PlayUI.SetActive(false);
     }
 
     [ContextMenu("start")]
@@ -37,7 +39,9 @@ public class waves : MonoBehaviour
         SetTime();
         timerText.text = timer.ToString();
         spawning = true;
+
         upgradeUI.SetActive(false);
+        PlayUI.SetActive(true);
     }
 
     [ContextMenu("timesup")]
@@ -61,6 +65,8 @@ public class waves : MonoBehaviour
         {
             Destroy(spawner);
         }
+
+        PlayUI.SetActive(false);
     }
 
     private void Update()

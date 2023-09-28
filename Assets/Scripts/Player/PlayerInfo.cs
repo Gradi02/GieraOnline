@@ -28,9 +28,19 @@ public class PlayerInfo : MonoBehaviour
         return damage;
     }
 
+    public void SetDamage()
+    {
+        damage += 1;
+    }
+
     public int GetCritChance()
     {
         return critChance;
+    }
+
+    public void SetCritChance()
+    {
+        critChance += 1;
     }
 
     public int GetMultiplier()
@@ -38,14 +48,29 @@ public class PlayerInfo : MonoBehaviour
         return damageMultiplier;
     }
 
+    public void SetMultiplier()
+    {
+        damageMultiplier += 1;
+    }
+
     public int GetSpeed()
     {
         return speed;
     }
 
+    public void SetSpeed()
+    {
+        speed += 1;
+    }
+
     public int GetCritMulti()
     {
         return critMultiplier;
+    }
+
+    public void SetCritMulti()
+    {
+        critMultiplier += 1;
     }
 
     public float GetModeCooldown()
