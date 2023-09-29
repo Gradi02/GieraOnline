@@ -76,15 +76,5 @@ public class ChangeMode : MonoBehaviour
         else if(modeInt == 4) return Color.green;
 
         return Color.black;
-    }
-
-    public EnemyInfo.types GetMode()
-    {
-        if (modeInt == 1) return EnemyInfo.types.Air;
-        else if (modeInt == 2) return EnemyInfo.types.Water;
-        else if (modeInt == 3) return EnemyInfo.types.Fire;
-        else if (modeInt == 4) return EnemyInfo.types.Nature;
-        
-        return EnemyInfo.types.Air;
-    }    
+    }  
 }

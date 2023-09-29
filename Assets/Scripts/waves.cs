@@ -6,7 +6,7 @@ using TMPro;
 public class waves : MonoBehaviour
 {
     public static int wave = 0;
-    public static int currentWaveEnemy = 3;
+    public static int currentWaveEnemy = 10;
     public static int currentEnemyLevel = 1;
 
     public static bool spawning = false;
@@ -15,12 +15,17 @@ public class waves : MonoBehaviour
     private float nextSpawn = 1;
     private float spawnTime = 4;
     private float timer = 0;
+    private string wavewinText = "Wave_Completed!!!";
+    private bool win = false;
+    private float nextlett = 0;
+    private int i = 0;
 
     [SerializeField] private GameObject spawner;
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject upgradeUI;
     [SerializeField] private GameObject PlayUI;
+    [SerializeField] private TextMeshProUGUI wavecomplete;
 
     private void Start()
     {
@@ -29,6 +34,7 @@ public class waves : MonoBehaviour
         timerText.text = "Next: 20s";
         upgradeUI.SetActive(true);
         PlayUI.SetActive(false);
+        wavecomplete.gameObject.SetActive(false);
     }
 
     [ContextMenu("start")]
@@ -57,7 +63,7 @@ public class waves : MonoBehaviour
         timerText.text = "Next: " + timer.ToString() + "s";
         timer = 0;
         wave--;
-        upgradeUI.SetActive(true);
+        timerText.color = Color.white;
 
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
@@ -69,7 +75,7 @@ public class waves : MonoBehaviour
             Destroy(spawner);
         }
 
-        PlayUI.SetActive(false);
+        WinAnimation();
     }
 
     private void Update()
@@ -100,20 +106,43 @@ public class waves : MonoBehaviour
             timer -= Time.fixedDeltaTime;
             timerText.text = Mathf.FloorToInt(timer).ToString();
 
+            if (timer <= 6) timerText.color = Color.red;
+
             if (timer <= 0) TimesUp();
+        }
+
+        if(win)
+        {   
+            if (Time.time >= nextlett)
+            {
+                wavecomplete.text += wavewinText[i];
+                i++;
+                nextlett = Time.time + 0.15f;
+            }
+
+            if (wavecomplete.text.Length > 15)
+            {
+                win = false;
+                wavecomplete.text = string.Empty;
+                wavecomplete.gameObject.SetActive(false);
+                nextlett = 0;
+                i = 0;
+                PlayUI.SetActive(false);
+                upgradeUI.SetActive(true);
+            }
         }
     }
 
     private void SetTime()
     {
-        if (wave == 1) timer = 20;
-        else if (wave == 2) timer = 25;
-        else if(wave == 3 || wave == 4) timer = 30;
-        else if(wave == 5 || wave == 6) timer = 40;
-        else if(wave == 7 || wave == 8) timer = 50;
-        else if(wave > 8 && wave <= 20) timer = 60;
-        else if(wave > 20 && wave <= 40) timer = 70;
-        else timer = 80;
+        if (wave == 1) { timer = 20; currentEnemyLevel = 1; }
+        else if (wave == 2) { timer = 25; currentEnemyLevel = 1; }
+        else if (wave == 3 || wave == 4) { timer = 30; currentEnemyLevel = 1; }
+        else if (wave == 5 || wave == 6) { timer = 40; currentEnemyLevel = 2; }
+        else if (wave == 7 || wave == 8) { timer = 50; currentEnemyLevel = 2; }
+        else if (wave > 8 && wave <= 20) { timer = 60; currentEnemyLevel = 3; }
+        else if (wave > 20 && wave <= 40) { timer = 70; currentEnemyLevel = 4; }
+        else { timer = 80; currentEnemyLevel = 5; }
     }
 
     private Vector2 RandomCord() 
@@ -123,5 +152,12 @@ public class waves : MonoBehaviour
         
         
         return (new Vector3(x,y));
+    }
+
+    private void WinAnimation()
+    {
+        wavecomplete.gameObject.SetActive(true);
+        wavecomplete.text = string.Empty;
+        win = true;
     }
 }

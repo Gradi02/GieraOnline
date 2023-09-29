@@ -67,7 +67,7 @@ public class PlayerInfo : MonoBehaviour
 
     public float GetMultiplier()
     {
-        return damageMultiplier;
+        return Mathf.RoundToInt(damageMultiplier);
     }
 
     public void SetMultiplier()
@@ -87,7 +87,7 @@ public class PlayerInfo : MonoBehaviour
 
     public float GetCritMulti()
     {
-        return critMultiplier;
+        return Mathf.RoundToInt(critMultiplier);
     }
 
     public void SetCritMulti()
@@ -107,7 +107,7 @@ public class PlayerInfo : MonoBehaviour
 
     public float GetGunCooldown()
     {
-        return gunCooldown;
+        return Mathf.RoundToInt(gunCooldown);
     }
 
     public void SetStats()
@@ -116,6 +116,11 @@ public class PlayerInfo : MonoBehaviour
         mana_slider.maxValue = maxmana;
         currentHp = maxhp;
         currentMana = maxmana;
+    }
+
+    public void GetHitted(int dmg_in)
+    {
+        currentHp -= dmg_in;
     }
 
     private void Update()

@@ -6,52 +6,26 @@ public class EnemySpawner : MonoBehaviour
 {
     public float TimeToSpawn = 1;
 
-    public GameObject[] Airtypes;
-    public GameObject[] Watertypes;
-    public GameObject[] Firetypes;
-    public GameObject[] Naturetypes;
+    //tu wrzucamy prefaby wrogów zwyk³ych
+    [SerializeField] private GameObject[] enemys;
+    //a tu zmutowanych tych du¿ych
+    [SerializeField] private GameObject[] megaEnemys;
 
-    private EnemyInfo.types enemyType;
     private SpriteRenderer spriteRenderer;
     private float timer = 0;
     private float startScale = 1;
+    private Color anim;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        RandomEnemyType();
-    }
-
-    private void RandomEnemyType()
-    {
-        int type = Random.Range(0, 3);
-
-        if (type == 0)
-        {
-            enemyType = EnemyInfo.types.Air;
-            spriteRenderer.color = Color.white;
-        }
-        else if (type == 1)
-        {
-            enemyType = EnemyInfo.types.Water;
-            spriteRenderer.color = Color.blue;
-        }
-        else if (type == 2)
-        {
-            enemyType = EnemyInfo.types.Fire;
-            spriteRenderer.color = Color.red;
-        }
-        else if (type == 3)
-        {
-            enemyType = EnemyInfo.types.Nature;
-            spriteRenderer.color = Color.green;
-        }
+        anim = Color.white;
     }
 
     private void Update()
     {
         if(timer > TimeToSpawn)
         {
-            SpawnEnemy(enemyType);
+            SpawnEnemy();
             Destroy(gameObject);
         }
     }
@@ -61,30 +35,44 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.fixedDeltaTime;
         startScale -= Time.fixedDeltaTime / 2;
         transform.localScale = new Vector3(startScale, startScale, startScale);
+
+        anim.a = Mathf.Sin(timer*4);
+        spriteRenderer.color = anim;
     }
 
-    private void SpawnEnemy(EnemyInfo.types type)
+    private void SpawnEnemy()
     {
         int hard = Random.Range(1, 5);
         int level = 1;
 
         if (hard == 1) level = Random.Range(1, waves.currentEnemyLevel);
+        int muted = Random.Range(1, 30);
 
-        if (type == EnemyInfo.types.Air)
+
+        if (level == 1)
         {
-            Instantiate(Airtypes[level - 1], transform.position, Quaternion.identity);
+            if(muted == 1) Instantiate(megaEnemys[level-1], transform.position, Quaternion.identity);
+            else Instantiate(enemys[level - 1], transform.position, Quaternion.identity);
         }
-        else if (type == EnemyInfo.types.Water)
+        else if(level == 2)
         {
-            Instantiate(Watertypes[level - 1], transform.position, Quaternion.identity);
+            if (muted == 1) Instantiate(megaEnemys[level - 1], transform.position, Quaternion.identity);
+            else Instantiate(enemys[level - 1], transform.position, Quaternion.identity);
         }
-        else if (type == EnemyInfo.types.Fire)
+        else if (level == 3)
         {
-            Instantiate(Firetypes[level - 1], transform.position, Quaternion.identity);
+            if (muted == 1) Instantiate(megaEnemys[level - 1], transform.position, Quaternion.identity);
+            else Instantiate(enemys[level - 1], transform.position, Quaternion.identity);
         }
-        else if (type == EnemyInfo.types.Nature)
+        else if (level == 4)
         {
-            Instantiate(Naturetypes[level - 1], transform.position, Quaternion.identity);
+            if (muted == 1) Instantiate(megaEnemys[level - 1], transform.position, Quaternion.identity);
+            else Instantiate(enemys[level - 1], transform.position, Quaternion.identity);
+        }
+        else if (level == 5)
+        {
+            if (muted == 1) Instantiate(megaEnemys[level - 1], transform.position, Quaternion.identity);
+            else Instantiate(enemys[level - 1], transform.position, Quaternion.identity);
         }
     }
 }

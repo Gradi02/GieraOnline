@@ -175,12 +175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd5fbeb9df64dd44969209bd3c8eebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 15
   speed: 8
   type: 1
   damage: 1
-  attackSpeed: 5
+  attackSpeed: 1
   particle: {fileID: 4833367576465983319, guid: fb057bafe67e7e242bc7133f1a014740, type: 3}
+  isAttacking: 0
   canMove: 1
 --- !u!111 &3480388745335816588
 Animation:

@@ -10,21 +10,14 @@ public class EnemyInfo : MonoBehaviour
     [Header("Enemy Stats")]
     public float health;
     [Min(1)] public float speed;
-    public types type;
-    public float damage;
+    public int damage;
     public float attackSpeed;
 
 
     [Header("Others")]
     [SerializeField] private GameObject particle;
     private bool destroy = false;
-    public enum types
-    {
-        Air,
-        Water,
-        Fire,
-        Nature
-    }
+    [HideInInspector] public bool isAttacking = false;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
