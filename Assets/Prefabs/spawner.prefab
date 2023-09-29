@@ -101,4 +101,4 @@ MonoBehaviour:
   enemys:
   - {fileID: 7284304837345861462, guid: 9be27eb02d0e30d4b9090a2c98c1afc0, type: 3}
   megaEnemys:
-  - {fileID: 2110284731021545226, guid: 5cd9961bc94e7c64f8fcda1abca89f85, type: 3}
+  - {fileID: 7284304837345861462, guid: be233239600f14d4f884c2e623834e98, type: 3}

@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
 {
-
-
+    public GameObject enemy_basic;
+    public Vector3 temp_shooter_cords;
 
     [Header("Enemy Stats")]
     public float health;
     [Min(1)] public float speed;
     public int damage;
     public float attackSpeed;
+
+    [Header("TYPE")]
+    public bool shooter;
+    public bool poison;
+
+    [Header("MUTATIONS")]
+    public bool mutated_basic;
+    public bool mutated_speed;
+    public bool mutated_shooter;
+    public bool mutated_poison;
 
 
     [Header("Others")]
@@ -31,11 +43,13 @@ public class EnemyInfo : MonoBehaviour
 
     void Update()
     {
+
         if (health <= 0 && !destroy)
         {
             if(info.currentMana< info.GetMaxMana()) info.currentMana += 1;
             info.enemyKilled++;
             info.enemyKilledPerRound++;
+            if(mutated_basic) Mutated_basic_skill();
             DestroyEnemy();
         }
 
@@ -50,6 +64,24 @@ public class EnemyInfo : MonoBehaviour
         }
     }
 
+    public void Mutated_basic_skill()
+    {
+        Vector3 skillCords1 = new Vector3(this.transform.position.x + 1, this.transform.position.y + 1, 0);
+        Vector3 skillCords2 = new Vector3(this.transform.position.x + 1, this.transform.position.y - 1, 0);
+        Vector3 skillCords3 = new Vector3(this.transform.position.x - 1, this.transform.position.y + 1, 0);
+        Vector3 skillCords4 = new Vector3(this.transform.position.x - 1, this.transform.position.y - 1, 0);
+        Instantiate(enemy_basic, skillCords1, Quaternion.identity);
+        Instantiate(enemy_basic, skillCords2, Quaternion.identity);
+        Instantiate(enemy_basic, skillCords3, Quaternion.identity);
+        Instantiate(enemy_basic, skillCords4, Quaternion.identity);
+    }
+    
+    public void Shooter_skill() 
+    {
+        
+    
+    }
+
     public void DestroyEnemy()
     {
         GetComponent<EnemyMovement>().enabled = false;
@@ -59,5 +91,11 @@ public class EnemyInfo : MonoBehaviour
         destroy = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Instantiate(particle, transform.position, transform.rotation);
+    }
+
+    IEnumerator Shooter_cooldown()
+    {
+        yield return new WaitForSeconds(2f);
+        temp_shooter_cords = new Vector3(info.transform.position.x, info.transform.position.y, 0);
     }
 }

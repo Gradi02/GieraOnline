@@ -175,11 +175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd5fbeb9df64dd44969209bd3c8eebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_basic: {fileID: 7284304837345861462, guid: 9be27eb02d0e30d4b9090a2c98c1afc0, type: 3}
+  bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
   health: 15
   speed: 8
-  type: 3
   damage: 1
   attackSpeed: 1
+  shooter: 0
+  poison: 0
+  mutated_basic: 0
+  mutated_speed: 0
+  mutated_shooter: 0
+  mutated_poison: 0
   particle: {fileID: 4833367576465983319, guid: fb057bafe67e7e242bc7133f1a014740, type: 3}
   isAttacking: 0
   canMove: 1
