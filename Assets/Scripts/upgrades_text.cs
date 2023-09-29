@@ -23,13 +23,14 @@ public class upgrades_text : MonoBehaviour
 
     void Update()
     {
-        stats.text = "hp: " + player.hp.ToString() + 
-                 "\r\nmana: "+ player.mana.ToString() + 
+        stats.text = "hp: " + player.GetMaxHp().ToString() + 
+                 "\r\nmana: "+ player.GetMaxMana().ToString() + 
+                 "\r\nspeed: " + player.GetSpeed().ToString() +
                  "\r\ndamage: " + player.GetDamage().ToString() + 
-                 "\r\ncrit Chance: " + player.GetCritChance().ToString() +
-                 "\r\ncrit Multiplier: " + player.GetCritMulti().ToString() +
-                 "\r\ndamage Multiplier: " + player.GetMultiplier().ToString() +
-                 "\r\nspeed: " + player.GetSpeed().ToString() + 
+                 "\r\ndamage Multiplier: x" + player.GetMultiplier().ToString() +
+                 "\r\ncrit Chance: " + player.GetCritChance().ToString() + "%" +
+                 "\r\ncrit Multiplier: x" + player.GetCritMulti().ToString() +
+                 "\r\nshot Cooldown: " + player.GetGunCooldown().ToString() + "s" +
                  "\r\n\r\nEnemies killed: " + player.enemyKilled;
         money.text = "points: " + money_upgrade;
         pricetext.text = "upgrade price: " + price;
@@ -37,10 +38,9 @@ public class upgrades_text : MonoBehaviour
 
     public void UpgradeHP()
     {
-        Debug.Log(player.hp);
         if (money_upgrade >= price)
         {
-            player.hp += 1;
+            player.SetMaxHP();
             money_upgrade -= price;
             price += 1;
         }
@@ -48,19 +48,16 @@ public class upgrades_text : MonoBehaviour
 
     public void UpgradeMANA()
     {
-        Debug.Log(player.mana);
         if (money_upgrade >= price)
         {
-            player.mana += 1;
+            player.SetMaxMana();
             money_upgrade -= price;
             price += 1;
-            Debug.Log(player.mana);
         }
     }
 
     public void UpgradeDAMAGE()
     {
-        Debug.Log(player.GetDamage());
         if (money_upgrade >= price)
         {
             player.SetDamage();
@@ -101,11 +98,21 @@ public class upgrades_text : MonoBehaviour
 
     public void UpgradeSPEED()
     {
-       if (money_upgrade >= price)
+        if (money_upgrade >= price)
         {
             player.SetSpeed();
             money_upgrade -= price;
             price += 1;
+        }
+    }
+
+    public void UpgradeGUNCOOLDOWN()
+    {
+        if(money_upgrade >= price)
+        {
+            player.SetGunCooldown();
+            money_upgrade -= price;
+            price++;
         }
     }
 }

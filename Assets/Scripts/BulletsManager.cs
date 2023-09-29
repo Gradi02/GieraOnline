@@ -8,7 +8,7 @@ public class BulletsManager : MonoBehaviour
     public float bulletSpeed = 15;
     public ParticleSystem bulletparticle;
     private GameObject player;
-    private EnemyInfo.types currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
+    //private EnemyInfo.types currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
     private PlayerInfo info;
 
     [SerializeField] private GameObject pfDamagePopup;
@@ -26,7 +26,7 @@ public class BulletsManager : MonoBehaviour
     void Update()
     {
         transform.position += bulletSpeed * Time.deltaTime * transform.right;
-        currentMode = player.GetComponent<ChangeMode>().GetMode();
+        //currentMode = player.GetComponent<ChangeMode>().GetMode();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,11 +37,11 @@ public class BulletsManager : MonoBehaviour
             int damageDelta = (int)Mathf.Round(info.GetDamage() * Random.Range(1.0f, (float)info.GetMultiplier()));
             if (Random.Range(0, 100) <= info.GetCritChance())
             {
-                damageDelta *= info.GetCritMulti();
+                damageDelta = (int)Mathf.Round(damageDelta * info.GetCritMulti());
                 crit = true;
             }
 
-            if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
+            /*if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
             {
                 if (currentMode == EnemyInfo.types.Air) damageDelta /= 4;
                 else if (currentMode == EnemyInfo.types.Nature) damageDelta *= 2;
@@ -60,7 +60,7 @@ public class BulletsManager : MonoBehaviour
             {
                 if (currentMode == EnemyInfo.types.Nature) damageDelta /= 4;
                 else if (currentMode == EnemyInfo.types.Fire) damageDelta *= 2;
-            }
+            }*/
 
             collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
             GameObject DmgPopup = Instantiate(pfDamagePopup, collision.transform.position, Quaternion.identity);

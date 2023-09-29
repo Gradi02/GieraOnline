@@ -28,7 +28,7 @@ public class Shooting : MonoBehaviour
             float rotationZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
             GameObject b = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
-            b.GetComponent<SpriteRenderer>().color = GetComponent<ChangeMode>().GetColor();
+            //b.GetComponent<SpriteRenderer>().color = GetComponent<ChangeMode>().GetColor();
         }
     }
 }

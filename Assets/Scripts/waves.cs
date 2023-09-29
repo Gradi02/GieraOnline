@@ -41,6 +41,7 @@ public class waves : MonoBehaviour
         spawning = true;
 
         player.GetComponent<PlayerInfo>().enemyKilledPerRound = 0;
+        player.GetComponent<PlayerInfo>().SetStats();
 
         upgradeUI.SetActive(false);
         PlayUI.SetActive(true);
@@ -85,6 +86,10 @@ public class waves : MonoBehaviour
                     Instantiate(spawner, spawnPos, Quaternion.identity);
                 }
             }
+        }
+        else
+        {
+            player.transform.position = Vector3.Lerp(player.transform.position, Vector3.zero, 0.001f);
         }
     }
 

@@ -29,6 +29,5 @@ public class DmgPopup : MonoBehaviour
     public void SetVelocity(Vector2 vel)
     {
         velocity = vel;
-        Debug.Log(velocity);
     }
 }

@@ -41,7 +41,7 @@ public class ChangeMode : MonoBehaviour
 
     private void SetMode(string mode)
     {
-        changeTime = Time.time + GetComponent<PlayerInfo>().GetModeCooldown();
+        //changeTime = Time.time + GetComponent<PlayerInfo>().GetModeCooldown();
         if (mode == "air")
         {
             modeImg.color = Color.white;

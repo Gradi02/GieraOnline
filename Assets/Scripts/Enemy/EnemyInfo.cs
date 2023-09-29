@@ -40,7 +40,7 @@ public class EnemyInfo : MonoBehaviour
     {
         if (health <= 0 && !destroy)
         {
-            if(info.mana<20) info.mana += 1;
+            if(info.currentMana< info.GetMaxMana()) info.currentMana += 1;
             info.enemyKilled++;
             info.enemyKilledPerRound++;
             DestroyEnemy();
@@ -61,6 +61,7 @@ public class EnemyInfo : MonoBehaviour
     {
         GetComponent<EnemyMovement>().enabled = false;
         GetComponent<Animation>().enabled = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().color = Color.black;
         destroy = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;

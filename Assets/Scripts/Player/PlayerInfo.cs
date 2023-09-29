@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public int hp = 20;
-    public int mana = 0;
+    private int maxhp = 20;
+    public int currentHp = 1;
+    private int maxmana = 20;
+    public int currentMana = 1;
     private int speed = 8;
     private int damage = 8;
-    private int damageMultiplier = 2;
-    private int critChance = 50;
-    private int critMultiplier = 3;
-    private float modeCooldown = 3;
+    private float damageMultiplier = 2;
+    private int critChance = 5;
+    private float critMultiplier = 3;
     private float gunCooldown = 0.8f;
 
     public int enemyKilledPerRound = 0;
@@ -27,6 +28,26 @@ public class PlayerInfo : MonoBehaviour
     public int GetDamage()
     {
         return damage;
+    }
+
+    public int GetMaxMana()
+    {
+        return maxmana;
+    }
+
+    public int GetMaxHp()
+    {
+        return maxhp;
+    }
+
+    public void SetMaxMana()
+    {
+        maxmana += 2;
+    }
+
+    public void SetMaxHP()
+    {
+        maxhp += 2;
     }
 
     public void SetDamage()
@@ -44,14 +65,14 @@ public class PlayerInfo : MonoBehaviour
         critChance += 1;
     }
 
-    public int GetMultiplier()
+    public float GetMultiplier()
     {
         return damageMultiplier;
     }
 
     public void SetMultiplier()
     {
-        damageMultiplier += 1;
+        damageMultiplier += 0.5f;
     }
 
     public int GetSpeed()
@@ -64,32 +85,45 @@ public class PlayerInfo : MonoBehaviour
         speed += 1;
     }
 
-    public int GetCritMulti()
+    public float GetCritMulti()
     {
         return critMultiplier;
     }
 
     public void SetCritMulti()
     {
-        critMultiplier += 1;
+        critMultiplier += 0.5f;
     }
 
-    public float GetModeCooldown()
+    public void SetGunCooldown()
     {
-        return modeCooldown;
+        gunCooldown -= 0.05f;
     }
+
+    //public float GetModeCooldown()
+    //{
+    //    return modeCooldown;
+    //}
 
     public float GetGunCooldown()
     {
         return gunCooldown;
     }
 
+    public void SetStats()
+    {
+        hp_slider.maxValue = maxhp;
+        mana_slider.maxValue = maxmana;
+        currentHp = maxhp;
+        currentMana = maxmana;
+    }
+
     private void Update()
     {
-        mana_slider.value = mana;
-        hp_slider.value = hp;
+        mana_slider.value = currentMana;
+        hp_slider.value = currentHp;
 
-        hp_txt.text = "Health: " + hp.ToString();
-        mana_txt.text = "Mana: " + mana.ToString();
+        hp_txt.text = "Health: " + currentHp.ToString();
+        mana_txt.text = "Mana: " + currentMana.ToString();
     }
 }
