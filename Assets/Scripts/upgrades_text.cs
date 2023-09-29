@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,15 +9,16 @@ using UnityEngine.UI;
 public class upgrades_text : MonoBehaviour
 {
     public TextMeshProUGUI stats;
-    PlayerInfo player;
     public TextMeshProUGUI money;
-    public int money_upgrade = 1000;
+    public TextMeshProUGUI pricetext;
+    PlayerInfo player;
+    public static int money_upgrade = 0;
     private int price = 1;
     
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();    
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
     }
 
     void Update()
@@ -29,10 +31,13 @@ public class upgrades_text : MonoBehaviour
                  "\r\ndamage Multiplier: " + player.GetMultiplier().ToString() +
                  "\r\nspeed: " + player.GetSpeed().ToString() + 
                  "\r\n\r\nEnemies killed: " + player.enemyKilled;
+        money.text = "points: " + money_upgrade;
+        pricetext.text = "upgrade price: " + price;
     }
 
-    public void upgradeHP()
+    public void UpgradeHP()
     {
+        Debug.Log(player.hp);
         if (money_upgrade >= price)
         {
             player.hp += 1;
@@ -41,8 +46,9 @@ public class upgrades_text : MonoBehaviour
         }
     }
 
-    public void upgradeMANA()
+    public void UpgradeMANA()
     {
+        Debug.Log(player.mana);
         if (money_upgrade >= price)
         {
             player.mana += 1;
@@ -52,8 +58,9 @@ public class upgrades_text : MonoBehaviour
         }
     }
 
-    public void upgradeDAMAGE()
+    public void UpgradeDAMAGE()
     {
+        Debug.Log(player.GetDamage());
         if (money_upgrade >= price)
         {
             player.SetDamage();
@@ -62,7 +69,7 @@ public class upgrades_text : MonoBehaviour
         }
     }
 
-    public void upgradeCRIT_CHANCE()
+    public void UpgradeCRIT_CHANCE()
     {
         if (money_upgrade >= price)
         {
@@ -72,7 +79,7 @@ public class upgrades_text : MonoBehaviour
         }
     }
 
-    public void upgradeCRIT_MULTIPLIER()
+    public void UpgradeCRIT_MULTIPLIER()
     {
         if (money_upgrade >= price)
         {
@@ -82,7 +89,7 @@ public class upgrades_text : MonoBehaviour
         }
     }
 
-    public void upgradeDAMAGE_MULTIPLIER()
+    public void UpgradeDAMAGE_MULTIPLIER()
     {
         if (money_upgrade >= price)
         {
@@ -92,7 +99,7 @@ public class upgrades_text : MonoBehaviour
         }
     }
 
-    public void upgradeSPEED()
+    public void UpgradeSPEED()
     {
        if (money_upgrade >= price)
         {

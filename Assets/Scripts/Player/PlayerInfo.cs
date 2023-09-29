@@ -16,6 +16,7 @@ public class PlayerInfo : MonoBehaviour
     private float modeCooldown = 3;
     private float gunCooldown = 0.8f;
 
+    public int enemyKilledPerRound = 0;
     public int enemyKilled = 0;
     public Slider mana_slider;
     public Slider hp_slider;

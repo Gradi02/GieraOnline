@@ -42,6 +42,7 @@ public class EnemyInfo : MonoBehaviour
         {
             if(info.mana<20) info.mana += 1;
             info.enemyKilled++;
+            info.enemyKilledPerRound++;
             DestroyEnemy();
         }
 

@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
         int hard = Random.Range(1, 5);
         int level = 1;
 
-        if (hard == 1) level = Random.Range(1, waves.currentWaveEnemy);
+        if (hard == 1) level = Random.Range(1, waves.currentEnemyLevel);
 
         if (type == EnemyInfo.types.Air)
         {

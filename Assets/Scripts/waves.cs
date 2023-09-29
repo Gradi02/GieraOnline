@@ -40,6 +40,8 @@ public class waves : MonoBehaviour
         timerText.text = timer.ToString();
         spawning = true;
 
+        player.GetComponent<PlayerInfo>().enemyKilledPerRound = 0;
+
         upgradeUI.SetActive(false);
         PlayUI.SetActive(true);
     }
@@ -48,7 +50,7 @@ public class waves : MonoBehaviour
     public void TimesUp()
     {
         spawning = false;
-
+        upgrades_text.money_upgrade += player.GetComponent<PlayerInfo>().enemyKilledPerRound;
         wave++;
         SetTime();
         timerText.text = "Next: " + timer.ToString() + "s";
