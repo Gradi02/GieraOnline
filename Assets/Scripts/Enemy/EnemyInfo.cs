@@ -9,6 +9,18 @@ public class EnemyInfo : MonoBehaviour
     public GameObject enemy_basic;
     public Vector3 temp_shooter_cords;
 
+    private float poison_cooldown = 1;
+    private float mutated_poison_cooldown = 0;
+    private float mutated_poison_burst = 0;
+    public GameObject poison_pool;
+    private int burst = 0;
+
+    public GameObject bullet;
+    private float shooter_cooldown = 1;
+    private float mutated_shooter_cooldown = 0;
+    private float mutated_shooter_burst = 0;
+
+
     [Header("Enemy Stats")]
     public float health;
     [Min(1)] public float speed;
@@ -57,14 +69,72 @@ public class EnemyInfo : MonoBehaviour
             DestroyEnemy();
         }
 
-        if(destroy)
+        if (destroy)
         {
-            transform.localScale -= new Vector3(Time.deltaTime,Time.deltaTime,Time.deltaTime);
+            transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
             float obecnyKat = transform.rotation.eulerAngles.z;
             float nowyKat = obecnyKat + 90 * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, 0, nowyKat);
 
             if (transform.localScale.x <= 0.1f) Destroy(gameObject);
+        }
+        else 
+        {
+
+            if (poison && Time.time >= poison_cooldown)
+            {
+                poison_cooldown = Time.time + 3;
+
+                Instantiate(poison_pool, this.transform.position, Quaternion.identity);
+            }
+
+            if (mutated_poison && Time.time >= mutated_poison_cooldown)
+            {
+                if (burst < 5)
+                {
+                    if (Time.time >= mutated_poison_burst)
+                    {
+                        int x = Random.Range(-4, 4);
+                        int y = Random.Range(-4, 4);
+                        Vector3 pois_cord = new Vector3(this.transform.position.x + x, this.transform.position.y + y, 0);
+                        Instantiate(poison_pool, pois_cord, Quaternion.identity);
+                        mutated_poison_burst = Time.time + 0.2f;
+                        burst++;
+                    }
+                }
+                else
+                {
+                    burst = 0;
+                    mutated_poison_cooldown = Time.time + 5;
+                }
+            }
+
+            if (shooter && Time.time >= shooter_cooldown)
+            {
+                shooter_cooldown = Time.time + 2;
+
+                Instantiate(bullet, this.transform.position, Quaternion.identity);
+            }
+
+            if (mutated_shooter && Time.time >= mutated_shooter_cooldown)
+            {
+                if (burst < 10)
+                {
+                    if (Time.time >= mutated_shooter_burst)
+                    {
+                        mutated_shooter_burst = Time.time + 0.3f;
+                        Instantiate(bullet, this.transform.position, Quaternion.identity);
+                        burst++;
+                    }
+                }
+                else
+                {
+                    burst = 0;
+                    mutated_shooter_cooldown = Time.time + 5;
+                }
+            }
+
+
         }
     }
 
@@ -79,12 +149,6 @@ public class EnemyInfo : MonoBehaviour
         Instantiate(enemy_basic, skillCords3, Quaternion.identity);
         Instantiate(enemy_basic, skillCords4, Quaternion.identity);
     }
-    
-    public void Shooter_skill() 
-    {
-        
-    
-    }
 
     public void DestroyEnemy()
     {
@@ -95,11 +159,5 @@ public class EnemyInfo : MonoBehaviour
         destroy = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Instantiate(particle, transform.position, transform.rotation);
-    }
-
-    IEnumerator Shooter_cooldown()
-    {
-        yield return new WaitForSeconds(2f);
-        temp_shooter_cords = new Vector3(info.transform.position.x, info.transform.position.y, 0);
     }
 }
