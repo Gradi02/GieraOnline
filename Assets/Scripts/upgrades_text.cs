@@ -30,7 +30,7 @@ public class upgrades_text : MonoBehaviour
                  "\r\ndamage Multiplier: x" + player.GetMultiplier().ToString() +
                  "\r\ncrit Chance: " + player.GetCritChance().ToString() + "%" +
                  "\r\ncrit Multiplier: x" + player.GetCritMulti().ToString() +
-                 "\r\nshot Cooldown: " + player.GetGunCooldown().ToString() + "s" +
+                 "\r\nshot Cooldown: " + player.GetGunCooldown().ToString() + " s" +
                  "\r\n\r\nEnemies killed: " + player.enemyKilled;
         money.text = "points: " + money_upgrade;
         pricetext.text = "upgrade price: " + price;

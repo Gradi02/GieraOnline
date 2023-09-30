@@ -16,13 +16,16 @@ public class EnemyInfo : MonoBehaviour
     public float attackSpeed;
 
     [Header("TYPE")]
+    public bool armored;
     public bool shooter;
+    public bool fast;
     public bool poison;
 
     [Header("MUTATIONS")]
     public bool mutated_basic;
-    public bool mutated_speed;
+    public bool motated_armored;
     public bool mutated_shooter;
+    public bool mutated_fast;
     public bool mutated_poison;
 
 
@@ -39,6 +42,7 @@ public class EnemyInfo : MonoBehaviour
     {
         info = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
         this.tag = "Enemy";
+        health *= waves.enemyHpMultiplier;
     }
 
     void Update()

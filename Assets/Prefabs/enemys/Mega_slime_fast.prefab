@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4013561304088179250}
   - component: {fileID: 3480388745335816588}
   m_Layer: 7
-  m_Name: slime_water
+  m_Name: Mega_slime_fast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,9 +32,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.32, y: -10.66, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1468005901802794216}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2931058196698293081
@@ -149,7 +150,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 2.2, y: 1.1}
+  m_Size: {x: 1.9, y: 1.1}
   m_Direction: 1
 --- !u!114 &7972249361145017438
 MonoBehaviour:
@@ -176,11 +177,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy_basic: {fileID: 7284304837345861462, guid: 9be27eb02d0e30d4b9090a2c98c1afc0, type: 3}
-  health: 15
-  speed: 8
-  damage: 1
-  attackSpeed: 1
+  temp_shooter_cords: {x: 0, y: 0, z: 0}
+  health: 30
+  speed: 4
+  damage: 2
+  attackSpeed: 5
+  armored: 0
+  shooter: 0
+  fast: 0
+  poison: 0
   mutated_basic: 0
+  motated_armored: 0
+  mutated_shooter: 0
+  mutated_fast: 1
+  mutated_poison: 0
   particle: {fileID: 4833367576465983319, guid: fb057bafe67e7e242bc7133f1a014740, type: 3}
   isAttacking: 0
   canMove: 1
@@ -200,3 +210,34 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &7017916871520724826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1468005901802794216}
+  m_Layer: 7
+  m_Name: feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1468005901802794216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017916871520724826}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 690972334782091683}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

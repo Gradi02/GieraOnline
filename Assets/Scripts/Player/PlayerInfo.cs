@@ -67,7 +67,7 @@ public class PlayerInfo : MonoBehaviour
 
     public float GetMultiplier()
     {
-        return Mathf.RoundToInt(damageMultiplier);
+        return damageMultiplier;
     }
 
     public void SetMultiplier()
@@ -87,7 +87,7 @@ public class PlayerInfo : MonoBehaviour
 
     public float GetCritMulti()
     {
-        return Mathf.RoundToInt(critMultiplier);
+        return critMultiplier;
     }
 
     public void SetCritMulti()
@@ -107,7 +107,7 @@ public class PlayerInfo : MonoBehaviour
 
     public float GetGunCooldown()
     {
-        return Mathf.RoundToInt(gunCooldown);
+        return gunCooldown;
     }
 
     public void SetStats()

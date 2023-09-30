@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private float timer = 0;
-    private float startScale = 1;
+    private float startScale = 2;
     private Color anim;
     private void Awake()
     {
@@ -36,17 +36,17 @@ public class EnemySpawner : MonoBehaviour
         startScale -= Time.fixedDeltaTime / 2;
         transform.localScale = new Vector3(startScale, startScale, startScale);
 
-        anim.a = Mathf.Sin(timer*4);
+        anim.a -= Time.fixedDeltaTime;
         spriteRenderer.color = anim;
     }
 
     private void SpawnEnemy()
     {
-        int hard = Random.Range(1, 5);
+        int hard = Random.Range(1, 4);
         int level = 1;
 
         if (hard == 1) level = Random.Range(1, waves.currentEnemyLevel);
-        int muted = Random.Range(1, 30);
+        int muted = Random.Range(1, 20);
 
 
         if (level == 1)
