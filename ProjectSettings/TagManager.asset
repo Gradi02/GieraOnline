@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Spawner
   - upgrades
+  - Manager
+  - artimg
   layers:
   - Default
   - TransparentFX

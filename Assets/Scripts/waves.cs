@@ -129,7 +129,8 @@ public class waves : MonoBehaviour
                 nextlett = 0;
                 i = 0;
                 PlayUI.SetActive(false);
-                upgradeUI.SetActive(true);
+                //upgradeUI.SetActive(true);
+                GetComponent<Artefacts>().SpawnImg();
             }
         }
     }
@@ -160,5 +161,10 @@ public class waves : MonoBehaviour
         wavecomplete.gameObject.SetActive(true);
         wavecomplete.text = string.Empty;
         win = true;
+    }
+
+    public void SetUpUI()
+    {
+        upgradeUI.SetActive(true);
     }
 }

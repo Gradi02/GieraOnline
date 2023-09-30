@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform followTransform;
+    private Transform followTransform;
     public BoxCollider2D mapBounds;
 
     private float xMin, xMax, yMin, yMax;
@@ -15,6 +15,7 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
+        followTransform = GameObject.FindGameObjectWithTag("Player").transform;
         xMin = mapBounds.bounds.min.x;
         xMax = mapBounds.bounds.max.x;
         yMin = mapBounds.bounds.min.y;

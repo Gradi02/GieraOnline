@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArtefactManager : MonoBehaviour
 {
@@ -33,5 +34,30 @@ public class ArtefactManager : MonoBehaviour
         {
             level++;
         }
+    }
+    public bool isLocked()
+    {
+        if (unlocked) return false;
+        else return true;
+    }
+    public bool isMaxed()
+    {
+        if (level >= max_level) return true;
+        else return false;
+    }
+
+    public Color GetRarityColor()
+    {
+        if(rarity == Rarity.normal) return Color.gray;
+        else if (rarity == Rarity.rare) return Color.cyan;
+        else if (rarity == Rarity.epic) return Color.magenta;
+        else if (rarity == Rarity.legendary) return Color.red;
+
+        return Color.white;
+    }
+
+    public int GetLevel()
+    {
+        return level;
     }
 }
