@@ -219,5 +219,13 @@ MonoBehaviour:
   TimeToSpawn: 1
   enemys:
   - {fileID: 7284304837345861462, guid: 9be27eb02d0e30d4b9090a2c98c1afc0, type: 3}
+  - {fileID: 2110284731021545226, guid: 5cd9961bc94e7c64f8fcda1abca89f85, type: 3}
+  - {fileID: 4223711750177830973, guid: 152a1166971c4a945842448fbb0df1c4, type: 3}
+  - {fileID: 4475544869638742600, guid: d48686f175448194089778e707a927bd, type: 3}
+  - {fileID: 7284304837345861462, guid: 441bef35aedaf554ea9d58ee9c208573, type: 3}
   megaEnemys:
   - {fileID: 7284304837345861462, guid: be233239600f14d4f884c2e623834e98, type: 3}
+  - {fileID: 2110284731021545226, guid: 8c7c678a19ff48f45aa4d632ed6e57b5, type: 3}
+  - {fileID: 4223711750177830973, guid: a83107db082ee184e9da8fc4160317c6, type: 3}
+  - {fileID: 4475544869638742600, guid: 14c5fe4c18e9f1e42a36c2cbd76cab6f, type: 3}
+  - {fileID: 7284304837345861462, guid: ef6fbf893a049cc4db0dd210919fdd2a, type: 3}

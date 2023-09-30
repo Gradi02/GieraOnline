@@ -19,7 +19,7 @@ public class BulletsManager : MonoBehaviour
 
         ParticleSystem ps = bulletparticle.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule col = bulletparticle.main;
-        col.startColor = player.GetComponent<ChangeMode>().GetColor();
+        //col.startColor = player.GetComponent<ChangeMode>().GetColor();
         info = player.GetComponent<PlayerInfo>();
     }
 

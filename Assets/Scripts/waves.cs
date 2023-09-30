@@ -45,6 +45,9 @@ public class waves : MonoBehaviour
         waveText.text = "Wave " + wave;
         SetTime();
         timerText.text = timer.ToString();
+        
+        if(wave>10 && wave<=200) enemyHpMultiplier = (wave/10);
+        else if(wave>200) enemyHpMultiplier = 20;
         spawning = true;
 
         player.GetComponent<PlayerInfo>().enemyKilledPerRound = 0;
@@ -137,14 +140,14 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
-        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 4;    enemyHpMultiplier = 1; }
-        else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 3.5f; enemyHpMultiplier = 1; }
-        else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 3.5f; enemyHpMultiplier = 1; }
-        else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 4;  spawnTime = 3;    enemyHpMultiplier = 1.25f; }
-        else if (wave == 7 || wave == 8)  { timer = 50; currentEnemyLevel = 2; currentWaveEnemy = 5;  spawnTime = 3;    enemyHpMultiplier = 1.25f; }
-        else if (wave > 8 && wave <= 20)  { timer = 60; currentEnemyLevel = 3; currentWaveEnemy = 6;  spawnTime = 3;    enemyHpMultiplier = 1.5f; }
-        else if (wave > 20 && wave <= 40) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 8;  spawnTime = 2.5f; enemyHpMultiplier = 1.5f; }
-        else                              { timer = 80; currentEnemyLevel = 5; currentWaveEnemy = 10; spawnTime = 2.5f; enemyHpMultiplier = 2; }
+        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 4;    }
+        else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 3.5f; }
+        else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 3.5f; }
+        else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 4;  spawnTime = 3;    }
+        else if (wave == 7 || wave == 8)  { timer = 50; currentEnemyLevel = 2; currentWaveEnemy = 5;  spawnTime = 3;    }
+        else if (wave > 8 && wave <= 20)  { timer = 60; currentEnemyLevel = 3; currentWaveEnemy = 6;  spawnTime = 3;    }
+        else if (wave > 20 && wave <= 40) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 8;  spawnTime = 2.5f; }
+        else                              { timer = 80; currentEnemyLevel = 5; currentWaveEnemy = 10; spawnTime = 2.5f; }
     }
 
     private Vector2 RandomCord() 

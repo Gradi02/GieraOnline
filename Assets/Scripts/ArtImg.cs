@@ -11,6 +11,7 @@ public class ArtImg : MonoBehaviour
     [SerializeField] private Image img;
     [SerializeField] private TextMeshProUGUI unlock;
     [SerializeField] private TextMeshProUGUI level;
+    [SerializeField] private Image imgbg;
 
     private RawImage sr;
     private Artefacts manager;
@@ -39,6 +40,7 @@ public class ArtImg : MonoBehaviour
             img.sprite = artefact.art_icon;
             description.text = artefact.art_description;
             sr.color = artefact.GetRarityColor();
+            imgbg.color = sr.color;
 
             if (artefact.isLocked())
             {

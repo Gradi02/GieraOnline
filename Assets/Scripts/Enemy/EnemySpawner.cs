@@ -7,9 +7,9 @@ public class EnemySpawner : MonoBehaviour
     public float TimeToSpawn = 1;
 
     //tu wrzucamy prefaby wrogów zwyk³ych
-    [SerializeField] private GameObject[] enemys;
+    public GameObject[] enemys;
     //a tu zmutowanych tych du¿ych
-    [SerializeField] private GameObject[] megaEnemys;
+    public GameObject[] megaEnemys;
 
     private SpriteRenderer spriteRenderer;
     private float timer = 0;
@@ -42,12 +42,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        int hard = Random.Range(1, 4);
+        int hard = Random.Range(1, 3);
         int level = 1;
 
-        if (hard == 1) level = Random.Range(1, waves.currentEnemyLevel);
+        if (hard == 1) level = Random.Range(1, waves.currentEnemyLevel+1);
         int muted = Random.Range(1, 20);
-
 
         if (level == 1)
         {
