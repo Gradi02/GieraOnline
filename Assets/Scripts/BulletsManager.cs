@@ -62,8 +62,23 @@ public class BulletsManager : MonoBehaviour
                 else if (currentMode == EnemyInfo.types.Fire) damageDelta *= 2;
             }*/
 
-            collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
+
             GameObject DmgPopup = Instantiate(pfDamagePopup, collision.transform.position, Quaternion.identity);
+
+
+            if (collision.gameObject.GetComponent<EnemyInfo>().protection > 0)
+            {
+                damageDelta = 1;
+                crit = false;
+                DmgPopup.GetComponent<TextMeshPro>().color = Color.grey;
+                collision.gameObject.GetComponent<EnemyInfo>().protection -= 1;
+            }
+            else 
+            {
+                collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
+            }
+            
+            
             DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
             DmgPopup.GetComponent<DmgPopup>().SetVelocity(bulletSpeed * Time.deltaTime * transform.right);
 

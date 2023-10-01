@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
@@ -9,23 +10,30 @@ public class EnemyInfo : MonoBehaviour
     public GameObject enemy_basic;
     public Vector3 temp_shooter_cords;
 
+    //poison
+    public GameObject poison_pool;
     private float poison_cooldown = 1;
     private float mutated_poison_cooldown = 0;
     private float mutated_poison_burst = 0;
-    public GameObject poison_pool;
     private int burst = 0;
 
+    //shooter
     public GameObject bullet;
     private float shooter_cooldown = 1;
     private float mutated_shooter_cooldown = 0;
     private float mutated_shooter_burst = 0;
 
+    //speed
+    private float fast_cooldown = 0;
+    private bool speedup;
+    private float speedup_cooldown = 0;
 
     [Header("Enemy Stats")]
     public float health;
     [Min(1)] public float speed;
     public int damage;
     public float attackSpeed;
+    public int protection;
 
     [Header("TYPE")]
     public bool armored;
@@ -94,8 +102,8 @@ public class EnemyInfo : MonoBehaviour
                 {
                     if (Time.time >= mutated_poison_burst)
                     {
-                        int x = Random.Range(-4, 4);
-                        int y = Random.Range(-4, 4);
+                        int x = Random.Range(-7, 7);
+                        int y = Random.Range(-7, 7);
                         Vector3 pois_cord = new Vector3(this.transform.position.x + x, this.transform.position.y + y, 0);
                         Instantiate(poison_pool, pois_cord, Quaternion.identity);
                         mutated_poison_burst = Time.time + 0.2f;
@@ -109,7 +117,26 @@ public class EnemyInfo : MonoBehaviour
                 }
             }
 
-            if (shooter && Time.time >= shooter_cooldown)
+      /*      if(fast && Time.time >= fast_cooldown) 
+            {
+                speedup = true;
+                
+            }
+            if (fast && speedup)
+            { 
+                speedup_cooldown = Time.time + 3;
+                speed = 10;
+                if (Time.time >= speedup_cooldown) speedup = false;
+            }
+            if (fast && !speedup)
+            {
+                speed = 2;
+                fast_cooldown = Time.time + 6;
+            }
+      */
+
+
+                if (shooter && Time.time >= shooter_cooldown)
             {
                 shooter_cooldown = Time.time + 2;
 

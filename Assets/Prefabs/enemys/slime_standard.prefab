@@ -214,7 +214,7 @@ MonoBehaviour:
   health: 15
   speed: 8
   damage: 1
-  attackSpeed: 1
+  attackSpeed: 5
   armored: 0
   shooter: 0
   fast: 0
