@@ -6,15 +6,26 @@ public class EnemyMovement : MonoBehaviour
 {
     private GameObject player;
     private GameObject playerFT;
+    private GameObject spawnTransform;
     private EnemyInfo enemyInfo;
     private SpriteRenderer sr;
     private float end = 0;
+    private float attackRange = 0.6f;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerFT = player.transform.GetChild(0).gameObject;
         enemyInfo = GetComponent<EnemyInfo>();
         sr = GetComponent<SpriteRenderer>();
+        
+        try
+        {
+            spawnTransform = transform.Find("spawnTransform").gameObject;
+        }
+        catch
+        {
+            spawnTransform = null;
+        }
     }
 
     void Update()
@@ -39,10 +50,12 @@ public class EnemyMovement : MonoBehaviour
             if(rot.x > 0)
             {
                 sr.flipX = false;
+                if (spawnTransform != null) spawnTransform.transform.localPosition = new Vector3(1.05f, 0.15f, 0);
             }
             else if(rot.x < 0)
             {
                 sr.flipX = true;
+                if (spawnTransform != null) spawnTransform.transform.localPosition = new Vector3(-1.05f, 0.15f, 0);
             }
         }
 
@@ -52,8 +65,17 @@ public class EnemyMovement : MonoBehaviour
             enemyInfo.isAttacking = false;
             end = Time.time + enemyInfo.attackSpeed;
 
-            if(Vector2.Distance(playerFT.transform.position, transform.position) <= 0.6f)
+            if(Vector2.Distance(playerFT.transform.position, transform.position) <= attackRange)
                 player.GetComponent<PlayerInfo>().GetHitted(enemyInfo.damage);
+        }
+
+        if(enemyInfo.run && !enemyInfo.hit)
+        {
+            if (Vector2.Distance(playerFT.transform.position, transform.position) <= 2)
+            {
+                player.GetComponent<PlayerInfo>().GetHitted(enemyInfo.damage * 2);
+                enemyInfo.hit = true;
+            }
         }
     }
 

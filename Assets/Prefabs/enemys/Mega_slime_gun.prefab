@@ -67,6 +67,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1053807932131350233}
+  - {fileID: 1616431107923376941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7633777859308835415
@@ -110,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 404011175, guid: c00c6acd58dc9d242b3bf77a7d1da419, type: 3}
+  m_Sprite: {fileID: -1817796297, guid: dbba323225c984245ad998e4fa6ec11a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -180,7 +181,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: -0.25}
+  m_Offset: {x: -0.45, y: -0.6}
   m_Size: {x: 1.9, y: 1.1}
   m_Direction: 1
 --- !u!114 &114337200808448479
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0.6
 --- !u!114 &3337671338353366390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,14 +215,15 @@ MonoBehaviour:
   bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
   health: 30
   speed: 5
-  damage: 5
+  damage: 2
   attackSpeed: 3
+  protection: 0
   armored: 0
   shooter: 0
   fast: 0
   poison: 0
   mutated_basic: 0
-  motated_armored: 0
+  mutated_armored: 0
   mutated_shooter: 1
   mutated_fast: 0
   mutated_poison: 0
@@ -244,3 +247,34 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &5093141677490666515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616431107923376941}
+  m_Layer: 7
+  m_Name: spawnTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616431107923376941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5093141677490666515}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.05, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1612824698886896190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

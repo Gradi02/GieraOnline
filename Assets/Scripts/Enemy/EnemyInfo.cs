@@ -24,9 +24,12 @@ public class EnemyInfo : MonoBehaviour
     private float mutated_shooter_burst = 0;
 
     //speed
-    private float fast_cooldown = 0;
-    private bool speedup;
-    private float speedup_cooldown = 0;
+    private float fast_cooldown = 10;
+    private bool speedUp = false;
+    private float fast_timer = 0;
+    private float speedTime = 0;
+    public bool run = false;
+    public bool hit = false;
 
     [Header("Enemy Stats")]
     public float health;
@@ -43,7 +46,7 @@ public class EnemyInfo : MonoBehaviour
 
     [Header("MUTATIONS")]
     public bool mutated_basic;
-    public bool motated_armored;
+    public bool mutated_armored;
     public bool mutated_shooter;
     public bool mutated_fast;
     public bool mutated_poison;
@@ -51,6 +54,7 @@ public class EnemyInfo : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private GameObject particle;
+    private Rigidbody2D rb;
     private bool destroy = false;
     [HideInInspector] public bool isAttacking = false;
 
@@ -62,6 +66,7 @@ public class EnemyInfo : MonoBehaviour
     {
         info = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
         this.tag = "Enemy";
+        rb = GetComponent<Rigidbody2D>();
         health *= waves.enemyHpMultiplier;
     }
 
@@ -117,30 +122,64 @@ public class EnemyInfo : MonoBehaviour
                 }
             }
 
-      /*      if(fast && Time.time >= fast_cooldown) 
-            {
-                speedup = true;
-                
-            }
-            if (fast && speedup)
-            { 
-                speedup_cooldown = Time.time + 3;
-                speed = 10;
-                if (Time.time >= speedup_cooldown) speedup = false;
-            }
-            if (fast && !speedup)
-            {
-                speed = 2;
-                fast_cooldown = Time.time + 6;
-            }
-      */
+            /*    if(fast && Time.time >= fast_cooldown) 
+                  {
+                      speedup = true;
 
+                  }
+                  if (fast && speedup)
+                  { 
+                      speedup_cooldown = Time.time + 3;
+                      speed = 10;
+                      if (Time.time >= speedup_cooldown) speedup = false;
+                  }
+                  if (fast && !speedup)
+                  {
+                      speed = 2;
+                      fast_cooldown = Time.time + 6;
+                  }
+            */
+            
+            if(fast)
+            {
+                speed = info.GetSpeed() + 0.5f;
+            }
 
-                if (shooter && Time.time >= shooter_cooldown)
+            if(mutated_fast && Time.time >= fast_cooldown)
+            {
+                fast_cooldown = Time.time + attackSpeed;
+                canMove = false;
+                rb.velocity = Vector3.zero;
+                speedUp = true;
+            }
+
+            if(mutated_fast)
+            {
+                if(fast_timer > 1)
+                {
+                    speedUp = false;
+                    fast_timer = 0;
+
+                    Vector3 targetPos = (info.transform.position - transform.position).normalized;
+                    rb.velocity = new Vector2(targetPos.x, targetPos.y).normalized * 20;
+                    run = true;
+                }
+
+                if(speedTime > 2)
+                {
+                    rb.velocity = Vector3.zero;
+                    run = false;
+                    speedTime = 0;
+                    canMove = true;
+                    hit = false;
+                }
+            }
+
+            if (shooter && Time.time >= shooter_cooldown)
             {
                 shooter_cooldown = Time.time + 2;
 
-                Instantiate(bullet, this.transform.position, Quaternion.identity);
+                Instantiate(bullet, transform.GetChild(1).transform.position, Quaternion.identity);
             }
 
             if (mutated_shooter && Time.time >= mutated_shooter_cooldown)
@@ -150,7 +189,7 @@ public class EnemyInfo : MonoBehaviour
                     if (Time.time >= mutated_shooter_burst)
                     {
                         mutated_shooter_burst = Time.time + 0.3f;
-                        Instantiate(bullet, this.transform.position, Quaternion.identity);
+                        Instantiate(bullet, transform.GetChild(1).transform.position, Quaternion.identity);
                         burst++;
                     }
                 }
@@ -161,7 +200,32 @@ public class EnemyInfo : MonoBehaviour
                 }
             }
 
+            if(protection <= 0 && (armored || mutated_armored))
+            {
+                if (transform.Find("armor"))
+                {
+                    transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.black;
+                    transform.GetChild(1).transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
+                    float obecnyKat = transform.GetChild(1).transform.rotation.eulerAngles.z;
+                    float nowyKat = obecnyKat + 90 * Time.deltaTime;
+                    transform.GetChild(1).transform.rotation = Quaternion.Euler(0, 0, nowyKat);
 
+                    if (transform.GetChild(1).transform.localScale.x <= 0.1f) Destroy(transform.GetChild(1).gameObject);
+                }
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (speedUp)
+        {
+            fast_timer += Time.fixedDeltaTime;
+        }
+
+        if(run)
+        {
+            speedTime += Time.fixedDeltaTime;
         }
     }
 

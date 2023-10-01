@@ -26,12 +26,22 @@ public class EnemySorting : MonoBehaviour
                 int layer = Mathf.RoundToInt(enemy.transform.GetChild(0).position.y * 100);
 
                 enemy.GetComponent<SpriteRenderer>().sortingOrder = -layer;
+
+                if (enemy.transform.Find("armor"))
+                {
+                    enemy.transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = -layer + 1;
+                }
             }
             else
             {
                 int layer = Mathf.RoundToInt(enemy.transform.position.y * 100);
 
                 enemy.GetComponent<SpriteRenderer>().sortingOrder = -layer;
+
+                if (enemy.transform.Find("armor"))
+                {
+                    enemy.transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = -layer + 1;
+                }
             }
         }
 

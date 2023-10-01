@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1999425638, guid: c00c6acd58dc9d242b3bf77a7d1da419, type: 3}
+  m_Sprite: {fileID: -435095331, guid: dbba323225c984245ad998e4fa6ec11a, type: 3}
   m_Color: {r: 0.05485685, g: 0.9433962, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -180,7 +180,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.05}
   m_Size: {x: 1.9, y: 1.1}
   m_Direction: 1
 --- !u!114 &1308419183584155164
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0.6
 --- !u!114 &8600191446186310245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,12 +216,13 @@ MonoBehaviour:
   speed: 7
   damage: 1
   attackSpeed: 5
+  protection: 0
   armored: 0
   shooter: 0
   fast: 0
   poison: 1
   mutated_basic: 0
-  motated_armored: 0
+  mutated_armored: 0
   mutated_shooter: 0
   mutated_fast: 0
   mutated_poison: 0

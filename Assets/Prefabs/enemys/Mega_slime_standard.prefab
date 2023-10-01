@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1999425638, guid: c00c6acd58dc9d242b3bf77a7d1da419, type: 3}
+  m_Sprite: {fileID: -173836340, guid: dbba323225c984245ad998e4fa6ec11a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   speed: 3.5
   damage: 3
   attackSpeed: 4
+  protection: 0
   armored: 0
   shooter: 0
   fast: 0

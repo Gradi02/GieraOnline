@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1078180550, guid: c00c6acd58dc9d242b3bf77a7d1da419, type: 3}
+  m_Sprite: {fileID: 1897151260, guid: dbba323225c984245ad998e4fa6ec11a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0.6
 --- !u!114 &4013561304088179250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,16 +181,17 @@ MonoBehaviour:
   temp_shooter_cords: {x: 0, y: 0, z: 0}
   poison_pool: {fileID: 665200480458821834, guid: d69a9cf0a1b6af0479ec64fec5b00e33, type: 3}
   bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
-  health: 30
-  speed: 4
-  damage: 2
+  health: 40
+  speed: 6
+  damage: 3
   attackSpeed: 5
+  protection: 0
   armored: 0
   shooter: 0
   fast: 0
   poison: 0
   mutated_basic: 0
-  motated_armored: 0
+  mutated_armored: 0
   mutated_shooter: 0
   mutated_fast: 1
   mutated_poison: 0
