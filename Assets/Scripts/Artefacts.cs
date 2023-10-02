@@ -5,7 +5,7 @@ using UnityEngine;
 public class Artefacts : MonoBehaviour
 {
     [Header("Artefakty")]
-    public GameObject[] artefacts;
+    private List<GameObject> artefacts = new List<GameObject>();
     private List<GameObject> artefactsList = new List<GameObject>();
 
     [Header("UI")]
@@ -16,6 +16,12 @@ public class Artefacts : MonoBehaviour
 
     void Start()
     {
+
+        foreach(Transform a in GameObject.FindGameObjectWithTag("Player").transform.Find("Artefacts").GetComponentInChildren<Transform>())
+        {
+            artefacts.Add(a.gameObject);
+        }
+
         RefreshList();
         artUI.SetActive(false);
         

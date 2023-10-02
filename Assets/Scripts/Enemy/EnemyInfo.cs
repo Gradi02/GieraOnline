@@ -24,7 +24,7 @@ public class EnemyInfo : MonoBehaviour
     private float mutated_shooter_burst = 0;
 
     //speed
-    private float fast_cooldown = 10;
+    private float fast_cooldown = 3;
     private bool speedUp = false;
     private float fast_timer = 0;
     private float speedTime = 0;

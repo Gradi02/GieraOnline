@@ -10,8 +10,10 @@ public class ArtImg : MonoBehaviour
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private Image img;
     [SerializeField] private TextMeshProUGUI unlock;
-    [SerializeField] private TextMeshProUGUI level;
     [SerializeField] private Image imgbg;
+    [SerializeField] private GameObject[] stars;
+    [SerializeField] private RawImage levelbg;
+    [SerializeField] private RawImage levelbg2;
 
     private RawImage sr;
     private Artefacts manager;
@@ -38,28 +40,40 @@ public class ArtImg : MonoBehaviour
         {
             titlename.text = artefact.art_name;
             img.sprite = artefact.art_icon;
-            description.text = artefact.art_description;
-            sr.color = artefact.GetRarityColor();
-            imgbg.color = sr.color;
 
             if (artefact.isLocked())
             {
                 unlock.text = "Unlock";
                 locked = true;
-                level.gameObject.SetActive(false);
+                imgbg.color = Color.yellow;
+                sr.color = Color.yellow;
+                levelbg.color = Color.yellow;
+                levelbg2.color = Color.yellow;
             }
             else
             {
-                unlock.text = "Upgrade";
+                unlock.text = "Level up";
                 locked = false;
-                level.text = "level " + artefact.GetLevel().ToString() + "/5";
+                imgbg.color = Color.gray;
+                sr.color = Color.gray;
+                levelbg.color = Color.gray;
+                levelbg2.color = Color.gray;
+            }
+            
+            description.text = artefact.art_description[artefact.GetLevel()];
+            
+            for (int i = 0; i < artefact.GetLevel(); i++)
+            {
+                stars[i].GetComponent<Image>().color = Color.white;
             }
         }
+
+        
     }
 
     public void UnlockUpgrade()
     {
-        if(locked)
+        if (locked)
         {
             artefact.Unlock();
         }
@@ -67,8 +81,8 @@ public class ArtImg : MonoBehaviour
         {
             artefact.Upgrade();
         }
-        
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("artimg"))
+
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("artimg"))
         {
             Destroy(g);
         }

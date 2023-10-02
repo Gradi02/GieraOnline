@@ -5,21 +5,15 @@ using UnityEngine.UI;
 
 public class ArtefactManager : MonoBehaviour
 {
+    [Header("Opis")]
+    public string[] art_description;
+
+    [Header("inne")]
     public string art_name;
-    public string art_description;
     public Sprite art_icon;
-    public Rarity rarity;
-
-    public enum Rarity
-    {
-        normal,
-        rare,
-        epic,
-        legendary
-    }
 
 
-    private int level = 1;
+    private int level = 0;
     private int max_level = 5;
     private bool unlocked=false;
     
@@ -27,6 +21,7 @@ public class ArtefactManager : MonoBehaviour
     {
         unlocked = true;
         gameObject.SetActive(true);
+        level++;
     }
     public void Upgrade()
     {
@@ -44,16 +39,6 @@ public class ArtefactManager : MonoBehaviour
     {
         if (level >= max_level) return true;
         else return false;
-    }
-
-    public Color GetRarityColor()
-    {
-        if(rarity == Rarity.normal) return Color.gray;
-        else if (rarity == Rarity.rare) return Color.cyan;
-        else if (rarity == Rarity.epic) return Color.magenta;
-        else if (rarity == Rarity.legendary) return Color.red;
-
-        return Color.white;
     }
 
     public int GetLevel()
