@@ -2517,8 +2517,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0031967163, y: 0.00060272217, z: 0}
-    m_Extent: {x: 175.79599, y: 175.8028, z: 0}
+    m_Center: {x: 0.00005340576, y: 0.002494812, z: 0}
+    m_Extent: {x: 175.80414, y: 175.80591, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3060,6 +3060,10 @@ PrefabInstance:
       value: 1/s
       objectReference: {fileID: 0}
     - target: {fileID: 9050494623558085542, guid: b42f7a7168bdbb0428de9ba1e31a7243, type: 3}
+      propertyPath: art_description
+      value: test test tes tes test
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050494623558085542, guid: b42f7a7168bdbb0428de9ba1e31a7243, type: 3}
       propertyPath: upgr_value.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -3077,7 +3081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9050494623558085542, guid: b42f7a7168bdbb0428de9ba1e31a7243, type: 3}
       propertyPath: art_description.Array.size
-      value: 2
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 9050494623558085542, guid: b42f7a7168bdbb0428de9ba1e31a7243, type: 3}
       propertyPath: current_value.Array.data[0]
@@ -3089,11 +3093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9050494623558085542, guid: b42f7a7168bdbb0428de9ba1e31a7243, type: 3}
       propertyPath: art_description.Array.data[0]
-      value: test
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 9050494623558085542, guid: b42f7a7168bdbb0428de9ba1e31a7243, type: 3}
       propertyPath: art_description.Array.data[1]
-      value: test2
+      value: 101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5756,6 +5760,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
+      propertyPath: art_description
+      value: This ancient artefact will be regenerating your health during the battle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
       propertyPath: upgr_value.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5769,7 +5777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
       propertyPath: art_description.Array.size
-      value: 2
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
       propertyPath: current_value.Array.data[0]
@@ -5777,11 +5785,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
       propertyPath: art_description.Array.data[0]
-      value: 'Bonus Health: 1'
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
       propertyPath: art_description.Array.data[1]
-      value: 'Bonus Health: 1 + 1'
+      value: 104
       objectReference: {fileID: 0}
     - target: {fileID: 8016332429324436548, guid: 57e9ac05e2d6239468a4f93141e6865e, type: 3}
       propertyPath: art_description.Array.data[0].description
@@ -6068,6 +6076,10 @@ PrefabInstance:
       value: 0.5%
       objectReference: {fileID: 0}
     - target: {fileID: 5626938006441204211, guid: eb50a27030cf304448ed85e583a03229, type: 3}
+      propertyPath: art_description
+      value: Get a small chance to onehit your enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626938006441204211, guid: eb50a27030cf304448ed85e583a03229, type: 3}
       propertyPath: upgr_value.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -6081,7 +6093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5626938006441204211, guid: eb50a27030cf304448ed85e583a03229, type: 3}
       propertyPath: art_description.Array.size
-      value: 1
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 5626938006441204211, guid: eb50a27030cf304448ed85e583a03229, type: 3}
       propertyPath: current_value.Array.data[0]
@@ -6089,7 +6101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5626938006441204211, guid: eb50a27030cf304448ed85e583a03229, type: 3}
       propertyPath: art_description.Array.data[0]
-      value: 'One Hit Chance: '
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 5854422823679326742, guid: eb50a27030cf304448ed85e583a03229, type: 3}
       propertyPath: m_Name

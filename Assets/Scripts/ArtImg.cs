@@ -8,18 +8,25 @@ public class ArtImg : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI titlename;
     [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TextMeshProUGUI level;
     [SerializeField] private Image img;
     [SerializeField] private TextMeshProUGUI unlock;
-    [SerializeField] private Image imgbg;
-    [SerializeField] private GameObject[] stars;
-    [SerializeField] private RawImage levelbg;
-    [SerializeField] private RawImage levelbg2;
 
     private RawImage sr;
     private Artefacts manager;
     private bool locked = true;
+    private Color newCol = Color.yellow;
 
     [HideInInspector] public ArtefactManager artefact;
+
+
+
+    private float alphaValue;
+    private bool increasingAlpha = true;
+
+    private float minAlpha = 0.5f;
+    private float maxAlpha = 1f;
+    private float miganieSpeed = 0.3f;
 
     private void Awake()
     {
@@ -40,35 +47,20 @@ public class ArtImg : MonoBehaviour
         {
             titlename.text = artefact.art_name;
             img.sprite = artefact.art_icon;
+            description.text = artefact.art_description;
+            level.text = "level " + artefact.GetLevel();
 
             if (artefact.isLocked())
             {
                 unlock.text = "Unlock";
                 locked = true;
-                imgbg.color = Color.yellow;
-                sr.color = Color.yellow;
-                levelbg.color = Color.yellow;
-                levelbg2.color = Color.yellow;
             }
             else
             {
                 unlock.text = "Level up";
                 locked = false;
-                imgbg.color = Color.gray;
-                sr.color = Color.gray;
-                levelbg.color = Color.gray;
-                levelbg2.color = Color.gray;
-            }
-            
-            description.text = artefact.art_description[artefact.GetLevel()];
-            
-            for (int i = 0; i < artefact.GetLevel(); i++)
-            {
-                stars[i].GetComponent<Image>().color = Color.white;
-            }
-        }
-
-        
+            }   
+        }        
     }
 
     public void UnlockUpgrade()
@@ -89,6 +81,34 @@ public class ArtImg : MonoBehaviour
 
         manager.RefreshList();
         manager.GoNext();
+    }
 
+    private void FixedUpdate()
+    {
+        if(locked)
+        {
+            if (increasingAlpha)
+            {
+                alphaValue += miganieSpeed * Time.fixedDeltaTime;
+                if (alphaValue >= maxAlpha)
+                {
+                    alphaValue = maxAlpha;
+                    increasingAlpha = false;
+                }
+            }
+            else
+            {
+                alphaValue -= miganieSpeed * Time.fixedDeltaTime;
+                if (alphaValue <= minAlpha)
+                {
+                    alphaValue = minAlpha;
+                    increasingAlpha = true;
+                }
+            }
+
+            // Ustaw nowy kolor z aktualn¹ wartoœci¹ alphy
+            Color newColor = new Color(newCol.r, newCol.g, newCol.b, alphaValue);
+            sr.color = newColor;
+        }
     }
 }

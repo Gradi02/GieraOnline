@@ -5,15 +5,12 @@ using UnityEngine.UI;
 
 public class ArtefactManager : MonoBehaviour
 {
-    [Header("Opis")]
-    public string[] art_description;
-
-    [Header("inne")]
     public string art_name;
+    public string art_description;
     public Sprite art_icon;
 
 
-    private int level = 0;
+    private int level = 1;
     private int max_level = 5;
     private bool unlocked=false;
     
