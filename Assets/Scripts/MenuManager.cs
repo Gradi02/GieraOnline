@@ -6,6 +6,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.SearchService;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,31 +15,25 @@ public class MenuManager : MonoBehaviour
 {
 
     public GameObject mode_selector;
-
     public Button mode;
     private bool vis_change_mode = false;
     private bool vis_change_options = false;
-
     public Button mode_easy;
     public Button mode_mid;
     public Button mode_hell;
-        
-
-    private bool easy;
-    private bool mid;
-    private bool hell;
-
     public TextMeshProUGUI mode_perks;
 
-
-
+    private bool can_play = false;
 
     public GameObject options;
 
-
+    public RawImage trans;
+    private bool transition = false;
+    private float duration;
 
     private void Start()
     {
+        duration = 0;
         Button btn_easy = mode_easy.GetComponent<Button>();
         btn_easy.onClick.AddListener(Easytext);
         Button btn_mid = mode_mid.GetComponent<Button>();
@@ -51,6 +46,28 @@ public class MenuManager : MonoBehaviour
 
 
         mode_perks.text = "";
+
+        trans.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (can_play)
+        {
+            SceneManager.LoadScene("map");
+        }
+
+
+        if (transition)
+        {
+                    duration += + Time.deltaTime;
+                    RawImage rawImage = trans.GetComponent<RawImage>();
+                    Color currentColor = rawImage.color;
+                    float alphaValue = Mathf.Lerp(0, 1, 0.1f * duration * 5);
+                    currentColor.a = alphaValue;
+                    rawImage.color = currentColor;
+            if(alphaValue==1) can_play = true;
+        }
     }
 
     public void Easytext() {
@@ -64,8 +81,8 @@ public class MenuManager : MonoBehaviour
     }
     public void Menu_Play()
     {
-        SceneManager.LoadScene("map");    
-            
+        trans.gameObject.SetActive(true);
+        transition = true;
     }
 
     public void Menu_Mode()
