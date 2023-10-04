@@ -23,6 +23,10 @@ public class MenuManager : MonoBehaviour
     public Button mode_hell;
     public TextMeshProUGUI mode_perks;
 
+    public GameObject cloud1;
+    public GameObject cloud2;
+    public GameObject cloud3;
+
     private bool can_play = false;
 
     public GameObject options;
@@ -68,6 +72,14 @@ public class MenuManager : MonoBehaviour
                     rawImage.color = currentColor;
             if(alphaValue==1) can_play = true;
         }
+
+        cloud1.gameObject.transform.position = new Vector3(cloud1.transform.position.x + 0.07f, cloud1.transform.position.y, 0);
+        cloud2.gameObject.transform.position = new Vector3(cloud2.transform.position.x + 0.1f, cloud2.transform.position.y, 0);
+        cloud3.gameObject.transform.position = new Vector3(cloud3.transform.position.x + 0.05f, cloud3.transform.position.y, 0);
+
+        if (cloud1.transform.localPosition.x >= 1300f) cloud1.gameObject.transform.localPosition = new Vector3(-800f, cloud1.transform.position.y, 0);
+        if (cloud2.transform.localPosition.x >= 1300f) cloud2.gameObject.transform.localPosition = new Vector3(-800f, cloud2.transform.position.y, 0);
+        if (cloud3.transform.localPosition.x >= 1300f) cloud3.gameObject.transform.localPosition = new Vector3(-800f, cloud3.transform.position.y, 0);
     }
 
     public void Easytext() {
