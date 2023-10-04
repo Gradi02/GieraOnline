@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-
+    [Header("Modes")]
     public GameObject mode_selector;
     public Button mode;
     private bool vis_change_mode = false;
@@ -23,13 +23,13 @@ public class MenuManager : MonoBehaviour
     public Button mode_hell;
     public TextMeshProUGUI mode_perks;
 
-    public GameObject cloud1;
-    public GameObject cloud2;
-    public GameObject cloud3;
+    [Header("Clouds")]
+    public GameObject[] clouds;
+    public float cloudSpeed;
 
-    private bool can_play = false;
-
+    [Header("Options")] 
     public GameObject options;
+    private bool can_play = false;
 
     public RawImage trans;
     private bool transition = false;
@@ -73,14 +73,15 @@ public class MenuManager : MonoBehaviour
             if(alphaValue==1) can_play = true;
         }
 
-        cloud1.gameObject.transform.position = new Vector3(cloud1.transform.position.x + 0.07f, cloud1.transform.position.y, 0);
-        cloud2.gameObject.transform.position = new Vector3(cloud2.transform.position.x + 0.1f, cloud2.transform.position.y, 0);
-        cloud3.gameObject.transform.position = new Vector3(cloud3.transform.position.x + 0.05f, cloud3.transform.position.y, 0);
+            //dzia³aj¹ce chmury ez
+            foreach(GameObject c in clouds)
+            {
+                c.transform.localPosition += transform.right * Time.deltaTime * cloudSpeed;
 
-        if (cloud1.transform.localPosition.x >= 1300f) cloud1.gameObject.transform.localPosition = new Vector3(-800f, cloud1.transform.position.y, 0);
-        if (cloud2.transform.localPosition.x >= 1300f) cloud2.gameObject.transform.localPosition = new Vector3(-800f, cloud2.transform.position.y, 0);
-        if (cloud3.transform.localPosition.x >= 1300f) cloud3.gameObject.transform.localPosition = new Vector3(-800f, cloud3.transform.position.y, 0);
-    }
+                if (c.transform.localPosition.x >= 1300)
+                    c.transform.localPosition -= new Vector3(2300, 0, 0);
+            }   
+        }
 
     public void Easytext() {
         mode_perks.text = "hp: +5\r\ntime: -5";       
