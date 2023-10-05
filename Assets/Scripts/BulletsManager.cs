@@ -11,6 +11,8 @@ public class BulletsManager : MonoBehaviour
     //private EnemyInfo.types currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
     private PlayerInfo info;
 
+    public GameObject spark;
+
     [SerializeField] private GameObject pfDamagePopup;
     void Start()
     {
@@ -39,6 +41,16 @@ public class BulletsManager : MonoBehaviour
             {
                 damageDelta = (int)Mathf.Round(damageDelta * info.GetCritMulti());
                 crit = true;
+            }
+
+
+            //ARTEFAKT SPARKY
+            int spark_quantity = Random.Range(1, 6);
+            for (int i = 0; i < spark_quantity; i++)
+            {
+                Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+                Quaternion randomQuaternion = Quaternion.Euler(randomRotation);
+                Instantiate(spark, transform.position, randomQuaternion);
             }
 
             /*if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
