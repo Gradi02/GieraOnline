@@ -10,7 +10,7 @@ public class PlayerInfo : MonoBehaviour
     public int currentHp = 1;
     private int maxmana = 20;
     public int currentMana = 1;
-    private int speed = 8;
+    private float speed = 8;
     private int damage = 8;
     private float damageMultiplier = 2;
     private int critChance = 5;
@@ -75,14 +75,14 @@ public class PlayerInfo : MonoBehaviour
         damageMultiplier += 0.5f;
     }
 
-    public int GetSpeed()
+    public float GetSpeed()
     {
         return speed;
     }
 
     public void SetSpeed()
     {
-        speed += 1;
+        speed += 0.5f;
     }
 
     public float GetCritMulti()

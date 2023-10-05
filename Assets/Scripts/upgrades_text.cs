@@ -8,13 +8,21 @@ using UnityEngine.UI;
 
 public class upgrades_text : MonoBehaviour
 {
-    public TextMeshProUGUI stats;
     public TextMeshProUGUI money;
     public TextMeshProUGUI pricetext;
     PlayerInfo player;
-    public static int money_upgrade = 0;
+    public static int money_upgrade = 100;
     private int price = 1;
-    
+    public TextMeshProUGUI start;
+
+    [Header("Upgrades")]
+    public TextMeshProUGUI healthValue;
+    public TextMeshProUGUI speedValue;
+    public TextMeshProUGUI damageValue;
+    public TextMeshProUGUI dmgMultiValue;
+    public TextMeshProUGUI critValue;
+    public TextMeshProUGUI critMultiValue;
+    public TextMeshProUGUI gunValue;
 
     private void Start()
     {
@@ -23,17 +31,24 @@ public class upgrades_text : MonoBehaviour
 
     void Update()
     {
-        stats.text = "hp: " + player.GetMaxHp().ToString() + 
-                 "\r\nmana: "+ player.GetMaxMana().ToString() + 
-                 "\r\nspeed: " + player.GetSpeed().ToString() +
-                 "\r\ndamage: " + player.GetDamage().ToString() + 
-                 "\r\ndamage Multiplier: x" + player.GetMultiplier().ToString() +
-                 "\r\ncrit Chance: " + player.GetCritChance().ToString() + "%" +
-                 "\r\ncrit Multiplier: x" + player.GetCritMulti().ToString() +
-                 "\r\nshot Cooldown: " + player.GetGunCooldown().ToString() + " s" +
-                 "\r\n\r\nEnemies killed: " + player.enemyKilled;
+        healthValue.text = player.GetMaxHp().ToString() + " hp";
+        speedValue.text = player.GetSpeed().ToString();
+        damageValue.text = player.GetDamage().ToString();
+        dmgMultiValue.text = "x" + player.GetMultiplier().ToString();
+        critValue.text = player.GetCritChance().ToString() + "%";
+        critMultiValue.text = "x" + player.GetCritMulti().ToString();
+        gunValue.text = player.GetGunCooldown().ToString() + " s";
+
         money.text = "points: " + money_upgrade;
         pricetext.text = "upgrade price: " + price;
+
+        start.text = "start wave " + waves.wave;
+    }
+
+    public bool CanUpgrade()
+    {
+        if (money_upgrade >= price) return true;
+        return false;
     }
 
     public void UpgradeHP()

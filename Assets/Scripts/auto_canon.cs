@@ -11,36 +11,36 @@ public class Auto_canon : MonoBehaviour
 
     public GameObject auto_canon;
     private float cooldown = 0;
-    private int bulletSpeed = 12;
-    Vector3 dir;
     void Update()
     {
-        UpdateActiveEnemiesList();
-
-        if (activeEnemies.Count > 0)
+        if (cooldown <= Time.time)
         {
-            Transform closestEnemy = FindClosestEnemy();
-            if (closestEnemy != null)
+            cooldown = Time.time + 2;
+            UpdateActiveEnemiesList();
+
+            if (activeEnemies.Count > 0)
             {
-                float distance = Vector3.Distance(transform.position, closestEnemy.position);
-                Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
-
-
-                if(distance <= 15 && cooldown <= Time.time)
+                Transform closestEnemy = FindClosestEnemy();
+                if (closestEnemy != null)
                 {
-                    dir = (closestEnemy.position - transform.position).normalized;
-                    Instantiate(auto_canon, transform.position, Quaternion.identity);
-                    cooldown = Time.time+2;
+                    float distance = Vector3.Distance(transform.position, closestEnemy.position);
+                    Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
+
+                    if (distance <= 15)
+                    {
+                        Vector3 dir = (closestEnemy.position - transform.position).normalized;
+                        float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                        Instantiate(auto_canon, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                    }
                 }
             }
         }
-        auto_canon.transform.Translate(dir * bulletSpeed * Time.deltaTime);
     }
 
 
-    void UpdateActiveEnemiesList()
+    private void UpdateActiveEnemiesList()
     {
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
 
         // Aktualizuj listê aktywnych wrogów
         activeEnemies.Clear();
@@ -50,7 +50,7 @@ public class Auto_canon : MonoBehaviour
         }
     }
 
-    Transform FindClosestEnemy()
+    private Transform FindClosestEnemy()
     {
         Transform closestEnemy = null;
         float shortestDistance = Mathf.Infinity;
