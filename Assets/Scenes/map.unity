@@ -2085,6 +2085,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2834510476659731310, guid: 3300ef09a43bacc4bb308f6bf9a73f80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2834510476659731310, guid: 3300ef09a43bacc4bb308f6bf9a73f80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2834510476659731310, guid: 3300ef09a43bacc4bb308f6bf9a73f80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7929770629785327155, guid: 3300ef09a43bacc4bb308f6bf9a73f80, type: 3}
       propertyPath: m_Name
       value: player
@@ -2517,8 +2529,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0033035278, y: 0.0038528442, z: 0}
-    m_Extent: {x: 175.80191, y: 175.80286, z: 0}
+    m_Center: {x: 0.0049972534, y: 0.00050354004, z: 0}
+    m_Extent: {x: 175.8005, y: 175.7995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2842,6 +2854,10 @@ PrefabInstance:
     - target: {fileID: 4223711750177830973, guid: 152a1166971c4a945842448fbb0df1c4, type: 3}
       propertyPath: m_Name
       value: slime_gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223711750177830973, guid: 152a1166971c4a945842448fbb0df1c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6851,6 +6867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slime_armored
       objectReference: {fileID: 0}
+    - target: {fileID: 2110284731021545226, guid: 5cd9961bc94e7c64f8fcda1abca89f85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8239786436232711472, guid: 5cd9961bc94e7c64f8fcda1abca89f85, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.597054
@@ -6947,6 +6967,10 @@ PrefabInstance:
     - target: {fileID: 4475544869638742600, guid: 14c5fe4c18e9f1e42a36c2cbd76cab6f, type: 3}
       propertyPath: m_Name
       value: Mega_slime_fast
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475544869638742600, guid: 14c5fe4c18e9f1e42a36c2cbd76cab6f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -16,7 +16,6 @@ public class Artefacts : MonoBehaviour
 
     void Start()
     {
-
         foreach(Transform a in GameObject.FindGameObjectWithTag("Player").transform.Find("Artefacts").GetComponentInChildren<Transform>())
         {
             artefacts.Add(a.gameObject);

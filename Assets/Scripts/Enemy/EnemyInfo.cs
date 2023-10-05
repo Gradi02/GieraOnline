@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using TMPro;
 
 public class EnemyInfo : MonoBehaviour
 {
@@ -51,12 +52,12 @@ public class EnemyInfo : MonoBehaviour
     public bool mutated_fast;
     public bool mutated_poison;
 
-
     [Header("Others")]
     [SerializeField] private GameObject particle;
     private Rigidbody2D rb;
     private bool destroy = false;
     [HideInInspector] public bool isAttacking = false;
+    [SerializeField] private GameObject pfDamagePopup;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
@@ -250,5 +251,41 @@ public class EnemyInfo : MonoBehaviour
         destroy = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Instantiate(particle, transform.position, transform.rotation);
+    }
+
+    public void Damage(float damageDelta, bool ifCrit, Color normalColor)
+    {
+        //dmgpopup
+        GameObject DmgPopup = Instantiate(pfDamagePopup, transform.position, Quaternion.identity);
+        DmgPopup.GetComponent<TextMeshPro>().color = normalColor;
+        
+        //Zadawanie Damage
+        if (protection > 0)
+        {
+            ifCrit = false;
+            damageDelta = 1;
+            DmgPopup.GetComponent<TextMeshPro>().color = Color.grey;
+            protection -= 1;
+        }
+        else
+        {
+            health -= damageDelta;
+        }
+
+        //PopUp
+        DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
+        DmgPopup.GetComponent<DmgPopup>().SetVelocity(12 * Time.deltaTime * transform.right);
+
+        if (damageDelta > (info.GetDamage() * (info.GetMultiplier() - (0.25f * info.GetMultiplier()))))
+        {
+            DmgPopup.GetComponent<TextMeshPro>().color = Color.yellow;
+        }
+
+        if (ifCrit)
+        {
+            DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
+            DmgPopup.GetComponent<TextMeshPro>().fontStyle = TMPro.FontStyles.Bold;
+            DmgPopup.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
+        }
     }
 }

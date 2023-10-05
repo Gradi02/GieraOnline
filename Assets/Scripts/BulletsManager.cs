@@ -43,7 +43,6 @@ public class BulletsManager : MonoBehaviour
                 crit = true;
             }
 
-
             //ARTEFAKT SPARKY
             int spark_quantity = Random.Range(1, 6);
             for (int i = 0; i < spark_quantity; i++)
@@ -53,31 +52,11 @@ public class BulletsManager : MonoBehaviour
                 Instantiate(spark, transform.position, randomQuaternion);
             }
 
-            /*if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Air)
-            {
-                if (currentMode == EnemyInfo.types.Air) damageDelta /= 4;
-                else if (currentMode == EnemyInfo.types.Nature) damageDelta *= 2;
-            }
-            else if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Water)
-            {
-                if (currentMode == EnemyInfo.types.Water) damageDelta /= 4;
-                else if (currentMode == EnemyInfo.types.Air) damageDelta *= 2;
-            }
-            else if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Fire)
-            {
-                if (currentMode == EnemyInfo.types.Fire) damageDelta /= 4;
-                else if (currentMode == EnemyInfo.types.Water) damageDelta *= 2;
-            }
-            else if (collision.gameObject.GetComponent<EnemyInfo>().type == EnemyInfo.types.Nature)
-            {
-                if (currentMode == EnemyInfo.types.Nature) damageDelta /= 4;
-                else if (currentMode == EnemyInfo.types.Fire) damageDelta *= 2;
-            }*/
-
-
+            collision.gameObject.GetComponent<EnemyInfo>().Damage(damageDelta, crit, Color.white);
+            /*
             GameObject DmgPopup = Instantiate(pfDamagePopup, collision.transform.position, Quaternion.identity);
 
-
+            //Zadawanie Damage
             if (collision.gameObject.GetComponent<EnemyInfo>().protection > 0)
             {
                 damageDelta = 1;
@@ -90,7 +69,7 @@ public class BulletsManager : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
             }
             
-            
+            //PopUp
             DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
             DmgPopup.GetComponent<DmgPopup>().SetVelocity(bulletSpeed * Time.deltaTime * transform.right);
 
@@ -105,7 +84,7 @@ public class BulletsManager : MonoBehaviour
                 DmgPopup.GetComponent<TextMeshPro>().fontStyle = TMPro.FontStyles.Bold;
                 DmgPopup.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
             }
-
+            */
             Destroy(this.gameObject);
         }
 

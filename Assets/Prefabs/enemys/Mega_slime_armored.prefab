@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65e7cd300e85cf4294ad23de2d01253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 0.6
 --- !u!114 &6084364675140907267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +265,8 @@ MonoBehaviour:
   temp_shooter_cords: {x: 0, y: 0, z: 0}
   poison_pool: {fileID: 665200480458821834, guid: d69a9cf0a1b6af0479ec64fec5b00e33, type: 3}
   bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
+  run: 0
+  hit: 0
   health: 60
   speed: 5
   damage: 5
@@ -282,6 +283,7 @@ MonoBehaviour:
   mutated_poison: 0
   particle: {fileID: 4833367576465983319, guid: fb057bafe67e7e242bc7133f1a014740, type: 3}
   isAttacking: 0
+  pfDamagePopup: {fileID: 7111166188261828388, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
   canMove: 1
 --- !u!111 &1032942460493787944
 Animation:
