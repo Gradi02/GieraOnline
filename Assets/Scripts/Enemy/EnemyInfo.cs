@@ -276,10 +276,11 @@ public class EnemyInfo : MonoBehaviour
         DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
         DmgPopup.GetComponent<DmgPopup>().SetVelocity(12 * Time.deltaTime * transform.right);
 
+        /*
         if (damageDelta > (info.GetDamage() * (info.GetMultiplier() - (0.25f * info.GetMultiplier()))))
         {
             DmgPopup.GetComponent<TextMeshPro>().color = Color.yellow;
-        }
+        }*/
 
         if (ifCrit)
         {

@@ -8,12 +8,11 @@ public class BulletsManager : MonoBehaviour
     public float bulletSpeed = 15;
     public ParticleSystem bulletparticle;
     private GameObject player;
-    //private EnemyInfo.types currentMode; // 1-Air > 2-Water > 3-Fire > 4-Nature
     private PlayerInfo info;
 
     public GameObject spark;
 
-    [SerializeField] private GameObject pfDamagePopup;
+    private GameObject sparky;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -23,6 +22,7 @@ public class BulletsManager : MonoBehaviour
         ParticleSystem.MainModule col = bulletparticle.main;
         //col.startColor = player.GetComponent<ChangeMode>().GetColor();
         info = player.GetComponent<PlayerInfo>();
+        sparky = player.transform.GetChild(1).transform.Find("Sparky").gameObject;
     }
 
     void Update()
@@ -44,12 +44,17 @@ public class BulletsManager : MonoBehaviour
             }
 
             //ARTEFAKT SPARKY
-            int spark_quantity = Random.Range(1, 6);
-            for (int i = 0; i < spark_quantity; i++)
+            if (sparky.activeSelf)
             {
-                Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-                Quaternion randomQuaternion = Quaternion.Euler(randomRotation);
-                Instantiate(spark, transform.position, randomQuaternion);
+                int level = sparky.GetComponent<ArtefactManager>().GetLevel();
+                int spark_quantity = Random.Range(level, 5 + level);
+
+                for (int i = 0; i < spark_quantity; i++)
+                {
+                    Vector3 randomRotation = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+                    Quaternion randomQuaternion = Quaternion.Euler(randomRotation);
+                    Instantiate(spark, transform.position, randomQuaternion);
+                }
             }
 
             collision.gameObject.GetComponent<EnemyInfo>().Damage(damageDelta, crit, Color.white);

@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private Transform wand;
+    [SerializeField] private Transform book;
     private float speed;
 
     private void Start()
@@ -44,11 +45,13 @@ public class Movement : MonoBehaviour
         {
             spriteRenderer.flipX = false;
             wand.transform.localPosition = new Vector3(0.6f, -0.5f, 0);
+            book.localPosition = new Vector3(-1f, -0.6f, 0);
         }
         else if (horizontal < 0)
         {
             spriteRenderer.flipX = true;
             wand.transform.localPosition = new Vector3(-0.6f, -0.5f, 0);
+            book.localPosition = new Vector3(1f, -0.6f, 0);
         }
     }
 }

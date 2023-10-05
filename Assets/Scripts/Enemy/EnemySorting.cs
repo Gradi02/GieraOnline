@@ -12,8 +12,8 @@ public class EnemySorting : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        wand = player.transform.GetChild(1).gameObject;
-        art = player.transform.GetChild(2).gameObject;
+        wand = player.transform.GetChild(2).gameObject;
+        art = player.transform.GetChild(1).gameObject;
         playerSR = player.GetComponent<SpriteRenderer>();
         playerFeets = player.transform.GetChild(0).gameObject;
     }
@@ -46,11 +46,12 @@ public class EnemySorting : MonoBehaviour
         }
 
         playerSR.sortingOrder = -Mathf.RoundToInt(playerFeets.transform.position.y * 100);
-        wand.GetComponent<SpriteRenderer>().sortingOrder = playerSR.sortingOrder + 1;
+        wand.GetComponent<SpriteRenderer>().sortingOrder = playerSR.sortingOrder + 2;
         
         for(int i=0; i<art.transform.childCount; i++)
         {
-            art.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = playerSR.sortingOrder + 1;
+            if(art.transform.GetChild(i).GetComponent<SpriteRenderer>() != null)
+                art.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = playerSR.sortingOrder + 1;
         }
     }
 }

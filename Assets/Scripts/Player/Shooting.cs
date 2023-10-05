@@ -7,7 +7,7 @@ public class Shooting : MonoBehaviour
     private float nextFire = 0;
 
 
-    [SerializeField] private GameObject bulletPrefab;
+    public GameObject bulletPrefab;
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private ParticleSystem particle;
 

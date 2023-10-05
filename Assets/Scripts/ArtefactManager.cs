@@ -19,6 +19,11 @@ public class ArtefactManager : MonoBehaviour
         unlocked = true;
         gameObject.SetActive(true);
         level++;
+
+        if(art_name == "Sparky")
+        {
+            transform.root.gameObject.GetComponent<Shooting>().bulletPrefab.GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
     }
     public void Upgrade()
     {

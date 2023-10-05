@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,6 @@ MonoBehaviour:
   bulletSpeed: 12
   bulletparticle: {fileID: 8732016818668097540}
   spark: {fileID: 3366769980049409461, guid: ac6fd4a55e7c44e49aaebf58b8145ebc, type: 3}
-  pfDamagePopup: {fileID: 7111166188261828388, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
 --- !u!50 &534636713532068337
 Rigidbody2D:
   serializedVersion: 4
