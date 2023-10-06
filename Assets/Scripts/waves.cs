@@ -140,6 +140,9 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
+        timer = 1; currentEnemyLevel = 1; currentWaveEnemy = 3; spawnTime = 4;
+        return;
+
         if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 4;    }
         else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 3.5f; }
         else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 3.5f; }

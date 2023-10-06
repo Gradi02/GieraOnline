@@ -79,6 +79,7 @@ public class ArtImg : MonoBehaviour
             Destroy(g);
         }
 
+        manager.AddArt(artefact);
         manager.RefreshList();
         manager.GoNext();
     }

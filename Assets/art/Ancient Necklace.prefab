@@ -102,6 +102,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   art_name: Anctien Necklace
-  art_description: regen
+  art_description: This item will regenerate your health during the battle
   art_icon: {fileID: 21300000, guid: feae8d398c14c9e4c8f42de7acf1140a, type: 3}
-  rarity: 1

@@ -10,7 +10,7 @@ public class ArtefactManager : MonoBehaviour
     public Sprite art_icon;
 
 
-    private int level = 1;
+    private int level = 0;
     private int max_level = 5;
     private bool unlocked=false;
     

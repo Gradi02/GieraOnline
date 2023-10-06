@@ -11,6 +11,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private ParticleSystem particle;
 
+    private void Start()
+    {
+        bulletPrefab.GetComponent<SpriteRenderer>().color = Color.white;
+    }
     void Update()
     {
         if (!waves.spawning) return;

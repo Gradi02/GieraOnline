@@ -42,7 +42,7 @@ public class upgrades_text : MonoBehaviour
         money.text = "points: " + money_upgrade;
         pricetext.text = "upgrade price: " + price;
 
-        start.text = "start wave " + waves.wave;
+        start.text = "start wave " + (waves.wave + 1);
     }
 
     public bool CanUpgrade()
