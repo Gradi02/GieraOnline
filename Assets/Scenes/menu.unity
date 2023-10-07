@@ -1375,7 +1375,11 @@ MonoBehaviour:
   - {fileID: 886230349}
   - {fileID: 1373382418}
   - {fileID: 1272653822}
-  cloudSpeed: 400
+  cloud_speed:
+  - 30
+  - 50
+  - 70
+  - 90
   options: {fileID: 1636709173}
   trans: {fileID: 1955078409}
 --- !u!4 &447611648
@@ -3687,7 +3691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 331, y: 165}
+  m_AnchoredPosition: {x: 273.52, y: 165}
   m_SizeDelta: {x: 530.96, y: 476.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1694531943
@@ -4595,8 +4599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 199.5, y: 37.666576}
-  m_SizeDelta: {x: 143.9249, y: 35.9022}
+  m_AnchoredPosition: {x: 202, y: 37.666576}
+  m_SizeDelta: {x: 161.76, y: 35.9022}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002950806
 MonoBehaviour:
@@ -4618,11 +4622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'by
-
-    Adrian Nowowiejski
-
-    Tobiasz Kubiak'
+  m_text: "by\nGradi002 \nTobkubos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb480e8c44a9b1a408a85d11a1fbd965, type: 2}
   m_sharedMaterial: {fileID: -757297722909755486, guid: cb480e8c44a9b1a408a85d11a1fbd965, type: 2}

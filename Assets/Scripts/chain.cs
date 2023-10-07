@@ -9,7 +9,6 @@ public class chain : MonoBehaviour
     private float cooldown = 5;
     private List<Transform> activeEnemies = new List<Transform>(); // Lista aktywnych wrogów
     float distance = 0;
-    public GameObject chain_bullet;
     private float chain_cooldown;
 
     // Start is called before the first frame update
@@ -20,18 +19,19 @@ public class chain : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        EnemyInfo enemy = collision.gameObject.GetComponent<EnemyInfo>();
         for (int i = 0; i < 5; i++)
         {
-            chain_cooldown = Time.time + 0.2f;
+            chain_cooldown = Time.time + 0.5f;
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("QWIEQIEEQUOIWUE");
                 collision.gameObject.GetComponent<EnemyInfo>().chain_hit = true;
-
-                if (distance < 25 && activeEnemies.Count > 0 && chain_cooldown <= Time.time)
+                Debug.Log("QWIEQIEEQUOIWUE");
+                if (distance < 25 && activeEnemies.Count > 0 && enemy.chain_hit == false)
                 {
                     Debug.Log("asdsadasdsadasdsada");
-                    chain_bullet.transform.position = FindClosestEnemy().transform.position;
+                    Transform clos_enemy = FindClosestEnemy();
+                    transform.position = clos_enemy.position;
                 }
             }
         }
@@ -49,7 +49,7 @@ public class chain : MonoBehaviour
                 if (closestEnemy != null)
                 {
                     distance = Vector3.Distance(transform.position, closestEnemy.position);
-                    Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
+                   // Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
                 }
             }
     }

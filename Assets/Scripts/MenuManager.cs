@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +18,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("Clouds")]
     public GameObject[] clouds;
-    public float cloudSpeed;
+    public float[] cloud_speed;
 
     [Header("Options")] 
     public GameObject options;
@@ -66,13 +67,18 @@ public class MenuManager : MonoBehaviour
         }
 
             //dzia³aj¹ce chmury ez
-            foreach(GameObject c in clouds)
+          /* foreach(GameObject c in clouds)
             {
                 c.transform.localPosition += transform.right * Time.deltaTime * cloudSpeed;
 
                 if (c.transform.localPosition.x >= 1300)
                     c.transform.localPosition -= new Vector3(2300, 0, 0);
-            }   
+            } */
+
+                for(int i = 0; i<4; i++)
+                {
+                    clouds[i].transform.localPosition += transform.right * Time.deltaTime * cloud_speed[i];
+                }
         }
 
     public void Easytext() {

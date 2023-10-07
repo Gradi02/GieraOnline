@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc87094a2732eb4da90f90b12287b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 7
+  autoColor: {r: 0.21568629, g: 0.8313726, b: 0.9960785, a: 1}
 --- !u!1 &5006794545962086481
 GameObject:
   m_ObjectHideFlags: 0
