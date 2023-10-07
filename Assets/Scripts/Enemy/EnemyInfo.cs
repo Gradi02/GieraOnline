@@ -59,6 +59,7 @@ public class EnemyInfo : MonoBehaviour
     private bool destroy = false;
     [HideInInspector] public bool isAttacking = false;
     [SerializeField] private GameObject pfDamagePopup;
+    public bool chain_hit = false;
 
     [Header("Enemy Settings")]
     public bool canMove = true;

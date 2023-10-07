@@ -166,8 +166,8 @@ public class PlayerInfo : MonoBehaviour
 
     public void CameraShake()
     {
-        float x = Random.Range(-.1f, .1f);
-        float y = Random.Range(-.1f, .1f);
+        float x = (Random.Range(-.1f, .1f));
+        float y = (Random.Range(-.1f, .1f));
 
         cam.transform.position += new Vector3(x, y, 0f);
         cam.orthographicSize += 0.1f;
