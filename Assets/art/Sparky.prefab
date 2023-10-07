@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   art_name: Sparky
-  art_description: dodaj tu opis
+  art_description: Make your bullets split up after hit the enemy
   art_icon: {fileID: 21300000, guid: b5c0695d5c6cf7f4790b47c74e0bf9b6, type: 3}

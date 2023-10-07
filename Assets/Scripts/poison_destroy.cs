@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class poison_destroy : MonoBehaviour
 {
-
-    private float delay;
-
-    void Start()
-    {
-        delay = Time.time + 6;
-    }
+    float timer = 0;
     void Update()
     {
-        if (Time.time > delay)
-        {
-            transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
+        if(timer >= 5f)
+            transform.localScale -= new Vector3(0.001f, 0.001f, 0);
 
-            if (transform.localScale.x <= 0.1f) Destroy(gameObject);
-            
+        if(transform.localScale.x < 0)
+            Destroy(gameObject);
+    }
+
+    private void FixedUpdate()
+    {
+        timer += Time.fixedDeltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PoisonPlayer"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>().poisonTime = 3;
         }
     }
 }

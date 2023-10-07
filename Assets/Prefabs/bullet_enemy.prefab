@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: -5312202377022935943}
   - component: {fileID: -5144931043162580967}
   - component: {fileID: -5669996533465225796}
-  m_Layer: 0
+  - component: {fileID: 6698594947341136387}
+  m_Layer: 9
   m_Name: bullet_enemy
-  m_TagString: Player
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3cf5733195e3a43baa6fbf581c352a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   power: 20
+  damage: 4
 --- !u!114 &-5669996533465225796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30b387b0e49ef340b35f63f69d2cd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &6698594947341136387
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7176694240297221827}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &7704774203530080458
 GameObject:
   m_ObjectHideFlags: 0

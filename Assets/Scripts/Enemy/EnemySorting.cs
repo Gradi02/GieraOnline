@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySorting : MonoBehaviour
 {
@@ -53,5 +54,14 @@ public class EnemySorting : MonoBehaviour
             if(art.transform.GetChild(i).GetComponent<SpriteRenderer>() != null)
                 art.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = playerSR.sortingOrder + 1;
         }
+
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("pop"))
+        {
+            int layer = Mathf.RoundToInt(g.transform.position.y * 100);
+
+            g.GetComponent<UnityEngine.Rendering.SortingGroup>().sortingOrder = -layer;
+        }
+
+
     }
 }

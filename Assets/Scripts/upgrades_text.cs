@@ -43,6 +43,15 @@ public class upgrades_text : MonoBehaviour
         pricetext.text = "upgrade price: " + price;
 
         start.text = "start wave " + (waves.wave + 1);
+
+        if(money_upgrade < price)
+        {
+            pricetext.color = Color.gray;
+        }
+        else
+        {
+            pricetext.color = Color.white;
+        }
     }
 
     public bool CanUpgrade()

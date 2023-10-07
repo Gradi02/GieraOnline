@@ -11,6 +11,10 @@ TagManager:
   - Manager
   - artimg
   - artmini
+  - pop
+  - bullet
+  - poison
+  - PoisonPlayer
   layers:
   - Default
   - TransparentFX
@@ -21,9 +25,9 @@ TagManager:
   - player
   - Enemy
   - Bullet
-  - 
-  - 
-  - 
+  - enemyBullet
+  - playerPoison
+  - poison
   - 
   - 
   - 

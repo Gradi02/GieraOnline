@@ -13,16 +13,17 @@ public class EnemyInfo : MonoBehaviour
 
     //poison
     public GameObject poison_pool;
+    public GameObject poison_bullet;
     private float poison_cooldown = 1;
     private float mutated_poison_cooldown = 0;
     private float mutated_poison_burst = 0;
-    private int burst = 0;
 
     //shooter
     public GameObject bullet;
     private float shooter_cooldown = 1;
     private float mutated_shooter_cooldown = 0;
     private float mutated_shooter_burst = 0;
+    private int burst = 0;
 
     //speed
     private float fast_cooldown = 3;
@@ -69,6 +70,7 @@ public class EnemyInfo : MonoBehaviour
         this.tag = "Enemy";
         rb = GetComponent<Rigidbody2D>();
         health *= waves.enemyHpMultiplier;
+        speed += Random.Range(0.1f, 0.01f);
     }
 
     void Update()
@@ -108,10 +110,18 @@ public class EnemyInfo : MonoBehaviour
                 {
                     if (Time.time >= mutated_poison_burst)
                     {
+                        /*
                         int x = Random.Range(-7, 7);
                         int y = Random.Range(-7, 7);
                         Vector3 pois_cord = new Vector3(this.transform.position.x + x, this.transform.position.y + y, 0);
                         Instantiate(poison_pool, pois_cord, Quaternion.identity);
+                        */
+
+                        float randomAngel = Random.Range(0f, 360f);
+                        float randomDistance = Random.Range(0.2f, 1.5f);
+                        GameObject newB = Instantiate(poison_bullet, this.transform.position, Quaternion.Euler(0.0f, 0.0f, randomAngel));
+                        newB.GetComponent<poisonBullet>().SetVelocity(randomDistance);
+
                         mutated_poison_burst = Time.time + 0.2f;
                         burst++;
                     }
@@ -122,24 +132,6 @@ public class EnemyInfo : MonoBehaviour
                     mutated_poison_cooldown = Time.time + 5;
                 }
             }
-
-            /*    if(fast && Time.time >= fast_cooldown) 
-                  {
-                      speedup = true;
-
-                  }
-                  if (fast && speedup)
-                  { 
-                      speedup_cooldown = Time.time + 3;
-                      speed = 10;
-                      if (Time.time >= speedup_cooldown) speedup = false;
-                  }
-                  if (fast && !speedup)
-                  {
-                      speed = 2;
-                      fast_cooldown = Time.time + 6;
-                  }
-            */
             
             if(fast)
             {
@@ -185,7 +177,7 @@ public class EnemyInfo : MonoBehaviour
 
             if (mutated_shooter && Time.time >= mutated_shooter_cooldown)
             {
-                if (burst < 10)
+                if (burst < 5)
                 {
                     if (Time.time >= mutated_shooter_burst)
                     {
@@ -197,7 +189,7 @@ public class EnemyInfo : MonoBehaviour
                 else
                 {
                     burst = 0;
-                    mutated_shooter_cooldown = Time.time + 5;
+                    mutated_shooter_cooldown = Time.time + 3;
                 }
             }
 

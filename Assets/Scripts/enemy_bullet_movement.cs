@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class enemy_bullet_movement : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     private Rigidbody2D rb;
     public float power;
     private Vector3 x;
+    public int damage;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,9 +22,12 @@ public class enemy_bullet_movement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,0,rotation);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerInfo>().GetHitted(damage);
+            Destroy(this.gameObject);
+        }
     }
 }

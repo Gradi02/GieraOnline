@@ -267,7 +267,7 @@ MonoBehaviour:
   bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
   run: 0
   hit: 0
-  health: 60
+  health: 40
   speed: 5
   damage: 5
   attackSpeed: 2

@@ -22,8 +22,14 @@ public class PlayerInfo : MonoBehaviour
     public Slider mana_slider;
     public Slider hp_slider;
 
+    public int poisonTime = 0;
+    private float poisonTimer = 0;
+
     public TextMeshProUGUI hp_txt;
     public TextMeshProUGUI mana_txt;
+    public Camera cam;
+    public Color normalHp;
+    public Color poisonHp;
 
     public int GetDamage()
     {
@@ -121,6 +127,7 @@ public class PlayerInfo : MonoBehaviour
     public void GetHitted(int dmg_in)
     {
         currentHp -= dmg_in;
+        CameraShake();
     }
 
     private void Update()
@@ -130,5 +137,39 @@ public class PlayerInfo : MonoBehaviour
 
         hp_txt.text = "Health: " + currentHp.ToString();
         mana_txt.text = "Mana: " + currentMana.ToString();
+
+        if(poisonTime > 0)
+        {
+            if(Time.time >= poisonTimer)
+            {
+                poisonTimer = Time.time + 1;
+                poisonTime--;
+                currentHp--;
+                CameraShake();
+            }
+
+            hp_slider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = poisonHp;
+        }
+        else
+        {
+            hp_slider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = normalHp;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(cam.orthographicSize > 15)
+        {
+            cam.orthographicSize -= Time.fixedDeltaTime;
+        }
+    }
+
+    public void CameraShake()
+    {
+        float x = Random.Range(-.1f, .1f);
+        float y = Random.Range(-.1f, .1f);
+
+        cam.transform.position += new Vector3(x, y, 0f);
+        cam.orthographicSize += 0.1f;
     }
 }

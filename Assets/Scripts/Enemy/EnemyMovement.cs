@@ -28,9 +28,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if ((player != null) && (enemyInfo != null) && (enemyInfo.canMove) && (!enemyInfo.isAttacking))
+        if ((player != null) && (enemyInfo != null) && (enemyInfo.canMove))
         {
             //movement
             if (Vector2.Distance(playerFT.transform.position, transform.position) > 0.5f)

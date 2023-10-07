@@ -68,6 +68,7 @@ public class waves : MonoBehaviour
         timer = 0;
         wave--;
         timerText.color = Color.white;
+        player.GetComponent<PlayerInfo>().poisonTime = 0;
 
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
@@ -77,6 +78,16 @@ public class waves : MonoBehaviour
         foreach(GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
             Destroy(spawner);
+        }
+
+        foreach (GameObject b in GameObject.FindGameObjectsWithTag("bullet"))
+        {
+            Destroy(b);
+        }
+
+        foreach (GameObject b in GameObject.FindGameObjectsWithTag("poison"))
+        {
+            Destroy(b);
         }
 
         WinAnimation();
@@ -140,13 +151,13 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
-        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 4;    }
-        else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 3.5f; }
-        else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 3.5f; }
-        else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 4;  spawnTime = 3;    }
-        else if (wave == 7 || wave == 8)  { timer = 50; currentEnemyLevel = 2; currentWaveEnemy = 5;  spawnTime = 3;    }
-        else if (wave > 8 && wave <= 20)  { timer = 60; currentEnemyLevel = 3; currentWaveEnemy = 6;  spawnTime = 3;    }
-        else if (wave > 20 && wave <= 40) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 8;  spawnTime = 2.5f; }
+        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 4;    }
+        else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 3.5f; }
+        else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; }
+        else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3;    }
+        else if (wave == 7 || wave == 8)  { timer = 50; currentEnemyLevel = 2; currentWaveEnemy = 7;  spawnTime = 3;    }
+        else if (wave > 8 && wave <= 20)  { timer = 60; currentEnemyLevel = 3; currentWaveEnemy = 8;  spawnTime = 3;    }
+        else if (wave > 20 && wave <= 40) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; }
         else                              { timer = 80; currentEnemyLevel = 5; currentWaveEnemy = 10; spawnTime = 2.5f; }
     }
 
