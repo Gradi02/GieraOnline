@@ -11,8 +11,10 @@ public class BulletsManager : MonoBehaviour
     private PlayerInfo info;
 
     public GameObject spark;
-
     private GameObject sparky;
+    private GameObject chainArt;
+
+    private bool chain = true;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -23,6 +25,7 @@ public class BulletsManager : MonoBehaviour
         //col.startColor = player.GetComponent<ChangeMode>().GetColor();
         info = player.GetComponent<PlayerInfo>();
         sparky = player.transform.GetChild(1).transform.Find("Sparky").gameObject;
+        chainArt = player.transform.GetChild(1).transform.Find("Chain Bullet").gameObject;
     }
 
     void Update()
@@ -57,41 +60,25 @@ public class BulletsManager : MonoBehaviour
                 }
             }
 
+            if (chain)
+            {
+                int chainMax = 8;
+                chainMax += chainArt.GetComponent<ArtefactManager>().GetLevel();
+                collision.gameObject.GetComponent<EnemyInfo>().SetChainHit(1, chainMax);
+            }
+
             collision.gameObject.GetComponent<EnemyInfo>().Damage(damageDelta, crit, Color.white);
-            /*
-            GameObject DmgPopup = Instantiate(pfDamagePopup, collision.transform.position, Quaternion.identity);
-
-            //Zadawanie Damage
-            if (collision.gameObject.GetComponent<EnemyInfo>().protection > 0)
-            {
-                damageDelta = 1;
-                crit = false;
-                DmgPopup.GetComponent<TextMeshPro>().color = Color.grey;
-                collision.gameObject.GetComponent<EnemyInfo>().protection -= 1;
-            }
-            else 
-            {
-                collision.gameObject.GetComponent<EnemyInfo>().health -= damageDelta;
-            }
-            
-            //PopUp
-            DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
-            DmgPopup.GetComponent<DmgPopup>().SetVelocity(bulletSpeed * Time.deltaTime * transform.right);
-
-            if(damageDelta > (info.GetDamage() * (info.GetMultiplier() - (0.25f * info.GetMultiplier()))))
-            {
-                DmgPopup.GetComponent<TextMeshPro>().color = Color.yellow;
-            }
-
-            if (crit)
-            {
-                DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
-                DmgPopup.GetComponent<TextMeshPro>().fontStyle = TMPro.FontStyles.Bold;
-                DmgPopup.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
-            }
-            */
             Destroy(this.gameObject);
         }
+        
+        if(collision.gameObject.CompareTag("barrier"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
+    public void SetChain()
+    {
+        chain = true;
     }
 }

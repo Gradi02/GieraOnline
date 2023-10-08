@@ -8,13 +8,9 @@ public class Shooting : MonoBehaviour
     public bool single_shoot = false;
     public bool double_shoot = false;
     public bool triple_shoot = true;
-    public bool spark = false;
 
-    private GameObject b1;
-    private GameObject b2;
-    private GameObject b3;
-
-    public Material SparkMat;
+    public Material sparkyMat;
+    public Material normalMat;
 
     public GameObject bulletPrefab;
     [SerializeField] private Transform spawnTransform;
@@ -23,6 +19,7 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         bulletPrefab.GetComponent<SpriteRenderer>().color = Color.white;
+        bulletPrefab.GetComponent<TrailRenderer>().material = normalMat;
     }
     void Update()
     {
@@ -45,27 +42,18 @@ public class Shooting : MonoBehaviour
             //b.GetComponent<SpriteRenderer>().color = GetComponent<ChangeMode>().GetColor();
             if (single_shoot == true)
             {
-                b1 = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
             }
-
-            if (double_shoot == true)
+            else if (double_shoot == true)
             {
-                b2 = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15));
-                b3 = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15));
+                Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 10));
+                Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 10));
             }
-
-            if (triple_shoot == true)
+            else if (triple_shoot == true)
             {
-                b1 = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
-                b2 = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ+25));
-                b3 = Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ-25));
-            }
-
-            if(spark == true)
-            {
-                b1.GetComponent<TrailRenderer>().material = SparkMat;
-                b2.GetComponent<TrailRenderer>().material = SparkMat;
-                b3.GetComponent<TrailRenderer>().material = SparkMat;
+                Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ+20));
+                Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ-20));
             }
         }
     }

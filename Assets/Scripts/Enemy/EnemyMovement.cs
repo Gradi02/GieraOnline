@@ -11,12 +11,14 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer sr;
     private float end = 0;
     private float attackRange = 0.6f;
+    private Vector3 dirOffset;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerFT = player.transform.GetChild(0).gameObject;
         enemyInfo = GetComponent<EnemyInfo>();
         sr = GetComponent<SpriteRenderer>();
+        dirOffset = new Vector3(Random.Range(-0.4f,0.4f), Random.Range(-0.4f, 0.4f),0);
         
         try
         {
@@ -36,6 +38,7 @@ public class EnemyMovement : MonoBehaviour
             if (Vector2.Distance(playerFT.transform.position, transform.position) > 0.5f)
             {
                 Vector3 dir = (playerFT.transform.position - transform.position).normalized;
+                dir += dirOffset;
                 GetComponent<Rigidbody2D>().velocity = dir * enemyInfo.speed;
             }
             else

@@ -59,7 +59,13 @@ public class EnemyInfo : MonoBehaviour
     private bool destroy = false;
     [HideInInspector] public bool isAttacking = false;
     [SerializeField] private GameObject pfDamagePopup;
-    public bool chain_hit = false;
+    private bool chain_hit = false;
+    private List<Transform> closeEnemies = new List<Transform>();
+    private int currentChain = 0;
+    private int maxChain = 0;
+    private float chainTimer = 0;
+    private bool chain_hitted = false;
+    private bool chainEffect = false;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
@@ -76,10 +82,54 @@ public class EnemyInfo : MonoBehaviour
 
     void Update()
     {
+        if (chain_hit)
+        {
+            ChainEffects();
+            canMove = false;
+            rb.velocity = Vector2.zero;
+
+            if (currentChain <= maxChain)
+            {
+                Transform nextTarget = FindClosestEnemy();
+
+                if (nextTarget == null)
+                {
+                    currentChain = 0;
+                    maxChain = 0;
+                    chain_hit = false;
+                    chainTimer = 0;
+                }
+                else if (Vector2.Distance(nextTarget.position, transform.position) <= 5)
+                {
+                    Debug.Log("Chain: " +currentChain);
+                    nextTarget.GetComponent<EnemyInfo>().SetChainHit(currentChain + 1, maxChain);
+                    Damage(5, false, Color.blue);
+
+                    currentChain = 0;
+                    maxChain = 0;
+                    chain_hit = false;
+                    chainTimer = 0;
+                }
+                else
+                {
+                    currentChain = 0;
+                    maxChain = 0;
+                    chain_hit = false;
+                    chainTimer = 0;
+                }
+            }
+            else
+            {
+                currentChain = 0;
+                maxChain = 0;
+                chain_hit = false;
+                chainTimer = 0;
+            }
+        }
 
         if (health <= 0 && !destroy)
         {
-            if(info.currentMana< info.GetMaxMana()) info.currentMana += 1;
+            // if(info.currentMana< info.GetMaxMana()) info.currentMana += 1;
             info.enemyKilled++;
             info.enemyKilledPerRound++;
             if(mutated_basic) Mutated_basic_skill();
@@ -100,7 +150,7 @@ public class EnemyInfo : MonoBehaviour
 
             if (poison && Time.time >= poison_cooldown)
             {
-                poison_cooldown = Time.time + 3;
+                poison_cooldown = Time.time + 3 + Random.Range(0.1f, 1f);
 
                 Instantiate(poison_pool, this.transform.position, Quaternion.identity);
             }
@@ -130,18 +180,18 @@ public class EnemyInfo : MonoBehaviour
                 else
                 {
                     burst = 0;
-                    mutated_poison_cooldown = Time.time + 5;
+                    mutated_poison_cooldown = Time.time + 5 + Random.Range(0.1f, 1f);
                 }
             }
             
             if(fast)
             {
-                speed = info.GetSpeed() + 0.5f;
+                speed = info.GetSpeed() + 1f;
             }
 
             if(mutated_fast && Time.time >= fast_cooldown)
             {
-                fast_cooldown = Time.time + attackSpeed;
+                fast_cooldown = Time.time + attackSpeed + Random.Range(0.1f,1f);
                 canMove = false;
                 rb.velocity = Vector3.zero;
                 speedUp = true;
@@ -171,7 +221,7 @@ public class EnemyInfo : MonoBehaviour
 
             if (shooter && Time.time >= shooter_cooldown)
             {
-                shooter_cooldown = Time.time + 2;
+                shooter_cooldown = Time.time + 2 + Random.Range(0.1f, 1f);
 
                 Instantiate(bullet, transform.GetChild(1).transform.position, Quaternion.identity);
             }
@@ -190,7 +240,7 @@ public class EnemyInfo : MonoBehaviour
                 else
                 {
                     burst = 0;
-                    mutated_shooter_cooldown = Time.time + 3;
+                    mutated_shooter_cooldown = Time.time + 3 + Random.Range(0.1f, 1f);
                 }
             }
 
@@ -220,6 +270,20 @@ public class EnemyInfo : MonoBehaviour
         if(run)
         {
             speedTime += Time.fixedDeltaTime;
+        }
+        
+        if(chain_hitted)
+        {
+            chainTimer += Time.fixedDeltaTime;
+
+            if(chainTimer >= 1)
+            {
+                chain_hitted = false;
+                chainTimer = 0;
+                chainEffect = false;
+                GetComponent<SpriteRenderer>().color = Color.white;
+                canMove = true;
+            }
         }
     }
 
@@ -269,17 +333,65 @@ public class EnemyInfo : MonoBehaviour
         DmgPopup.GetComponent<TextMeshPro>().text = damageDelta.ToString();
         DmgPopup.GetComponent<DmgPopup>().SetVelocity(12 * Time.deltaTime * transform.right);
 
-        /*
-        if (damageDelta > (info.GetDamage() * (info.GetMultiplier() - (0.25f * info.GetMultiplier()))))
-        {
-            DmgPopup.GetComponent<TextMeshPro>().color = Color.yellow;
-        }*/
-
         if (ifCrit)
         {
             DmgPopup.GetComponent<TextMeshPro>().color = Color.red;
             DmgPopup.GetComponent<TextMeshPro>().fontStyle = TMPro.FontStyles.Bold;
             DmgPopup.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
         }
+    }
+
+    public void SetChainHit(int chainNum, int max)
+    {
+        chain_hit = true;
+        chain_hitted = true;
+        currentChain = chainNum;
+        maxChain = max;
+    }
+
+    private void ChainEffects()
+    {
+        if(!chainEffect)
+        {
+            GetComponent<SpriteRenderer>().color = Color.blue;
+            
+            chainEffect = true;
+        }
+    }
+
+    public bool isDestroyed()
+    {
+        return destroy;
+    }
+
+    private Transform FindClosestEnemy()
+    {
+        foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (Vector2.Distance(e.transform.position, this.transform.position) <= 8 && !e.GetComponent<EnemyInfo>().isDestroyed())
+                closeEnemies.Add(e.transform);
+        }
+
+        Transform closestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
+
+        foreach (Transform enemy in closeEnemies)
+        {
+            if (enemy != null)
+            {
+                float distanceToEnemy = Vector2.Distance(transform.position, enemy.position);
+
+                if (distanceToEnemy < shortestDistance)
+                {
+                    if (!enemy.GetComponent<EnemyInfo>().chain_hitted && !enemy.GetComponent<EnemyInfo>().isDestroyed())
+                    {
+                        shortestDistance = distanceToEnemy;
+                        closestEnemy = enemy;
+                    }
+                }
+            }
+        }
+
+        return closestEnemy;
     }
 }

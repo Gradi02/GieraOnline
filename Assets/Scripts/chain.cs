@@ -1,21 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class chain : MonoBehaviour
 {
     public int damage = 5;
-    private float cooldown = 5;
     private List<Transform> activeEnemies = new List<Transform>(); // Lista aktywnych wrogów
     float distance = 0;
     private float chain_cooldown;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,9 +18,9 @@ public class chain : MonoBehaviour
             chain_cooldown = Time.time + 0.5f;
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                collision.gameObject.GetComponent<EnemyInfo>().chain_hit = true;
+                //collision.gameObject.GetComponent<EnemyInfo>().chain_hit = true;
                 Debug.Log("QWIEQIEEQUOIWUE");
-                if (distance < 25 && activeEnemies.Count > 0 && enemy.chain_hit == false)
+                if (distance < 25 && activeEnemies.Count > 0)
                 {
                     Debug.Log("asdsadasdsadasdsada");
                     Transform clos_enemy = FindClosestEnemy();

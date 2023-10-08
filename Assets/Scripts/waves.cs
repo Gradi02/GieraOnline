@@ -108,10 +108,6 @@ public class waves : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            player.transform.position = Vector3.Lerp(player.transform.position, Vector3.zero, 0.001f);
-        }
     }
 
     private void FixedUpdate()
@@ -124,6 +120,10 @@ public class waves : MonoBehaviour
             if (timer <= 6) timerText.color = Color.red;
 
             if (timer <= 0) TimesUp();
+        }
+        else
+        {
+            player.transform.position = Vector3.Lerp(player.transform.position, Vector3.zero, 0.01f);
         }
 
         if(win)
@@ -151,7 +151,7 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
-        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 4;    }
+        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4;    }
         else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 3.5f; }
         else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; }
         else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3;    }
@@ -163,8 +163,8 @@ public class waves : MonoBehaviour
 
     private Vector2 RandomCord() 
     {
-        int x = Random.Range(-30, 30);
-        int y = Random.Range(-30, 30);
+        int x = Random.Range(-28, 28);
+        int y = Random.Range(-28, 28);
         
         
         return (new Vector3(x,y));

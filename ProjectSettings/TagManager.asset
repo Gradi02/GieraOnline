@@ -15,6 +15,7 @@ TagManager:
   - bullet
   - poison
   - PoisonPlayer
+  - barrier
   layers:
   - Default
   - TransparentFX

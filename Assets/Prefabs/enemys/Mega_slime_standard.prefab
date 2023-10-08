@@ -210,11 +210,12 @@ MonoBehaviour:
   enemy_basic: {fileID: 7284304837345861462, guid: 9be27eb02d0e30d4b9090a2c98c1afc0, type: 3}
   temp_shooter_cords: {x: 0, y: 0, z: 0}
   poison_pool: {fileID: 665200480458821834, guid: d69a9cf0a1b6af0479ec64fec5b00e33, type: 3}
+  poison_bullet: {fileID: 0}
   bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
   run: 0
   hit: 0
   health: 40
-  speed: 3.5
+  speed: 6
   damage: 3
   attackSpeed: 4
   protection: 0
