@@ -98,5 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   art_name: Death Note
-  art_description: Get a small chance to onehit your enemy
+  art_description: Get a small chance to onehit your enem
   art_icon: {fileID: 21300000, guid: 2b93741cdb168fd459f286ccbe0f18a9, type: 3}

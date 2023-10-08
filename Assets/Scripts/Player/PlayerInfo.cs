@@ -15,7 +15,7 @@ public class PlayerInfo : MonoBehaviour
     private float damageMultiplier = 2;
     private int critChance = 5;
     private float critMultiplier = 3;
-    private float gunCooldown = 0.8f;
+    private float gunCooldown = 0.40f;
 
     public int enemyKilledPerRound = 0;
     public int enemyKilled = 0;
@@ -88,7 +88,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetSpeed()
     {
-        speed += 0.5f;
+        speed += 0.25f;
     }
 
     public float GetCritMulti()
@@ -103,13 +103,9 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetGunCooldown()
     {
-        gunCooldown -= 0.05f;
+        gunCooldown -= 0.02f;
+        gunCooldown = Mathf.Round(gunCooldown * 100f) * 0.01f;
     }
-
-    //public float GetModeCooldown()
-    //{
-    //    return modeCooldown;
-    //}
 
     public float GetGunCooldown()
     {
@@ -153,6 +149,16 @@ public class PlayerInfo : MonoBehaviour
         else
         {
             hp_slider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = normalHp;
+        }
+
+        if(currentHp <= 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = null;
+            foreach(Transform t in gameObject.transform.GetChild(1).transform.GetComponentInChildren<Transform>())
+            {
+                t.gameObject.SetActive(false);
+            }
+            GameObject.FindGameObjectWithTag("Manager").GetComponent<waves>().EndGame();
         }
     }
 

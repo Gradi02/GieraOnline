@@ -27,7 +27,12 @@ public class ArtefactManager : MonoBehaviour
 
         if(art_name == "Chain Bullet")
         {
-            transform.root.gameObject.GetComponent<Shooting>().bulletPrefab.GetComponent<BulletsManager>().SetChain();
+            transform.root.gameObject.GetComponent<Shooting>().SetChain();
+        }
+
+        if(art_name == "Death Note")
+        {
+            transform.root.gameObject.GetComponent<Shooting>().SetBook();
         }
     }
     public void Upgrade()

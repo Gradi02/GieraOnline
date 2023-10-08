@@ -66,6 +66,7 @@ public class EnemyInfo : MonoBehaviour
     private float chainTimer = 0;
     private bool chain_hitted = false;
     private bool chainEffect = false;
+    public Color chainColor;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
@@ -101,7 +102,7 @@ public class EnemyInfo : MonoBehaviour
                 }
                 else if (Vector2.Distance(nextTarget.position, transform.position) <= 5)
                 {
-                    Debug.Log("Chain: " +currentChain);
+                    //Debug.Log("Chain: " +currentChain);
                     nextTarget.GetComponent<EnemyInfo>().SetChainHit(currentChain + 1, maxChain);
                     Damage(5, false, Color.blue);
 
@@ -353,7 +354,7 @@ public class EnemyInfo : MonoBehaviour
     {
         if(!chainEffect)
         {
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponent<SpriteRenderer>().color = chainColor;
             
             chainEffect = true;
         }

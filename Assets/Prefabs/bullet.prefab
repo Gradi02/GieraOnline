@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7082e55f891f8654695294b680e44f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 12
+  bulletSpeed: 14
   bulletparticle: {fileID: 8732016818668097540}
   spark: {fileID: 3366769980049409461, guid: ac6fd4a55e7c44e49aaebf58b8145ebc, type: 3}
 --- !u!50 &534636713532068337

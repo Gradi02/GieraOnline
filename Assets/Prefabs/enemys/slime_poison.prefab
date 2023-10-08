@@ -210,6 +210,7 @@ MonoBehaviour:
   enemy_basic: {fileID: 7284304837345861462}
   temp_shooter_cords: {x: 0, y: 0, z: 0}
   poison_pool: {fileID: 665200480458821834, guid: d69a9cf0a1b6af0479ec64fec5b00e33, type: 3}
+  poison_bullet: {fileID: 0}
   bullet: {fileID: 7176694240297221827, guid: 777973f7154bbb546bce8974f33efd0d, type: 3}
   run: 0
   hit: 0
@@ -230,6 +231,7 @@ MonoBehaviour:
   particle: {fileID: 4833367576465983319, guid: fb057bafe67e7e242bc7133f1a014740, type: 3}
   isAttacking: 0
   pfDamagePopup: {fileID: 7111166188261828388, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
+  chainColor: {r: 0.05490194, g: 0.77254903, b: 0.6320907, a: 1}
   canMove: 1
 --- !u!111 &2824599244634286848
 Animation:

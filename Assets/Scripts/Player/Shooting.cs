@@ -8,6 +8,8 @@ public class Shooting : MonoBehaviour
     public bool single_shoot = false;
     public bool double_shoot = false;
     public bool triple_shoot = true;
+    private bool chain = false;
+    private bool book = false;
 
     public Material sparkyMat;
     public Material normalMat;
@@ -56,5 +58,25 @@ public class Shooting : MonoBehaviour
                 Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ-20));
             }
         }
+    }
+
+    public void SetChain()
+    {
+        chain = true;
+    }
+
+    public bool GetChain()
+    {
+        return chain;
+    }
+
+    public void SetBook()
+    {
+        book = true;
+    }
+
+    public bool GetBook()
+    {
+        return book;
     }
 }

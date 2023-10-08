@@ -28,6 +28,17 @@ public class waves : MonoBehaviour
     [SerializeField] private GameObject PlayUI;
     [SerializeField] private TextMeshProUGUI wavecomplete;
 
+    private bool end = false;
+    private Color bg = Color.black;
+    private Color loseTitle = Color.white;
+    private Color loseTitle2 = Color.white;
+    private Color buttons = Color.white;
+    [SerializeField] private GameObject loseBg;
+    [SerializeField] private GameObject loseUI1, loseUI2;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject b1, b2;
+    private float duration = 0;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -36,6 +47,13 @@ public class waves : MonoBehaviour
         upgradeUI.SetActive(true);
         PlayUI.SetActive(false);
         wavecomplete.gameObject.SetActive(false);
+
+        loseTitle = scoreText.color;
+        loseTitle2 = scoreText.color;
+        bg.a = 0;
+        loseTitle.a = 0;
+        loseTitle2.a = 0;
+        buttons.a = 0;
     }
 
     [ContextMenu("start")]
@@ -108,6 +126,31 @@ public class waves : MonoBehaviour
                 }
             }
         }
+
+        if(end)
+        {
+            if(wave == 1 || wave == 2) scoreText.text = "You Survived " + (wave - 1) + " wave!";
+            else if(wave >= 3) scoreText.text = "You Survived " + (wave - 1) + " waves!";
+
+            loseBg.SetActive(true);
+            duration += Time.deltaTime;
+            float alphaValue1 = Mathf.Lerp(0, 1, 0.1f * duration * 10);
+            float alphaValue2 = Mathf.Lerp(0, 0.5f, 0.1f * duration * 10);
+
+            bg.a = alphaValue1;
+            loseTitle.a = alphaValue2;
+            loseTitle2.a = alphaValue1;
+            buttons.a = alphaValue1;
+
+            loseBg.GetComponent<UnityEngine.UI.Image>().color = loseTitle;
+            loseUI1.GetComponent<UnityEngine.UI.Image>().color = bg;
+            loseUI2.GetComponent<TextMeshProUGUI>().color = loseTitle2;
+            scoreText.color = loseTitle2;
+            b1.GetComponent<UnityEngine.UI.Image>().color = buttons;
+            b2.GetComponent<UnityEngine.UI.Image>().color = buttons;
+            b1.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = loseTitle2;
+            b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = loseTitle2;
+        }
     }
 
     private void FixedUpdate()
@@ -126,7 +169,7 @@ public class waves : MonoBehaviour
             player.transform.position = Vector3.Lerp(player.transform.position, Vector3.zero, 0.01f);
         }
 
-        if(win)
+        if (win)
         {   
             if (Time.time >= nextlett)
             {
@@ -180,5 +223,30 @@ public class waves : MonoBehaviour
     public void SetUpUI()
     {
         upgradeUI.SetActive(true);
+    }
+
+    public void EndGame()
+    {
+        spawning = false;
+        timer = 0;
+        timerText.color = Color.white;
+        player.GetComponent<PlayerInfo>().poisonTime = 0;
+
+        foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
+        {
+            Destroy(spawner);
+        }
+
+        foreach (GameObject b in GameObject.FindGameObjectsWithTag("bullet"))
+        {
+            Destroy(b);
+        }
+
+        foreach (GameObject b in GameObject.FindGameObjectsWithTag("poison"))
+        {
+            Destroy(b);
+        }
+
+        end = true;
     }
 }

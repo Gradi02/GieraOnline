@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if ((player != null) && (enemyInfo != null) && (enemyInfo.canMove))
+        if ((player != null) && (enemyInfo != null) && (enemyInfo.canMove) && (waves.spawning))
         {
             //movement
             if (Vector2.Distance(playerFT.transform.position, transform.position) > 0.5f)

@@ -14,7 +14,8 @@ public class BulletsManager : MonoBehaviour
     private GameObject sparky;
     private GameObject chainArt;
 
-    private bool chain = true;
+    private bool chain = false;
+    private bool book = false;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -32,6 +33,8 @@ public class BulletsManager : MonoBehaviour
     {
         transform.position += bulletSpeed * Time.deltaTime * transform.right;
         //currentMode = player.GetComponent<ChangeMode>().GetMode();
+        chain = player.GetComponent<Shooting>().GetChain();
+        book = player.GetComponent<Shooting>().GetBook();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,6 +47,18 @@ public class BulletsManager : MonoBehaviour
             {
                 damageDelta = (int)Mathf.Round(damageDelta * info.GetCritMulti());
                 crit = true;
+            }
+
+            if(book)
+            {
+                int rand = Random.Range(0, 100);
+
+                if (rand <= 2 + player.transform.GetChild(1).transform.Find("Death Note").GetComponent<ArtefactManager>().GetLevel())
+                {
+                    collision.gameObject.GetComponent<EnemyInfo>().Damage(99999, false, Color.black);
+                    Destroy(this.gameObject);
+                    return;
+                }
             }
 
             //ARTEFAKT SPARKY
@@ -62,10 +77,16 @@ public class BulletsManager : MonoBehaviour
 
             if (chain)
             {
-                int chainMax = 8;
-                chainMax += chainArt.GetComponent<ArtefactManager>().GetLevel();
-                collision.gameObject.GetComponent<EnemyInfo>().SetChainHit(1, chainMax);
+                int rand = Random.Range(0, 4);
+
+                if (rand == 0)
+                {
+                    int chainMax = 2;
+                    chainMax += chainArt.GetComponent<ArtefactManager>().GetLevel();
+                    collision.gameObject.GetComponent<EnemyInfo>().SetChainHit(1, chainMax);
+                }
             }
+
 
             collision.gameObject.GetComponent<EnemyInfo>().Damage(damageDelta, crit, Color.white);
             Destroy(this.gameObject);
@@ -75,10 +96,5 @@ public class BulletsManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
-
-    public void SetChain()
-    {
-        chain = true;
     }
 }

@@ -231,6 +231,7 @@ MonoBehaviour:
   particle: {fileID: 4833367576465983319, guid: fb057bafe67e7e242bc7133f1a014740, type: 3}
   isAttacking: 0
   pfDamagePopup: {fileID: 7111166188261828388, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
+  chainColor: {r: 0.05490194, g: 0.77254903, b: 0.6320907, a: 1}
   canMove: 1
 --- !u!111 &2824599244634286848
 Animation:

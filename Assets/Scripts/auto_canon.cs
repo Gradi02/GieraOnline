@@ -24,7 +24,7 @@ public class Auto_canon : MonoBehaviour
                 if (closestEnemy != null)
                 {
                     float distance = Vector3.Distance(transform.position, closestEnemy.position);
-                    Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
+                    //Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
 
                     if (distance <= 15)
                     {

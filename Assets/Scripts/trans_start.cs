@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,5 +32,26 @@ public class trans_start : MonoBehaviour
             if (alphaValue == 0) trans.gameObject.SetActive(false);
         }
         
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+        ResetStats();
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ResetStats();
+    }
+
+    private void ResetStats()
+    {
+        waves.wave = 0;
+        waves.currentWaveEnemy = 3;
+        waves.currentEnemyLevel = 1;
+        waves.enemyHpMultiplier = 1;
+        waves.spawning = false;
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7246856040850989477}
   - component: {fileID: 5414580326547575496}
   - component: {fileID: 8016332429324436548}
+  - component: {fileID: 2712190248150748989}
   m_Layer: 0
   m_Name: Ancient Necklace
   m_TagString: Untagged
@@ -102,5 +103,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   art_name: Anctien Necklace
-  art_description: This item will regenerate your health during the battle
+  art_description: This item will regenerate your hp during the wave
   art_icon: {fileID: 21300000, guid: feae8d398c14c9e4c8f42de7acf1140a, type: 3}
+--- !u!114 &2712190248150748989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8362396916528462050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2458c6d37663144be6799904df382e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
