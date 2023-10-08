@@ -11,11 +11,13 @@ public class Auto_canon : MonoBehaviour
 
     public GameObject auto_canon;
     private float cooldown = 0;
+    private float timer = 0;
+    private float timeToShot = 2;
     void Update()
     {
         if (cooldown <= Time.time)
         {
-            cooldown = Time.time + 2;
+            cooldown = Time.time + timeToShot;
             UpdateActiveEnemiesList();
 
             if (activeEnemies.Count > 0)
@@ -24,7 +26,6 @@ public class Auto_canon : MonoBehaviour
                 if (closestEnemy != null)
                 {
                     float distance = Vector3.Distance(transform.position, closestEnemy.position);
-                    //Debug.Log("Odleg³oœæ do najbli¿szego wroga: " + distance);
 
                     if (distance <= 15)
                     {
@@ -35,8 +36,16 @@ public class Auto_canon : MonoBehaviour
                 }
             }
         }
+
+        timeToShot = 2 - (GetComponent<ArtefactManager>().GetLevel() / 3);
     }
 
+    private void FixedUpdate()
+    {
+        timer += Time.fixedDeltaTime;
+
+        transform.localPosition = new Vector2(0, 2.5f + (Mathf.Sin(timer)/2));
+    }
 
     private void UpdateActiveEnemiesList()
     {
@@ -46,7 +55,8 @@ public class Auto_canon : MonoBehaviour
         activeEnemies.Clear();
         foreach (GameObject enemyObject in enemyObjects)
         {
-            activeEnemies.Add(enemyObject.transform);
+            if(!enemyObject.GetComponent<EnemyInfo>().isDestroyed())
+                activeEnemies.Add(enemyObject.transform);
         }
     }
 
@@ -59,7 +69,7 @@ public class Auto_canon : MonoBehaviour
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.position);
 
-            if (distanceToEnemy < shortestDistance)
+            if (distanceToEnemy < shortestDistance && !enemy.GetComponent<EnemyInfo>().isDestroyed())
             {
                 shortestDistance = distanceToEnemy;
                 closestEnemy = enemy;

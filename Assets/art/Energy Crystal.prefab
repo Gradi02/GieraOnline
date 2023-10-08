@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7668252771363637308}
   - component: {fileID: 5327184700113898466}
   - component: {fileID: 2678748391102920393}
+  - component: {fileID: -67310417344575804}
   m_Layer: 0
-  m_Name: auto canon
+  m_Name: Energy Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1790e716acbbf8b45a71a546306c2547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  art_name: auto_canon
-  art_description: dodaj tu opis2
-  art_icon: {fileID: 21300000, guid: b5c0695d5c6cf7f4790b47c74e0bf9b6, type: 3}
+  art_name: Energy Crystal
+  art_description: Automatically fires a beam of energy at the nearest enemy
+  art_icon: {fileID: 21300000, guid: 8df40d76a010e054aab110b2b7dc8d26, type: 3}
 --- !u!114 &2678748391102920393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,3 +63,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Enemy
   auto_canon: {fileID: 3366769980049409461, guid: 1ba872009c5b1104a8493241b8dd1cc2, type: 3}
+--- !u!212 &-67310417344575804
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915395119764803749}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 8df40d76a010e054aab110b2b7dc8d26, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

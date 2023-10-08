@@ -14,7 +14,7 @@ public class BulletsManager : MonoBehaviour
     private GameObject sparky;
     private GameObject chainArt;
 
-    private bool chain = false;
+    private bool chain = true;
     private bool book = false;
     void Start()
     {

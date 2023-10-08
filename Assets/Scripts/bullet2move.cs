@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class bullet2move : MonoBehaviour
 {
-    public int damage = 7;
+    private int damage = 10;
     public Color autoColor;
 
     void FixedUpdate()
     {
-        transform.position += transform.right * Time.fixedDeltaTime * 12;
+        transform.position += transform.right * Time.fixedDeltaTime * 20;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

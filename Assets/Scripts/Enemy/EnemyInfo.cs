@@ -68,6 +68,8 @@ public class EnemyInfo : MonoBehaviour
     private bool chainEffect = false;
     public Color chainColor;
 
+    private Vector3 previousPos;
+
     [Header("Enemy Settings")]
     public bool canMove = true;
     private PlayerInfo info;
@@ -102,8 +104,8 @@ public class EnemyInfo : MonoBehaviour
                 }
                 else if (Vector2.Distance(nextTarget.position, transform.position) <= 5)
                 {
-                    //Debug.Log("Chain: " +currentChain);
                     nextTarget.GetComponent<EnemyInfo>().SetChainHit(currentChain + 1, maxChain);
+                    nextTarget.transform.Find("chain").GetComponent<ParticleSystem>().Play();
                     Damage(5, false, Color.blue);
 
                     currentChain = 0;
@@ -287,7 +289,6 @@ public class EnemyInfo : MonoBehaviour
             }
         }
     }
-
     public void Mutated_basic_skill()
     {
         Vector3 skillCords1 = new Vector3(this.transform.position.x + 1, this.transform.position.y + 1, 0);
