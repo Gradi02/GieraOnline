@@ -59,7 +59,7 @@ public class EnemySorting : MonoBehaviour
         {
             int layer = Mathf.RoundToInt(g.transform.position.y * 100);
 
-            g.GetComponent<UnityEngine.Rendering.SortingGroup>().sortingOrder = -layer+100;
+            g.GetComponent<UnityEngine.Rendering.SortingGroup>().sortingOrder = -layer+1000;
         }
 
 

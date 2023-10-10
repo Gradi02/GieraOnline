@@ -146,6 +146,9 @@ public class EnemyInfo : MonoBehaviour
             float nowyKat = obecnyKat + 90 * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, 0, nowyKat);
 
+            GetComponent<SpriteRenderer>().color = Color.black;
+            destroy = true;
+
             if (transform.localScale.x <= 0.1f) Destroy(gameObject);
         }
         else 

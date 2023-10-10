@@ -12,9 +12,12 @@ public class trans_start : MonoBehaviour
 
     public float cooldown = 0;
 
+    public GameObject escUI;
+
     private void Start()
     {
         cooldown += Time.time + 1f;
+        escUI.SetActive(false);
     }
     void Update()
     {
@@ -38,12 +41,14 @@ public class trans_start : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         ResetStats();
+        Time.timeScale = 1;
     }
 
     public void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ResetStats();
+        Time.timeScale = 1;
     }
 
     private void ResetStats()
@@ -53,5 +58,18 @@ public class trans_start : MonoBehaviour
         waves.currentEnemyLevel = 1;
         waves.enemyHpMultiplier = 1;
         waves.spawning = false;
+        upgrades_text.money_upgrade = 0;
+    }
+
+    public void ShowEsc()
+    {
+        escUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void HideEsc()
+    {
+        escUI.SetActive(false);
+        Time.timeScale = 1;
     }
 }

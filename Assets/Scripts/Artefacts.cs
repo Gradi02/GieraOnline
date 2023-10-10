@@ -22,6 +22,8 @@ public class Artefacts : MonoBehaviour
     public GameObject nothing;
     public Color maxColor;
 
+    private bool next = false;
+
     void Start()
     {
         foreach(Transform a in GameObject.FindGameObjectWithTag("Player").transform.Find("Artefacts").GetComponentInChildren<Transform>())
@@ -72,24 +74,33 @@ public class Artefacts : MonoBehaviour
 
     public void SpawnImg()
     {
-        artUI.SetActive(true);
-        if(artefactsList.Count > 0)
+        if (next)
         {
-            for (int i = 0; i < 3; i++)
+            artUI.SetActive(true);
+            if (artefactsList.Count > 0)
             {
-                if (artefactsList.Count > 0)
+                for (int i = 0; i < 3; i++)
                 {
-                    GameObject ai = Instantiate(artimg, spawn.transform.position, Quaternion.identity, spawn.transform);
-                    ArtefactManager art = RandomArt();
-                    ai.GetComponent<ArtImg>().SetArtefact(art);
-                    artefactsList.Remove(art.gameObject);
+                    if (artefactsList.Count > 0)
+                    {
+                        GameObject ai = Instantiate(artimg, spawn.transform.position, Quaternion.identity, spawn.transform);
+                        ArtefactManager art = RandomArt();
+                        ai.GetComponent<ArtImg>().SetArtefact(art);
+                        artefactsList.Remove(art.gameObject);
+                    }
                 }
+            }
+            else
+            {
+                GoNext();
             }
         }
         else
         {
             GoNext();
         }
+
+        next = !next;
     }
 
     public void AddArt(ArtefactManager artefact_in)

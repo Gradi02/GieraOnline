@@ -30,4 +30,12 @@ public class enemy_bullet_movement : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("barrier"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

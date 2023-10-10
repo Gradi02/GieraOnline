@@ -129,9 +129,22 @@ public class waves : MonoBehaviour
 
         if(end)
         {
-            if(wave == 1 || wave == 2) scoreText.text = "You Survived " + (wave - 1) + " wave!";
-            else if(wave >= 3) scoreText.text = "You Survived " + (wave - 1) + " waves!";
+            if (wave == 1 || wave == 2)
+            {
+                if(player.GetComponent<PlayerInfo>().enemyKilled <= 1)
+                    scoreText.text = "You Survived " + (wave - 1) + " wave!\nYou killed " + player.GetComponent<PlayerInfo>().enemyKilled + " enemy!";
+                else
+                    scoreText.text = "You Survived " + (wave - 1) + " wave!\nYou killed " + player.GetComponent<PlayerInfo>().enemyKilled + " enemies!";
+            }
+            else if (wave >= 3)
+            {
+                if (player.GetComponent<PlayerInfo>().enemyKilled <= 1)
+                    scoreText.text = "You Survived " + (wave - 1) + " waves!\nYou killed " + player.GetComponent<PlayerInfo>().enemyKilled + " enemy!";
+                else
+                    scoreText.text = "You Survived " + (wave - 1) + " waves!\nYou killed " + player.GetComponent<PlayerInfo>().enemyKilled + " enemies!";
+            }
 
+            player.GetComponent<PlayerInfo>().currentHp = 0;
             loseBg.SetActive(true);
             duration += Time.deltaTime;
             float alphaValue1 = Mathf.Lerp(0, 1, 0.1f * duration * 10);

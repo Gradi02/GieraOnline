@@ -5,9 +5,10 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     private float nextFire = 0;
-    public bool single_shoot = false;
-    public bool double_shoot = false;
-    public bool triple_shoot = true;
+    public bool single_shoot;
+    public bool double_shoot;
+    public bool triple_shoot;
+    public int shots = 0;
     private bool chain = false;
     private bool book = false;
 
@@ -38,7 +39,7 @@ public class Shooting : MonoBehaviour
             mousePos -= spawnTransform.transform.position;
 
             float rotationZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-
+            shots++;
             
 
             //b.GetComponent<SpriteRenderer>().color = GetComponent<ChangeMode>().GetColor();
@@ -57,6 +58,10 @@ public class Shooting : MonoBehaviour
                 Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ+20));
                 Instantiate(bulletPrefab, spawnTransform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ-20));
             }
+
+            single_shoot = true;
+            double_shoot = false;
+            triple_shoot = false;
         }
     }
 
