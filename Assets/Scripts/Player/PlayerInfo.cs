@@ -31,6 +31,15 @@ public class PlayerInfo : MonoBehaviour
     public Color normalHp;
     public Color poisonHp;
 
+    public AudioSource hit1_source;
+    public AudioSource hit2_source;
+    public AudioSource hit3_source;
+    public AudioSource heartbeat_source;
+    public AudioClip hit1;
+    public AudioClip hit2;
+    public AudioClip hit3;
+    public AudioClip heartbeat;
+
     public int GetDamage()
     {
         return damage;
@@ -123,11 +132,24 @@ public class PlayerInfo : MonoBehaviour
     public void GetHitted(int dmg_in)
     {
         currentHp -= dmg_in;
+        int x = Random.Range(0, 3);
+        if (x == 0) hit1_source.PlayOneShot(hit1);
+        else if (x == 1) hit2_source.PlayOneShot(hit2);
+        else if (x == 2) hit3_source.PlayOneShot(hit3);
         CameraShake();
     }
 
     private void Update()
     {
+        /*
+        if (currentHp < 8)
+        {
+            heartbeat_source.PlayOneShot(heartbeat);
+            heartbeat_source.loop = true;
+        }
+        if (currentHp>8) heartbeat_source.loop = false;
+        */
+
         mana_slider.value = currentMana;
         hp_slider.value = currentHp;
 

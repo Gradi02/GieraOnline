@@ -39,6 +39,11 @@ public class waves : MonoBehaviour
     [SerializeField] private GameObject b1, b2;
     private float duration = 0;
 
+    public AudioSource wave_start_source;
+    public AudioSource wave_end_source;
+    public AudioClip wave_start;
+    public AudioClip wave_end;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -59,6 +64,7 @@ public class waves : MonoBehaviour
     [ContextMenu("start")]
     public void WaveStart()
     {
+        wave_start_source.PlayOneShot(wave_start);
         wave++;
         waveText.text = "Wave " + wave;
         SetTime();
@@ -73,11 +79,14 @@ public class waves : MonoBehaviour
 
         upgradeUI.SetActive(false);
         PlayUI.SetActive(true);
+
+
     }
 
     [ContextMenu("timesup")]
     public void TimesUp()
     {
+        wave_end_source.PlayOneShot(wave_end);
         spawning = false;
         upgrades_text.money_upgrade += player.GetComponent<PlayerInfo>().enemyKilledPerRound;
         wave++;

@@ -74,6 +74,13 @@ public class EnemyInfo : MonoBehaviour
     public bool canMove = true;
     private PlayerInfo info;
 
+
+
+    public AudioSource source;
+    public AudioClip death;
+    public AudioClip prot1;
+    public AudioClip prot2;
+    public AudioClip prot3;
     void Start()
     {
         info = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
@@ -321,6 +328,7 @@ public class EnemyInfo : MonoBehaviour
         GameObject DmgPopup = Instantiate(pfDamagePopup, transform.position, Quaternion.identity);
         DmgPopup.GetComponent<TextMeshPro>().color = normalColor;
         
+        
         //Zadawanie Damage
         if (protection > 0)
         {
@@ -328,10 +336,16 @@ public class EnemyInfo : MonoBehaviour
             damageDelta = 1;
             DmgPopup.GetComponent<TextMeshPro>().color = Color.grey;
             protection -= 1;
+
+            int z = Random.Range(0, 3);
+            if (z == 0) source.PlayOneShot(prot1);
+            else if (z == 1) source.PlayOneShot(prot2); 
+            else if (z == 2) source.PlayOneShot(prot3);
         }
         else
         {
             health -= damageDelta;
+            source.PlayOneShot(death);
         }
 
         //PopUp
