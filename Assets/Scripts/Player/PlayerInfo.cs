@@ -141,14 +141,14 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if (currentHp < 8)
         {
             heartbeat_source.PlayOneShot(heartbeat);
             heartbeat_source.loop = true;
         }
         if (currentHp>8) heartbeat_source.loop = false;
-        */
+        
 
         mana_slider.value = currentMana;
         hp_slider.value = currentHp;
