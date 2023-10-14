@@ -30,6 +30,7 @@ public class spark : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyInfo>().Damage(damage, false, sparkyColor);
+            FindObjectOfType<AudioManager>().Play("slime dead");
             Destroy(this.gameObject);
         }
     }

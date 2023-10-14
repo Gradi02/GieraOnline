@@ -57,6 +57,7 @@ public class upgradesManager : MonoBehaviour
     {
         if (upgradeLevel < maxlvl && upgradeUI.GetComponent<upgrades_text>().CanUpgrade())
         {
+            FindObjectOfType<AudioManager>().Play("click");
             upgradeLevel++;
             levels[upgradeLevel-1].GetComponent<Image>().color = upgraded;
         }

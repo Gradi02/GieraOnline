@@ -76,6 +76,7 @@ public class Artefacts : MonoBehaviour
     {
         if (next)
         {
+            FindObjectOfType<AudioManager>().Play("reward");
             artUI.SetActive(true);
             if (artefactsList.Count > 0)
             {

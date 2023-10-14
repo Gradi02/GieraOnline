@@ -44,7 +44,7 @@ public class waves : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         spawning = false;
-        timerText.text = "Next: 20s";
+        timerText.text = "Next: 20 s";
         upgradeUI.SetActive(true);
         PlayUI.SetActive(false);
         wavecomplete.gameObject.SetActive(false);
@@ -61,6 +61,7 @@ public class waves : MonoBehaviour
     public void WaveStart()
     {
         FindObjectOfType<AudioManager>().Play("wave start");
+        FindObjectOfType<AudioManager>().Play("click");
         wave++;
         waveText.text = "Wave " + wave;
         SetTime();

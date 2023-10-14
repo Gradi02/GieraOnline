@@ -16,6 +16,7 @@ public class bullet2move : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            FindObjectOfType<AudioManager>().Play("wave start");
             collision.gameObject.GetComponent<EnemyInfo>().Damage(damage, false, autoColor);
             Destroy(this.gameObject);
         }

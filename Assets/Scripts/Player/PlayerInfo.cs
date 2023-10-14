@@ -31,6 +31,8 @@ public class PlayerInfo : MonoBehaviour
     public Color normalHp;
     public Color poisonHp;
 
+    private bool isHeartBeat = true;
+
     public int GetDamage()
     {
         return damage;
@@ -134,14 +136,18 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (currentHp < 8)
+        
+        if (currentHp < 8 && !isHeartBeat)
         {
-            heartbeat_source.PlayOneShot(heartbeat);
-            heartbeat_source.loop = true;
+            FindObjectOfType<AudioManager>().Play("heart beat");
+            isHeartBeat = true;
         }
-        if (currentHp>8) heartbeat_source.loop = false;
-        */
+        else if(currentHp >= 8)
+        {
+            FindObjectOfType<AudioManager>().Stop("heart beat");
+            isHeartBeat = false;
+        }
+        
 
         mana_slider.value = currentMana;
         hp_slider.value = currentHp;
