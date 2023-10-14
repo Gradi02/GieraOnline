@@ -22,9 +22,13 @@ public class MenuManager : MonoBehaviour
     private bool transition = false;
     private float duration;
 
+
+
     private void Start()
     {
         duration = 0;
+
+        
 
         //mode_selector.SetActive(false);
         options.SetActive(false);

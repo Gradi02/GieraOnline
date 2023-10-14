@@ -43,8 +43,14 @@ public class AudioManager : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {
-            if (s.type == Sound.VolumeType.Sounds) s.source.volume = PlayerPrefs.GetFloat("volume_sounds");
-            else if (s.type == Sound.VolumeType.Music) s.source.volume = PlayerPrefs.GetFloat("volume_music");
+            if (s.type == Sound.VolumeType.Sounds)
+            {
+                s.source.volume = PlayerPrefs.GetFloat("volume_sounds") * s.prioriti;
+            }
+            else if (s.type == Sound.VolumeType.Music)
+            {
+                s.source.volume = PlayerPrefs.GetFloat("volume_music") * s.prioriti;
+            }
         }
     }
 

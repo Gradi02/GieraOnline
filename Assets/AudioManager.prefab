@@ -52,78 +52,91 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.6
   - name: hit1
     clip: {fileID: 8300000, guid: 028c6170632aaea448dcaa1fc4d3fbb6, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.9
   - name: hit2
     clip: {fileID: 8300000, guid: 908e0696d2f0479499456ea004e770e3, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.9
   - name: hit3
     clip: {fileID: 8300000, guid: eaf1fec77344c3549b1c4c6cff692ba2, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.9
   - name: wave start
     clip: {fileID: 8300000, guid: 0b21d725f4135644b8f8a4991cad39a2, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 1
   - name: wave end
     clip: {fileID: 8300000, guid: 2f93c7d7e3e180b4ea75017f33ddf653, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.8
   - name: shoot1
     clip: {fileID: 8300000, guid: 024d57c1819198c4697eb5f1f051ac10, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.4
   - name: shoot2
     clip: {fileID: 8300000, guid: c5fd27679d7e9e345b89f6a8ae4e2c18, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.4
   - name: shoot3
     clip: {fileID: 8300000, guid: e3117127dd624534c8b1e4326a79b8de, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.4
   - name: slime dead
     clip: {fileID: 8300000, guid: cfc339bc90629a2449a9d84994db514a, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.4
   - name: prot1
     clip: {fileID: 8300000, guid: aeafc69ff3efb0c46bce34357cacd881, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.3
   - name: prot2
     clip: {fileID: 8300000, guid: 4dc8b49b28a91a041aa7bb6654fb1e72, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.3
   - name: prot3
     clip: {fileID: 8300000, guid: 82d026c568068e74b8eebaafd7b7bac7, type: 3}
     pitch: 1.36
     loop: 0
     source: {fileID: 0}
     type: 0
+    prioriti: 0.3
 --- !u!114 &3074072582767771496
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class trans_start : MonoBehaviour
 
     public void Menu()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         SceneManager.LoadScene(0);
         ResetStats();
         Time.timeScale = 1;
@@ -46,6 +47,7 @@ public class trans_start : MonoBehaviour
 
     public void ResetGame()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ResetStats();
         Time.timeScale = 1;
@@ -63,12 +65,14 @@ public class trans_start : MonoBehaviour
 
     public void ShowEsc()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         escUI.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void HideEsc()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         escUI.SetActive(false);
         Time.timeScale = 1;
     }

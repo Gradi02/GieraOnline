@@ -22,4 +22,7 @@ public class Sound
     }
 
     public VolumeType type;
+
+    [Range(0.1f, 1f)]
+    public float prioriti;
 }

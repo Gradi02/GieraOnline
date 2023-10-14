@@ -16,7 +16,7 @@ public class waves : MonoBehaviour
     private float nextSpawn = 1;
     private float spawnTime = 4;
     private float timer = 0;
-    readonly private string wavewinText = "Wave_Completed!!!";
+    readonly private string wavewinText = "Wave Completed!!!";
     private bool win = false;
     private float nextlett = 0;
     private int i = 0;
