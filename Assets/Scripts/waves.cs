@@ -216,7 +216,7 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
-        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4;    }
+        if (wave == 1)                    { timer = 2; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4;    }
         else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 3.5f; }
         else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; }
         else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3;    }

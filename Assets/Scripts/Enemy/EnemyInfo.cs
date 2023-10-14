@@ -68,7 +68,9 @@ public class EnemyInfo : MonoBehaviour
     private bool chainEffect = false;
     public Color chainColor;
 
-    private Vector3 previousPos;
+    private float slowTime = 0;
+    private float normalSpeed;
+    private float stickyLevel = 0;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
@@ -88,6 +90,7 @@ public class EnemyInfo : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         health *= waves.enemyHpMultiplier;
         speed += Random.Range(0.1f, 0.01f);
+        normalSpeed = speed;
     }
 
     void Update()
@@ -298,6 +301,16 @@ public class EnemyInfo : MonoBehaviour
                 canMove = true;
             }
         }
+
+        if(slowTime > 0)
+        {
+            slowTime -= Time.fixedDeltaTime;
+            speed = normalSpeed / 2f;
+        }
+        else
+        {
+            speed = normalSpeed;
+        }
     }
     public void Mutated_basic_skill()
     {
@@ -412,5 +425,10 @@ public class EnemyInfo : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    public void SetSlow(int level)
+    {
+        slowTime = 0.2f * level;
     }
 }

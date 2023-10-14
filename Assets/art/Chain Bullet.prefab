@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1790e716acbbf8b45a71a546306c2547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  art_name: Perfecti Bullet
+  art_name: Perfect Bullet
   art_description: Destroy more enemies with chain attack.
   art_icon: {fileID: 21300000, guid: db0abc8a676072945a62e31db9b92b81, type: 3}
