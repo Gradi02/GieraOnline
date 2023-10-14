@@ -70,19 +70,12 @@ public class EnemyInfo : MonoBehaviour
 
     private float slowTime = 0;
     private float normalSpeed;
-    private float stickyLevel = 0;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
     private PlayerInfo info;
 
 
-
-    public AudioSource source;
-    public AudioClip death;
-    public AudioClip prot1;
-    public AudioClip prot2;
-    public AudioClip prot3;
     void Start()
     {
         info = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
@@ -351,14 +344,14 @@ public class EnemyInfo : MonoBehaviour
             protection -= 1;
 
             int z = Random.Range(0, 3);
-            if (z == 0) source.PlayOneShot(prot1);
-            else if (z == 1) source.PlayOneShot(prot2); 
-            else if (z == 2) source.PlayOneShot(prot3);
+            if (z == 0) FindObjectOfType<AudioManager>().Play("prot1");
+            else if (z == 1) FindObjectOfType<AudioManager>().Play("prot2");
+            else if (z == 2) FindObjectOfType<AudioManager>().Play("prot3");
         }
         else
         {
             health -= damageDelta;
-            source.PlayOneShot(death);
+            FindObjectOfType<AudioManager>().Play("slime dead");
         }
 
         //PopUp

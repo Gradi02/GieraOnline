@@ -19,10 +19,6 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private ParticleSystem particle;
 
-    public AudioSource shoot_source;
-    public AudioClip shoot1;
-    public AudioClip shoot2;
-    public AudioClip shoot3;
 
     private void Start()
     {
@@ -47,9 +43,9 @@ public class Shooting : MonoBehaviour
             shots++;
 
             int x = Random.Range(0, 3);
-            if (x == 0) shoot_source.PlayOneShot(shoot1);
-            if (x == 1) shoot_source.PlayOneShot(shoot2);
-            if (x == 2) shoot_source.PlayOneShot(shoot3);
+            if (x == 0) FindObjectOfType<AudioManager>().Play("shoot1");
+            if (x == 1) FindObjectOfType<AudioManager>().Play("shoot2");
+            if (x == 2) FindObjectOfType<AudioManager>().Play("shoot3");
 
             //b.GetComponent<SpriteRenderer>().color = GetComponent<ChangeMode>().GetColor();
             if (single_shoot == true)

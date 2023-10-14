@@ -39,10 +39,6 @@ public class waves : MonoBehaviour
     [SerializeField] private GameObject b1, b2;
     private float duration = 0;
 
-    public AudioSource wave_start_source;
-    public AudioSource wave_end_source;
-    public AudioClip wave_start;
-    public AudioClip wave_end;
 
     private void Start()
     {
@@ -64,7 +60,7 @@ public class waves : MonoBehaviour
     [ContextMenu("start")]
     public void WaveStart()
     {
-        wave_start_source.PlayOneShot(wave_start);
+        FindObjectOfType<AudioManager>().Play("wave start");
         wave++;
         waveText.text = "Wave " + wave;
         SetTime();
@@ -86,7 +82,7 @@ public class waves : MonoBehaviour
     [ContextMenu("timesup")]
     public void TimesUp()
     {
-        wave_end_source.PlayOneShot(wave_end);
+        FindObjectOfType<AudioManager>().Play("wave end");
         spawning = false;
         upgrades_text.money_upgrade += player.GetComponent<PlayerInfo>().enemyKilledPerRound;
         wave++;
@@ -216,7 +212,7 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
-        if (wave == 1)                    { timer = 2; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4;    }
+        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4;     }
         else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 3.5f; }
         else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; }
         else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3;    }

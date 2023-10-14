@@ -6,23 +6,17 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    [Header("Modes")]
-    public GameObject mode_selector;
-    public Button mode;
-    private bool vis_change_mode = false;
-    private bool vis_change_options = false;
-    public Button mode_easy;
-    public Button mode_mid;
-    public Button mode_hell;
-    public TextMeshProUGUI mode_perks;
-
     [Header("Clouds")]
     public GameObject[] clouds;
     public float[] cloud_speed;
 
     [Header("Options")] 
+    private bool vis_change_options = false;
     public GameObject options;
     private bool can_play = false;
+
+    public Slider music;
+    public Slider sounds;
 
     public RawImage trans;
     private bool transition = false;
@@ -31,18 +25,9 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         duration = 0;
-        Button btn_easy = mode_easy.GetComponent<Button>();
-        btn_easy.onClick.AddListener(Easytext);
-        Button btn_mid = mode_mid.GetComponent<Button>();
-        btn_mid.onClick.AddListener(Midtext);
-        Button btn_hell = mode_hell.GetComponent<Button>();
-        btn_hell.onClick.AddListener(Helltext);
 
-        mode_selector.SetActive(false);
+        //mode_selector.SetActive(false);
         options.SetActive(false);
-
-
-        mode_perks.text = "";
 
         trans.gameObject.SetActive(false);
     }
@@ -79,43 +64,27 @@ public class MenuManager : MonoBehaviour
                 {
                     clouds[i].transform.localPosition += transform.right * Time.deltaTime * cloud_speed[i];
                 }
-        }
 
-    public void Easytext() {
-        mode_perks.text = "hp: +5\r\ntime: -5";       
-    }
-    public void Midtext() {
-        mode_perks.text = "hp: +0\r\ntime: -0";       
-    }
-    public void Helltext() {
-        mode_perks.text = "hp: -10\r\ntime: +10";       
+        if (vis_change_options)
+        {
+            PlayerPrefs.SetFloat("volume_music", music.value / 100);
+            PlayerPrefs.SetFloat("volume_sounds", sounds.value / 100);
+        }
     }
     public void Menu_Play()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         trans.gameObject.SetActive(true);
         transition = true;
-    }
 
-    public void Menu_Mode()
-    {
-        vis_change_options = false;
         options.SetActive(false);
-        if (vis_change_mode == true)
-        {
-            mode_selector.SetActive(false);
-            vis_change_mode = false;
-        }
-        else if (vis_change_mode == false)
-        {
-            mode_selector.SetActive(true);
-            vis_change_mode = true;
-        }
+        vis_change_options = false;
     }
 
     public void Menu_options()
     {
-        vis_change_mode = false;
-        mode_selector.SetActive(false);
+        FindObjectOfType<AudioManager>().Play("click");
+        //mode_selector.SetActive(false);
         if (vis_change_options == true)
         {
             options.SetActive(false);
@@ -126,10 +95,14 @@ public class MenuManager : MonoBehaviour
             options.SetActive(true);
             vis_change_options = true;
         }
+
+        music.value = PlayerPrefs.GetFloat("volume_music") * 100;
+        sounds.value = PlayerPrefs.GetFloat("volume_sounds") * 100;
     }
 
     public void Menu_Quit()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         Application.Quit();
     }
 }
