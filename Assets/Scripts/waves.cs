@@ -77,7 +77,7 @@ public class waves : MonoBehaviour
         upgradeUI.SetActive(false);
         PlayUI.SetActive(true);
 
-
+        FindObjectOfType<AudioManager>().SetPriority("music", 0.3f);
     }
 
     [ContextMenu("timesup")]
@@ -115,6 +115,7 @@ public class waves : MonoBehaviour
         }
 
         WinAnimation();
+        FindObjectOfType<AudioManager>().SetPriority("music", 0.1f);
     }
 
     private void Update()
@@ -124,11 +125,12 @@ public class waves : MonoBehaviour
             if(Time.time >= nextSpawn)
             {
                 nextSpawn = Time.time + spawnTime;
+                Vector2 spawnPos = RandomCord(20);
 
                 for(int i = 0; i < currentWaveEnemy; i++)
                 {
-                    Vector2 spawnPos = RandomCord();
-                    Instantiate(spawner, spawnPos, Quaternion.identity);
+                    Vector2 spawnOffset = RandomCord(8);
+                    Instantiate(spawner, spawnPos + spawnOffset, Quaternion.identity);
                 }
             }
         }
@@ -223,10 +225,10 @@ public class waves : MonoBehaviour
         else                              { timer = 80; currentEnemyLevel = 5; currentWaveEnemy = 10; spawnTime = 2.5f; }
     }
 
-    private Vector2 RandomCord() 
+    private Vector2 RandomCord(int max) 
     {
-        int x = Random.Range(-28, 28);
-        int y = Random.Range(-28, 28);
+        int x = Random.Range(-max, max);
+        int y = Random.Range(-max, max);
         
         
         return (new Vector3(x,y));

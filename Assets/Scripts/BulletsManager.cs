@@ -27,14 +27,15 @@ public class BulletsManager : MonoBehaviour
         info = player.GetComponent<PlayerInfo>();
         sparky = player.transform.GetChild(1).transform.Find("Sparky").gameObject;
         chainArt = player.transform.GetChild(1).transform.Find("Chain Bullet").gameObject;
+
+        chain = player.GetComponent<Shooting>().GetChain();
+        book = player.GetComponent<Shooting>().GetBook();
     }
 
     void Update()
     {
         transform.position += bulletSpeed * Time.deltaTime * transform.right;
         //currentMode = player.GetComponent<ChangeMode>().GetMode();
-        chain = player.GetComponent<Shooting>().GetChain();
-        book = player.GetComponent<Shooting>().GetBook();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

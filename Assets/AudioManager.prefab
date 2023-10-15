@@ -143,21 +143,21 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
     type: 1
-    prioriti: 0.29
+    prioriti: 0.1
   - name: heart beat
     clip: {fileID: 8300000, guid: 2aa50bac40dd370469262ca039ba78c2, type: 3}
     pitch: 1.1
     loop: 1
     source: {fileID: 0}
     type: 0
-    prioriti: 0.29
+    prioriti: 0.816
   - name: reward
     clip: {fileID: 8300000, guid: 91718506fdbb46a488821c6652749dab, type: 3}
     pitch: 1.1
     loop: 0
     source: {fileID: 0}
     type: 0
-    prioriti: 0.29
+    prioriti: 0.439
 --- !u!114 &3074072582767771496
 MonoBehaviour:
   m_ObjectHideFlags: 0
