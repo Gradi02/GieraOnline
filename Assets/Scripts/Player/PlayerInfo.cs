@@ -70,7 +70,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetCritChance()
     {
-        critChance += 0.5f;
+        critChance += 1f;
     }
 
     public float GetMultiplier()
@@ -80,7 +80,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetMultiplier()
     {
-        damageMultiplier += 0.5f;
+        damageMultiplier += 1f;
     }
 
     public float GetSpeed()
@@ -90,7 +90,8 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetSpeed()
     {
-        speed += 0.20f;
+        speed += 0.21f;
+        speed = Mathf.Floor(speed * 10) / 10;
     }
 
     public float GetCritMulti()

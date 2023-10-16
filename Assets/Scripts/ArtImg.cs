@@ -111,5 +111,9 @@ public class ArtImg : MonoBehaviour
             Color newColor = new Color(newCol.r, newCol.g, newCol.b, alphaValue);
             sr.color = newColor;
         }
+        else
+        {
+            Destroy(sr);
+        }
     }
 }

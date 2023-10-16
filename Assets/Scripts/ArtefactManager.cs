@@ -15,6 +15,7 @@ public class ArtefactManager : MonoBehaviour
     private bool unlocked=false;
     public void Unlock()
     {
+        FindObjectOfType<AudioManager>().Play("click");
         unlocked = true;
         gameObject.SetActive(true);
         level++;
@@ -39,6 +40,7 @@ public class ArtefactManager : MonoBehaviour
     {
         if(level < max_level)
         {
+            FindObjectOfType<AudioManager>().Play("click");
             level++;
         }
     }

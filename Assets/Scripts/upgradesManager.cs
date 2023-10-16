@@ -86,7 +86,7 @@ public class upgradesManager : MonoBehaviour
 
     private void isMaxed()
     {
-        if(upgradeLevel == 10 && !max1)
+        if(upgradeLevel > 10 && !max1)
         {
             max1 = true;
             var colors = transform.GetChild(3).transform.GetComponent<Button>().colors;

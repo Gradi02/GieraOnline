@@ -56,6 +56,8 @@ public class waves : MonoBehaviour
         loseTitle.a = 0;
         loseTitle2.a = 0;
         buttons.a = 0;
+
+        wave = 14;
     }
 
     [ContextMenu("start")]
@@ -222,9 +224,9 @@ public class waves : MonoBehaviour
         else if (wave >= 6 && wave < 9)   { timer = 35; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; mutedEnemyChance = 17; }
         else if (wave >= 9 && wave < 12)  { timer = 40; currentEnemyLevel = 3; currentWaveEnemy = 7;  spawnTime = 3.5f; mutedEnemyChance = 16; }
         else if (wave >= 12 && wave < 15) { timer = 45; currentEnemyLevel = 3; currentWaveEnemy = 8;  spawnTime = 3;    mutedEnemyChance = 15; }
-        else if (wave > 15 && wave <= 20) { timer = 50; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; mutedEnemyChance = 14; }
-        else if (wave > 20 && wave <= 25) { timer = 60; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; mutedEnemyChance = 13; }
-        else if (wave > 25 && wave <= 30) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; mutedEnemyChance = 12; }
+        else if (wave >= 15 && wave < 20) { timer = 50; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; mutedEnemyChance = 14; }
+        else if (wave >= 20 && wave < 25) { timer = 60; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; mutedEnemyChance = 13; }
+        else if (wave >= 25 && wave < 30) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; mutedEnemyChance = 12; }
         else                              
         {
             timer = 80; 
