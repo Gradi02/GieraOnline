@@ -11,7 +11,7 @@ public class upgrades_text : MonoBehaviour
     public TextMeshProUGUI money;
     public TextMeshProUGUI pricetext;
     PlayerInfo player;
-    public static int money_upgrade = 0;
+    public static int money_upgrade = 10000;
     private int price = 1;
     public TextMeshProUGUI start;
 

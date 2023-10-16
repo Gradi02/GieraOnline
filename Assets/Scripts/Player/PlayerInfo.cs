@@ -13,7 +13,7 @@ public class PlayerInfo : MonoBehaviour
     private float speed = 8;
     private int damage = 5;
     private float damageMultiplier = 2;
-    private int critChance = 5;
+    private float critChance = 5;
     private float critMultiplier = 3;
     private float gunCooldown = 0.55f;
 
@@ -55,7 +55,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetMaxHP()
     {
-        maxhp += 2;
+        maxhp += 1;
     }
 
     public void SetDamage()
@@ -63,14 +63,14 @@ public class PlayerInfo : MonoBehaviour
         damage += 1;
     }
 
-    public int GetCritChance()
+    public float GetCritChance()
     {
         return critChance;
     }
 
     public void SetCritChance()
     {
-        critChance += 1;
+        critChance += 0.5f;
     }
 
     public float GetMultiplier()
@@ -90,7 +90,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetSpeed()
     {
-        speed += 0.25f;
+        speed += 0.20f;
     }
 
     public float GetCritMulti()
@@ -181,6 +181,8 @@ public class PlayerInfo : MonoBehaviour
             }
             GameObject.FindGameObjectWithTag("Manager").GetComponent<waves>().EndGame();
         }
+
+        if (currentHp > maxhp) currentHp = maxhp;
     }
 
     private void FixedUpdate()

@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
         int level = 1;
 
         if (hard == 1) level = Random.Range(1, waves.currentEnemyLevel+1);
-        int muted = Random.Range(1, 20);
+        int muted = Random.Range(1, waves.mutedEnemyChance);
 
         if (level == 1)
         {

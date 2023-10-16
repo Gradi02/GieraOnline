@@ -26,7 +26,7 @@ public class BulletsManager : MonoBehaviour
         //col.startColor = player.GetComponent<ChangeMode>().GetColor();
         info = player.GetComponent<PlayerInfo>();
         sparky = player.transform.GetChild(1).transform.Find("Sparky").gameObject;
-        chainArt = player.transform.GetChild(1).transform.Find("Chain Bullet").gameObject;
+        chainArt = player.transform.GetChild(1).transform.Find("Perfect Bullet").gameObject;
 
         chain = player.GetComponent<Shooting>().GetChain();
         book = player.GetComponent<Shooting>().GetBook();

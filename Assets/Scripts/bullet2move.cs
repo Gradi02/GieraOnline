@@ -7,6 +7,10 @@ public class bullet2move : MonoBehaviour
     private int damage = 10;
     public Color autoColor;
 
+    private void Awake()
+    {
+        FindObjectOfType<AudioManager>().Play("auto cannon");
+    }
     void FixedUpdate()
     {
         transform.position += transform.right * Time.fixedDeltaTime * 20;
@@ -16,7 +20,6 @@ public class bullet2move : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            FindObjectOfType<AudioManager>().Play("hit1");
             collision.gameObject.GetComponent<EnemyInfo>().Damage(damage, false, autoColor);
             Destroy(this.gameObject);
         }

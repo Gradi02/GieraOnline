@@ -158,6 +158,13 @@ MonoBehaviour:
     source: {fileID: 0}
     type: 0
     prioriti: 0.439
+  - name: auto cannon
+    clip: {fileID: 8300000, guid: 024d57c1819198c4697eb5f1f051ac10, type: 3}
+    pitch: 0.9
+    loop: 0
+    source: {fileID: 0}
+    type: 0
+    prioriti: 0.4
 --- !u!114 &3074072582767771496
 MonoBehaviour:
   m_ObjectHideFlags: 0

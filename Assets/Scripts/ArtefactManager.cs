@@ -25,7 +25,7 @@ public class ArtefactManager : MonoBehaviour
             transform.root.gameObject.GetComponent<Shooting>().bulletPrefab.GetComponent<TrailRenderer>().material = transform.root.gameObject.GetComponent<Shooting>().sparkyMat;
         }
 
-        if(art_name == "Chain Bullet")
+        if(art_name == "Perfect Bullet")
         {
             transform.root.gameObject.GetComponent<Shooting>().SetChain();
         }

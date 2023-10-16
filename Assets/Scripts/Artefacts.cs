@@ -43,6 +43,7 @@ public class Artefacts : MonoBehaviour
 
         if (myArtefacts.Count == 0) nothing.SetActive(true);
         else nothing.SetActive(false);
+
     }
 
     public void RefreshList()
@@ -72,6 +73,7 @@ public class Artefacts : MonoBehaviour
         }
     }
 
+    [ContextMenu("Art")]
     public void SpawnImg()
     {
         if (next)

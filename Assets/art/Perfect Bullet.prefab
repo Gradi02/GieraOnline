@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5181811191573209792}
   - component: {fileID: 4518350625790823208}
   m_Layer: 0
-  m_Name: Chain Bullet
+  m_Name: Perfect Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
