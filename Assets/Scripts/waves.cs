@@ -57,7 +57,7 @@ public class waves : MonoBehaviour
         loseTitle2.a = 0;
         buttons.a = 0;
 
-        wave = 14;
+        wave = 0;
     }
 
     [ContextMenu("start")]
