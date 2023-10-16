@@ -137,7 +137,8 @@ public class EnemyInfo : MonoBehaviour
         {
             // if(info.currentMana< info.GetMaxMana()) info.currentMana += 1;
             info.enemyKilled++;
-            info.enemyKilledPerRound++;
+            int x = Random.Range(0, 2);
+            if(x==1)info.enemyKilledPerRound++;
             if(mutated_basic) Mutated_basic_skill();
             DestroyEnemy();
         }

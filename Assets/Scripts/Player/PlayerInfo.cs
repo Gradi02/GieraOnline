@@ -11,11 +11,11 @@ public class PlayerInfo : MonoBehaviour
     private int maxmana = 20;
     public int currentMana = 1;
     private float speed = 8;
-    private int damage = 8;
+    private int damage = 5;
     private float damageMultiplier = 2;
     private int critChance = 5;
     private float critMultiplier = 3;
-    private float gunCooldown = 0.40f;
+    private float gunCooldown = 0.55f;
 
     public int enemyKilledPerRound = 0;
     public int enemyKilled = 0;

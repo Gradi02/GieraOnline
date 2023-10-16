@@ -129,7 +129,7 @@ public class waves : MonoBehaviour
 
                 for(int i = 0; i < currentWaveEnemy; i++)
                 {
-                    Vector2 spawnOffset = RandomCord(8);
+                    Vector2 spawnOffset = RandomCord(7);
                     Instantiate(spawner, spawnPos + spawnOffset, Quaternion.identity);
                 }
             }
@@ -215,12 +215,12 @@ public class waves : MonoBehaviour
 
     private void SetTime()
     {
-        if (wave == 1)                    { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4;     }
-        else if (wave == 2)               { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 5;  spawnTime = 3.5f; }
-        else if (wave == 3 || wave == 4)  { timer = 30; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; }
-        else if (wave == 5 || wave == 6)  { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3;    }
-        else if (wave == 7 || wave == 8)  { timer = 50; currentEnemyLevel = 2; currentWaveEnemy = 7;  spawnTime = 3;    }
-        else if (wave > 8 && wave <= 20)  { timer = 60; currentEnemyLevel = 3; currentWaveEnemy = 8;  spawnTime = 3;    }
+        if (wave>0 && wave<3)             { timer = 20; currentEnemyLevel = 1; currentWaveEnemy = 3;  spawnTime = 5;    }
+        else if (wave>=3 && wave<6)       { timer = 25; currentEnemyLevel = 1; currentWaveEnemy = 4;  spawnTime = 4f;   }
+        else if (wave >= 3 && wave < 6)   { timer = 30; currentEnemyLevel = 2; currentWaveEnemy = 5;  spawnTime = 4f;   }
+        else if (wave >= 6 && wave < 9)   { timer = 40; currentEnemyLevel = 2; currentWaveEnemy = 6;  spawnTime = 3.5f; }
+        else if (wave >= 9 && wave < 12)  { timer = 50; currentEnemyLevel = 2; currentWaveEnemy = 7;  spawnTime = 3.5f; }
+        else if (wave >= 12 && wave < 15) { timer = 60; currentEnemyLevel = 3; currentWaveEnemy = 8;  spawnTime = 3;    }
         else if (wave > 20 && wave <= 40) { timer = 70; currentEnemyLevel = 4; currentWaveEnemy = 9;  spawnTime = 2.5f; }
         else                              { timer = 80; currentEnemyLevel = 5; currentWaveEnemy = 10; spawnTime = 2.5f; }
     }
