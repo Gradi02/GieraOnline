@@ -234,11 +234,6 @@ MonoBehaviour:
   pfDamagePopup: {fileID: 7111166188261828388, guid: 6956006ba7dd9194d909d15d0299262f, type: 3}
   chainColor: {r: 0.05490194, g: 0.77254903, b: 0.6320907, a: 1}
   canMove: 1
-  source: {fileID: 0}
-  death: {fileID: 8300000, guid: cfc339bc90629a2449a9d84994db514a, type: 3}
-  prot1: {fileID: 8300000, guid: aeafc69ff3efb0c46bce34357cacd881, type: 3}
-  prot2: {fileID: 8300000, guid: 4dc8b49b28a91a041aa7bb6654fb1e72, type: 3}
-  prot3: {fileID: 8300000, guid: 82d026c568068e74b8eebaafd7b7bac7, type: 3}
 --- !u!111 &2824599244634286848
 Animation:
   m_ObjectHideFlags: 0

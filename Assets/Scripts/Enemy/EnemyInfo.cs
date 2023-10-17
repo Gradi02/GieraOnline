@@ -71,6 +71,8 @@ public class EnemyInfo : MonoBehaviour
     private float slowTime = 0;
     private float normalSpeed;
 
+    private float knifeHitTimer = 0;
+
     [Header("Enemy Settings")]
     public bool canMove = true;
     private PlayerInfo info;
@@ -305,6 +307,11 @@ public class EnemyInfo : MonoBehaviour
         {
             speed = normalSpeed;
         }
+
+        if(knifeHitTimer > 0)
+        {
+            knifeHitTimer -= Time.fixedDeltaTime;
+        }
     }
     public void Mutated_basic_skill()
     {
@@ -424,5 +431,14 @@ public class EnemyInfo : MonoBehaviour
     public void SetSlow(int level)
     {
         slowTime = 0.2f * level;
+    }
+
+    public void KnifeHit(int damage)
+    {
+        if (knifeHitTimer <= 0)
+        {
+            knifeHitTimer = 2;
+            Damage(damage, false, Color.white);
+        }
     }
 }

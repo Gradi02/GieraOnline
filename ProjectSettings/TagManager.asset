@@ -16,6 +16,7 @@ TagManager:
   - poison
   - PoisonPlayer
   - barrier
+  - knife
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - enemyBullet
   - playerPoison
   - poison
-  - 
+  - knife
   - 
   - 
   - 

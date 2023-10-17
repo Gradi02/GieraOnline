@@ -8,6 +8,7 @@ public class magic_knife : MonoBehaviour
     public GameObject anchor;
     private int level;
     private int angle;
+    private int damage = 5;
 
     public Transform knife1;
     public Transform knife2;
@@ -61,7 +62,7 @@ public class magic_knife : MonoBehaviour
             knife4.gameObject.SetActive(true);
         }
 
-
+        damage = 5 + level;
     }
 
     public int Getlvl()
@@ -70,6 +71,11 @@ public class magic_knife : MonoBehaviour
         level = 2;
         Debug.Log(level);
         return level;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
 
     public int angle_calc()
