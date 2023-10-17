@@ -260,7 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad8aed4867b0dd4182f19167f44c8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  knife: {fileID: 8021941069909139274, guid: 2aecb166ebcd3d44cb68d453c66c6ead, type: 3}
+  anchor: {fileID: 2487110494118461901, guid: d8b96af7540ea0c408426a5810bc70ae, type: 3}
 --- !u!96 &2249496876775308531
 TrailRenderer:
   serializedVersion: 3
