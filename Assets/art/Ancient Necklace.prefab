@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1790e716acbbf8b45a71a546306c2547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  art_name: Anctien Necklace
+  art_name: Ancient Necklace
   art_description: This item will regenerate your hp during the wave
   art_icon: {fileID: 21300000, guid: feae8d398c14c9e4c8f42de7acf1140a, type: 3}
 --- !u!114 &2712190248150748989

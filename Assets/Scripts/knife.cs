@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class knife : MonoBehaviour
@@ -8,8 +9,10 @@ public class knife : MonoBehaviour
     private float orbitSpeed = 100f;
     private float orbitRadius = 3f;
 
-    private float currentAngle = 0;
+    public float currentAngle = 0;
 
+    public magic_knife magic_Knife;
+    public magic_knife angle;
     private void Update()
     {
         if (anchor != null )

@@ -262,6 +262,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knife: {fileID: 8021941069909139274, guid: 2aecb166ebcd3d44cb68d453c66c6ead, type: 3}
   anchor: {fileID: 2487110494118461901, guid: d8b96af7540ea0c408426a5810bc70ae, type: 3}
+  knife1: {fileID: 0}
+  knife2: {fileID: 0}
+  knife3: {fileID: 0}
+  knife4: {fileID: 0}
+  knife_script: {fileID: 0}
 --- !u!96 &2249496876775308531
 TrailRenderer:
   serializedVersion: 3
