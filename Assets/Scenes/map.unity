@@ -2098,7 +2098,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10002
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.47058827, g: 0.40784317, b: 0.6509804, a: 1}
+  m_Color: {r: 0, g: 0.23529412, b: 0.47058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -26443,9 +26443,9 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 5.0887e-41, g: 5.0887e-41, b: 5.0887e-41, a: 5.0887e-41}
+    m_Data: {r: 4.1148e-41, g: 4.1148e-41, b: 4.1148e-41, a: 4.1148e-41}
   - m_RefCount: 900
-    m_Data: {r: 0.4710975, g: 0.40784314, b: 0.6509804, a: 1}
+    m_Data: {r: 0, g: 0.23698941, b: 0.4716981, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43109,8 +43109,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0023040771, y: 0.00035095215, z: 0}
-    m_Extent: {x: 244.914, y: 244.91815, z: 0}
+    m_Center: {x: -0.0010528564, y: -0.0010528564, z: 0}
+    m_Extent: {x: 244.91885, y: 244.91425, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
