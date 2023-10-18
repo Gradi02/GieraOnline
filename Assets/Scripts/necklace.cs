@@ -8,10 +8,16 @@ public class necklace : MonoBehaviour
     private float healTime = 10;
     void Update()
     {
-        if(Time.time > healTime)
+        if (GetComponent<ArtefactManager>().GetLevel() == 1) { timeToHeal = 10; GetComponent<SpriteRenderer>().color = Color.white; }
+        else if (GetComponent<ArtefactManager>().GetLevel() == 2) { timeToHeal = 9; GetComponent<SpriteRenderer>().color = Color.white; }
+        else if (GetComponent<ArtefactManager>().GetLevel() == 3) { timeToHeal = 8; GetComponent<SpriteRenderer>().color = Color.white; }
+        else if (GetComponent<ArtefactManager>().GetLevel() == 4) { timeToHeal = 7; GetComponent<SpriteRenderer>().color = Color.white; }
+        else if (GetComponent<ArtefactManager>().GetLevel() == 5) { timeToHeal = 5; GetComponent<SpriteRenderer>().color = Color.yellow; }
+
+        if (Time.time > healTime)
         {
             healTime = Time.time + timeToHeal;
-            transform.root.GetComponent<PlayerInfo>().currentHp += GetComponent<ArtefactManager>().GetLevel();
-        }      
+            transform.root.GetComponent<PlayerInfo>().currentHp += 1;
+        }   
     }
 }

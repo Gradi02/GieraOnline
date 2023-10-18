@@ -11,8 +11,12 @@ public class knife : MonoBehaviour
 
     public float currentAngle = 0;
 
-    public magic_knife magic_Knife;
-    public magic_knife angle;
+    //public magic_knife magic_Knife;
+    //public magic_knife angle;
+    private void Start()
+    {
+        currentAngle = transform.parent.GetComponent<magic_knife>().angle;
+    }
     private void Update()
     {
         if (anchor != null)
@@ -33,7 +37,7 @@ public class knife : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyInfo>().KnifeHit(transform.parent.GetComponent<magic_knife>().GetDamage());
+            collision.GetComponent<EnemyInfo>().KnifeHit(transform.parent.GetComponent<magic_knife>().GetDamage(), this.gameObject);
         }
     }
 }

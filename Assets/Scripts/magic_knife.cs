@@ -7,7 +7,7 @@ public class magic_knife : MonoBehaviour
     public GameObject knife;
     public GameObject anchor;
     private int level;
-    private int angle;
+    public int angle;
     private int damage = 5;
 
     public Transform knife1;
@@ -16,9 +16,11 @@ public class magic_knife : MonoBehaviour
     public Transform knife4;
 
     public knife knife_script;
+    private int lastlevel;
     private void Start()
     {
-        level = Getlvl();
+        level = GetComponent<ArtefactManager>().GetLevel();
+        lastlevel = level;
         angle = angle_calc();
 
         knife1 = transform.GetChild(1);
@@ -30,12 +32,25 @@ public class magic_knife : MonoBehaviour
     {
         level = GetComponent<ArtefactManager>().GetLevel();
 
+        if(level != lastlevel)
+        {
+            lastlevel = level;
+            angle = angle_calc();
+        }
+
+        damage = 5 + level;
+
         if (level == 1)
         {
             knife1.gameObject.SetActive(true);
             knife2.gameObject.SetActive(false);
             knife3.gameObject.SetActive(false);
             knife4.gameObject.SetActive(false);
+
+            knife1.GetComponent<SpriteRenderer>().color = Color.white;
+            knife2.GetComponent<SpriteRenderer>().color = Color.white;
+            knife3.GetComponent<SpriteRenderer>().color = Color.white;
+            knife4.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         else if (level == 2)
@@ -44,6 +59,11 @@ public class magic_knife : MonoBehaviour
             knife2.gameObject.SetActive(true);
             knife3.gameObject.SetActive(false);
             knife4.gameObject.SetActive(false);
+
+            knife1.GetComponent<SpriteRenderer>().color = Color.white;
+            knife2.GetComponent<SpriteRenderer>().color = Color.white;
+            knife3.GetComponent<SpriteRenderer>().color = Color.white;
+            knife4.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         else if (level == 3)
@@ -52,6 +72,11 @@ public class magic_knife : MonoBehaviour
             knife2.gameObject.SetActive(true);
             knife3.gameObject.SetActive(true);
             knife4.gameObject.SetActive(false);
+
+            knife1.GetComponent<SpriteRenderer>().color = Color.white;
+            knife2.GetComponent<SpriteRenderer>().color = Color.white;
+            knife3.GetComponent<SpriteRenderer>().color = Color.white;
+            knife4.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         else if (level == 4)
@@ -60,17 +85,27 @@ public class magic_knife : MonoBehaviour
             knife2.gameObject.SetActive(true);
             knife3.gameObject.SetActive(true);
             knife4.gameObject.SetActive(true);
+
+            knife1.GetComponent<SpriteRenderer>().color = Color.white;
+            knife2.GetComponent<SpriteRenderer>().color = Color.white;
+            knife3.GetComponent<SpriteRenderer>().color = Color.white;
+            knife4.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
-        damage = 5 + level;
-    }
+        else if (level == 5)
+        {
+            knife1.gameObject.SetActive(true);
+            knife2.gameObject.SetActive(true);
+            knife3.gameObject.SetActive(true);
+            knife4.gameObject.SetActive(true);
 
-    public int Getlvl()
-    {
-        //TUTAJ LEVEL DLA TESTOW!!!
-        level = 2;
-        Debug.Log(level);
-        return level;
+            knife1.GetComponent<SpriteRenderer>().color = Color.yellow;
+            knife2.GetComponent<SpriteRenderer>().color = Color.yellow;
+            knife3.GetComponent<SpriteRenderer>().color = Color.yellow;
+            knife4.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+            damage += 5;
+        }
     }
 
     public int GetDamage()
@@ -80,7 +115,8 @@ public class magic_knife : MonoBehaviour
 
     public int angle_calc()
     {
-        angle = 360 / Getlvl();
+        if (level == 0) return 0;
+        angle = 360 / level;
 
         if (angle == 360)
         {

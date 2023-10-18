@@ -18,7 +18,7 @@ public class TripleSpell : MonoBehaviour
     }
     void Update()
     {
-        if(shooting.shots >= nextDouble - art.GetLevel())
+        if(shooting.shots >= nextDouble - 2 * art.GetLevel())
         {
             shooting.shots = 0;
 

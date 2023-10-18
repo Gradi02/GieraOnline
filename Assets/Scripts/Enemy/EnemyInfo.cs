@@ -72,6 +72,7 @@ public class EnemyInfo : MonoBehaviour
     private float normalSpeed;
 
     private float knifeHitTimer = 0;
+    private GameObject lastKnife;
 
     [Header("Enemy Settings")]
     public bool canMove = true;
@@ -302,10 +303,12 @@ public class EnemyInfo : MonoBehaviour
         {
             slowTime -= Time.fixedDeltaTime;
             speed = normalSpeed / 2f;
+            GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
             speed = normalSpeed;
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         if(knifeHitTimer > 0)
@@ -433,10 +436,11 @@ public class EnemyInfo : MonoBehaviour
         slowTime = 0.2f * level;
     }
 
-    public void KnifeHit(int damage)
+    public void KnifeHit(int damage, GameObject knife)
     {
-        if (knifeHitTimer <= 0)
+        if (knifeHitTimer <= 0 || lastKnife != knife)
         {
+            lastKnife = knife;
             knifeHitTimer = 2;
             Damage(damage, false, Color.white);
         }

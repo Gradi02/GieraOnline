@@ -16,6 +16,9 @@ public class BulletsManager : MonoBehaviour
 
     private bool chain = true;
     private bool book = false;
+
+    private bool death = false;
+    public Material material;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -30,6 +33,17 @@ public class BulletsManager : MonoBehaviour
 
         chain = player.GetComponent<Shooting>().GetChain();
         book = player.GetComponent<Shooting>().GetBook();
+
+        if (book)
+        {
+            int rand = Random.Range(0, 100);
+            if (rand <= 2 + 2 * player.transform.GetChild(1).transform.Find("Death Note").GetComponent<ArtefactManager>().GetLevel())
+            {
+                GetComponent<SpriteRenderer>().color = Color.black;
+                GetComponent<TrailRenderer>().material = material;
+                death = true;
+            }
+        }
     }
 
     void Update()
@@ -50,23 +64,18 @@ public class BulletsManager : MonoBehaviour
                 crit = true;
             }
 
-            if(book)
+            if(death)
             {
-                int rand = Random.Range(0, 100);
-
-                if (rand <= 2 + player.transform.GetChild(1).transform.Find("Death Note").GetComponent<ArtefactManager>().GetLevel())
-                {
-                    collision.gameObject.GetComponent<EnemyInfo>().Damage(99999, false, Color.black);
-                    Destroy(this.gameObject);
-                    return;
-                }
+                collision.gameObject.GetComponent<EnemyInfo>().Damage(99999, false, Color.black);
+                Destroy(this.gameObject);
+                return;
             }
 
             //ARTEFAKT SPARKY
             if (sparky.activeSelf)
             {
                 int level = sparky.GetComponent<ArtefactManager>().GetLevel();
-                int spark_quantity = Random.Range(level, 5 + level);
+                int spark_quantity = Random.Range(level, 7);
 
                 for (int i = 0; i < spark_quantity; i++)
                 {
@@ -78,7 +87,7 @@ public class BulletsManager : MonoBehaviour
 
             if (chain)
             {
-                int rand = Random.Range(0, 4);
+                int rand = Random.Range(0, 9 - chainArt.GetComponent<ArtefactManager>().GetLevel());
 
                 if (rand == 0)
                 {

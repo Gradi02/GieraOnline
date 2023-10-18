@@ -104,6 +104,7 @@ MonoBehaviour:
   bulletSpeed: 16
   bulletparticle: {fileID: 8732016818668097540}
   spark: {fileID: 3366769980049409461, guid: ac6fd4a55e7c44e49aaebf58b8145ebc, type: 3}
+  material: {fileID: 2100000, guid: babcce7d1a9429a40b63659576ca71fd, type: 2}
 --- !u!50 &534636713532068337
 Rigidbody2D:
   serializedVersion: 4

@@ -16,6 +16,11 @@ public class bullet2move : MonoBehaviour
         transform.position += transform.right * Time.fixedDeltaTime * 20;
     }
 
+    public void SetDamage(int ndmg)
+    {
+        damage = ndmg;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))

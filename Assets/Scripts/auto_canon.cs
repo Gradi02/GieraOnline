@@ -31,13 +31,15 @@ public class Auto_canon : MonoBehaviour
                     {
                         Vector3 dir = (closestEnemy.position - transform.position).normalized;
                         float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                        Instantiate(auto_canon, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                        var g = Instantiate(auto_canon, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                        g.GetComponent<bullet2move>().SetDamage(8 + (2 * GetComponent<ArtefactManager>().GetLevel()));
                     }
                 }
             }
         }
 
         timeToShot = 2 - (GetComponent<ArtefactManager>().GetLevel() / 3);
+        if (GetComponent<ArtefactManager>().GetLevel() == 5) timeToShot -= 0.15f;
     }
 
     private void FixedUpdate()
