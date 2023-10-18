@@ -13,6 +13,9 @@ public class CameraMove : MonoBehaviour
     private float cameraRatio;
     private Camera mainCam;
 
+    public float smoothTime = 0.5f; 
+    private Vector3 velocity = Vector3.zero;
+
     private void Start()
     {
         followTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -27,8 +30,11 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        camY = Mathf.Clamp(followTransform.position.y, yMin + camOrthsize, yMax - camOrthsize);
-        camX = Mathf.Clamp(followTransform.position.x, xMin + cameraRatio, xMax - cameraRatio);
-        this.transform.position = new Vector3(camX, camY, this.transform.position.z);
+        float targetX = Mathf.Clamp(followTransform.position.x, xMin + cameraRatio, xMax - cameraRatio);
+        float targetY = Mathf.Clamp(followTransform.position.y, yMin + camOrthsize, yMax - camOrthsize);
+        Vector3 targetPosition = new Vector3(targetX, targetY, this.transform.position.z);
+
+        // P³ynne przesuniêcie kamery
+        this.transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }

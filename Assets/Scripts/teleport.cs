@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseDistanceTracker : MonoBehaviour
 {
     public GameObject player;
-    private float cooldown;
     private bool can_teleport = true;
+    private bool isTeleporting = false;
 
     void Update()
     {
@@ -22,20 +23,30 @@ public class MouseDistanceTracker : MonoBehaviour
             can_teleport = false;
             Debug.Log("Myszka najecha³a na obiekt z tagiem 'barrier'.");
         }
-        else 
-        { 
-        can_teleport= true;
+        else
+        {
+            can_teleport = true;
         }
 
         float distance = Vector3.Distance(playerPosition, worldMousePosition);
 
         Debug.Log("Odleg³oœæ: " + distance);
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && distance <= 20f && cooldown<Time.time && can_teleport)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && distance <= 30f && !isTeleporting && can_teleport)
         {
-            player.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, player.transform.position.z);
-
-            cooldown = Time.time+5f;
+            StartCoroutine(TeleportAfterDelay(worldMousePosition, 1.0f)); // Oczekaj 1 sekundê przed teleportacj¹
         }
+    }
+
+    IEnumerator TeleportAfterDelay(Vector3 targetPosition, float delay)
+    {
+        isTeleporting = true;
+        player.GetComponent<Movement>().enabled = false;
+
+        yield return new WaitForSeconds(delay);
+
+        player.transform.position = new Vector3(targetPosition.x, targetPosition.y, player.transform.position.z);
+        player.GetComponent<Movement>().enabled = true;
+        isTeleporting = false;
     }
 }
