@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class waves : MonoBehaviour
 {
@@ -39,10 +40,16 @@ public class waves : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject b1, b2;
     private float duration = 0;
+    private int rain_max;
+    private int x = 0;
 
-
+    public Light2D light2D;
+    public ParticleSystem particleSystem_rain;
+    private bool isRaining = false;
+    private float velocity = 25f;
     private void Start()
     {
+        particleSystem_rain.gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
         spawning = false;
         timerText.text = "Next: 20 s";
@@ -86,12 +93,13 @@ public class waves : MonoBehaviour
     [ContextMenu("timesup")]
     public void TimesUp()
     {
+        Rain();
         FindObjectOfType<AudioManager>().Play("wave end");
         spawning = false;
         upgrades_text.money_upgrade += player.GetComponent<PlayerInfo>().enemyKilledPerRound;
         wave++;
         SetTime();
-        timerText.text = "Next: " + timer.ToString() + "s";
+        timerText.text = "Next: " + timer.ToString() + " s";
         timer = 0;
         wave--;
         timerText.color = Color.white;
@@ -121,8 +129,41 @@ public class waves : MonoBehaviour
         FindObjectOfType<AudioManager>().SetPriority("music", 0.1f);
     }
 
+    private void Rain()
+    {
+        x = Random.Range(0, rain_max);
+        Debug.Log(x);
+        if (x < 20)
+        {
+           isRaining = true;
+           //light2D.shapeLightFalloffSize = 50;
+           particleSystem_rain.gameObject.SetActive(true);
+           rain_max = 100;
+        }
+        else if(x >= 20)
+        {
+           isRaining = false;
+           particleSystem_rain.gameObject.SetActive(false);
+           rain_max -= 10;
+        }
+    }
+
     private void Update()
     {
+        if (isRaining)
+        {
+            float falloff = Mathf.MoveTowards(250f, 50f, 2f * Time.time);
+            light2D.shapeLightFalloffSize = falloff;
+        }
+        else if(!isRaining)
+        {
+            float falloff = Mathf.MoveTowards(50f, 250f, 2f * Time.time);
+            light2D.shapeLightFalloffSize = falloff;
+        }
+
+
+
+
         if(spawning)
         {
             if(Time.time >= nextSpawn)
