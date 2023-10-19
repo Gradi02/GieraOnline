@@ -41,12 +41,9 @@ public class waves : MonoBehaviour
     [SerializeField] private GameObject b1, b2;
     private float duration = 0;
     private int rain_max;
-    private int x = 0;
 
     public Light2D light2D;
     public ParticleSystem particleSystem_rain;
-    private bool isRaining = false;
-    private float velocity = 25f;
     private void Start()
     {
         particleSystem_rain.gameObject.SetActive(false);
@@ -131,40 +128,80 @@ public class waves : MonoBehaviour
 
     private void Rain()
     {
-        x = Random.Range(0, rain_max);
-        Debug.Log(x);
-        if (x < 20)
+        int temp = Random.Range(0, rain_max);
+        Debug.Log(temp);
+        if (temp < 20)
         {
-           isRaining = true;
-           //light2D.shapeLightFalloffSize = 50;
-           particleSystem_rain.gameObject.SetActive(true);
-           rain_max = 100;
+            StartCoroutine(Rain_ON());
+            StartCoroutine(Thunder());
+            particleSystem_rain.gameObject.SetActive(true);
+            rain_max = 100;
         }
-        else if(x >= 20)
+        else if(temp >= 20)
         {
-           isRaining = false;
-           particleSystem_rain.gameObject.SetActive(false);
-           rain_max -= 10;
+            StartCoroutine(Rain_OFF());
+            Debug.Log("KONIEC THUNDER");
+            light2D.intensity = 1f;
+            particleSystem_rain.gameObject.SetActive(false);
+            rain_max -= 10;
+
         }
     }
 
+    IEnumerator Rain_ON()
+    {
+        while (light2D.shapeLightFalloffSize >= 50f)
+        {
+            yield return new WaitForSeconds(0.01f);
+            light2D.shapeLightFalloffSize -= 1;
+        }
+    }
+
+    IEnumerator Rain_OFF()
+    {
+        while (light2D.shapeLightFalloffSize <= 250f)
+        {
+            yield return new WaitForSeconds(0.01f);
+            light2D.shapeLightFalloffSize += 1;
+        }
+    }
+
+    IEnumerator Thunder()
+    {
+        Debug.Log("THUNDER ON");
+        int inf = 0;
+        while (inf == 0)
+        {
+            yield return new WaitForSeconds(1f);
+            int thunder = Random.Range(0, 10);
+            Debug.Log(thunder);
+            if (thunder < 2) StartCoroutine(Flash());
+        }
+    }
+
+    IEnumerator Flash()
+    {
+        while(light2D.shapeLightFalloffSize <= 250)
+        {
+            yield return new WaitForSeconds(0.005f);
+            light2D.shapeLightFalloffSize += 20;
+            light2D.intensity += 0.2f;
+        }
+        if (light2D.shapeLightFalloffSize >= 250) StartCoroutine(FlashOff());
+    }
+
+    IEnumerator FlashOff()
+    {
+        while (light2D.shapeLightFalloffSize >= 50)
+        {
+            yield return new WaitForSeconds(0.005f);
+            light2D.shapeLightFalloffSize -= 20;
+            light2D.intensity -= 0.2f;
+        }
+    }
     private void Update()
     {
-        if (isRaining)
-        {
-            float falloff = Mathf.MoveTowards(250f, 50f, 2f * Time.time);
-            light2D.shapeLightFalloffSize = falloff;
-        }
-        else if(!isRaining)
-        {
-            float falloff = Mathf.MoveTowards(50f, 250f, 2f * Time.time);
-            light2D.shapeLightFalloffSize = falloff;
-        }
-
-
-
-
-        if(spawning)
+        if (spawning)
         {
             if(Time.time >= nextSpawn)
             {

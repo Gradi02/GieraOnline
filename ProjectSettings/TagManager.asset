@@ -17,6 +17,7 @@ TagManager:
   - PoisonPlayer
   - barrier
   - knife
+  - light
   layers:
   - Default
   - TransparentFX

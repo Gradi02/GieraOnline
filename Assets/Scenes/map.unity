@@ -32329,6 +32329,8 @@ MonoBehaviour:
   scoreText: {fileID: 1902705202}
   b1: {fileID: 1874351591}
   b2: {fileID: 958171893}
+  light2D: {fileID: 1779484120}
+  particleSystem_rain: {fileID: 1601619420}
 --- !u!114 &1215454961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43055,7 +43057,7 @@ GameObject:
   - component: {fileID: 1779484120}
   m_Layer: 0
   m_Name: Global Light 2D
-  m_TagString: Untagged
+  m_TagString: light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43109,8 +43111,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0010528564, y: -0.0010528564, z: 0}
-    m_Extent: {x: 244.91885, y: 244.91425, z: 0}
+    m_Center: {x: -0.00045013428, y: -0.0012969971, z: 0}
+    m_Extent: {x: 250.49026, y: 250.4933, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -43118,7 +43120,7 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 244.41
+  m_ShapeLightFalloffSize: 249.99
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -0.5, y: -0.5, z: 0}
