@@ -45,14 +45,15 @@ public class waves : MonoBehaviour
     public Light2D light2D;
     public Light2D light2DFlash;
     public ParticleSystem particleSystem_rain;
+    public GameObject stormtitle;
+    private bool storm = false;
+    private float flashTimer = 0;
     private void Start()
     {
         particleSystem_rain.gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
         spawning = false;
         timerText.text = "Next: 20 s";
-        upgradeUI.SetActive(true);
-        PlayUI.SetActive(false);
         wavecomplete.gameObject.SetActive(false);
 
         loseTitle = scoreText.color;
@@ -130,6 +131,7 @@ public class waves : MonoBehaviour
         StartCoroutine(Rain_OFF());
         light2D.intensity = 1f;
         particleSystem_rain.gameObject.SetActive(false);
+        storm = false;
     }
 
     private void Rain()
@@ -139,9 +141,11 @@ public class waves : MonoBehaviour
         if (temp < rain_max)
         {
             StartCoroutine(Rain_ON());
-            StartCoroutine(Thunder_On());
+            //StartCoroutine(Thunder_On());
             particleSystem_rain.gameObject.SetActive(true);
             rain_max = 0;
+            storm = true;
+            stormtitle.GetComponent<Animation>().Play();
         }
         else
         {
@@ -153,29 +157,17 @@ public class waves : MonoBehaviour
 
     IEnumerator Rain_ON()
     {
-        while (light2D.shapeLightFalloffSize >= 50f)
+        while (light2D.shapeLightFalloffSize >= 40f)
         {
             yield return new WaitForSeconds(0.01f);
             light2D.shapeLightFalloffSize -= 1;
         }
     }
 
-    IEnumerator Thunder_On()
-    {
-        int inf = 0;
-        while (inf == 0)
-        {
-            yield return new WaitForSeconds(1f);
-            int thunder = Random.Range(0, 10);
-            Debug.Log(thunder);
-            if (thunder < 2) RandomFlash();
-        }
-    }
-
     private void RandomFlash()
     {
-        int randX = Random.Range(-10, 10);
-        int randY = Random.Range(-10, 10);
+        int randX = Random.Range(-20, 20);
+        int randY = Random.Range(-20, 20);
 
         Vector3 pos = player.transform.position;
         pos += new Vector3(randX, randY);
@@ -307,6 +299,18 @@ public class waves : MonoBehaviour
                 //upgradeUI.SetActive(true);
                 GetComponent<Artefacts>().SpawnImg();
             }
+        }
+
+        if(spawning && storm)
+        {
+            flashTimer += Time.fixedDeltaTime;
+        }
+
+        if(flashTimer > 1)
+        {
+            flashTimer = 0;
+            int thunder = Random.Range(0, 8);
+            if (thunder < 2) RandomFlash();
         }
     }
 
