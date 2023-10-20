@@ -8,7 +8,6 @@ public class CameraMove : MonoBehaviour
     public BoxCollider2D mapBounds;
 
     private float xMin, xMax, yMin, yMax;
-    private float camY, camX;
     private float camOrthsize;
     private float cameraRatio;
     private Camera mainCam;

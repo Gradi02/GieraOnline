@@ -1,51 +1,60 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseDistanceTracker : MonoBehaviour
 {
     public GameObject player;
-    private bool can_teleport = true;
     private bool isTeleporting = false;
+    public TextMeshProUGUI num;
+    public Slider cooldown;
+    public GameObject teleport;
+
+    private int tpLeft = 0;
+
 
     void Update()
     {
-        Vector3 playerPosition = player.transform.position;
+        if (!waves.spawning) return;
+
         Vector3 mousePosition = Input.mousePosition;
-
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0));
-        RaycastHit2D hit = Physics2D.Raycast(worldMousePosition, Vector2.zero);
 
-        if (hit.collider != null && hit.collider.CompareTag("barrier"))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && tpLeft > 0 && cooldown.value == cooldown.minValue && !isTeleporting && worldMousePosition.x < 30 && worldMousePosition.x > -30 && worldMousePosition.y < 30 && worldMousePosition.y > -30)
         {
-            can_teleport = false;
-            Debug.Log("Myszka najecha³a na obiekt z tagiem 'barrier'.");
+            StartCoroutine(TeleportAfterDelay(worldMousePosition, .3f)); // Oczekaj 1 sekundê przed teleportacj¹
+            tpLeft--;
+            num.text = tpLeft.ToString();
+
+            cooldown.value = cooldown.maxValue;
+            FindObjectOfType<AudioManager>().Play("teleport");
         }
-        else
+    }
+
+    private void FixedUpdate()
+    {
+        if(cooldown.value > cooldown.minValue)
         {
-            can_teleport = true;
+            cooldown.value -= Time.fixedDeltaTime;
         }
+    }
 
-        float distance = Vector3.Distance(playerPosition, worldMousePosition);
-
-        Debug.Log("Odleg³oœæ: " + distance);
-
-        if (Input.GetKeyDown(KeyCode.Mouse1) && distance <= 30f && !isTeleporting && can_teleport)
-        {
-            StartCoroutine(TeleportAfterDelay(worldMousePosition, 1.0f)); // Oczekaj 1 sekundê przed teleportacj¹
-        }
+    public void SetUsage()
+    {
+        tpLeft = GetComponent<ArtefactManager>().GetLevel();
+        num.text = tpLeft.ToString();
     }
 
     IEnumerator TeleportAfterDelay(Vector3 targetPosition, float delay)
     {
         isTeleporting = true;
         player.GetComponent<Movement>().enabled = false;
-
+        player.GetComponent<Animation>().Play();
         yield return new WaitForSeconds(delay);
 
         player.transform.position = new Vector3(targetPosition.x, targetPosition.y, player.transform.position.z);
+
         player.GetComponent<Movement>().enabled = true;
         isTeleporting = false;
     }

@@ -35,6 +35,11 @@ public class ArtefactManager : MonoBehaviour
         {
             transform.root.gameObject.GetComponent<Shooting>().SetBook();
         }
+
+        if(art_name == "Rod of Discord")
+        {
+            transform.GetComponent<MouseDistanceTracker>().teleport.SetActive(true);
+        }
     }
     public void Upgrade()
     {

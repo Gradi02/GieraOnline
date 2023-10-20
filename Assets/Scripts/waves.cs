@@ -40,9 +40,10 @@ public class waves : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject b1, b2;
     private float duration = 0;
-    private int rain_max;
+    private int rain_max = 0;
 
     public Light2D light2D;
+    public Light2D light2DFlash;
     public ParticleSystem particleSystem_rain;
     private void Start()
     {
@@ -85,12 +86,13 @@ public class waves : MonoBehaviour
         PlayUI.SetActive(true);
 
         FindObjectOfType<AudioManager>().SetPriority("music", 0.3f);
+        Rain();
+        player.transform.GetChild(1).Find("rod of discord").transform.GetComponent<MouseDistanceTracker>().SetUsage();
     }
 
     [ContextMenu("timesup")]
     public void TimesUp()
     {
-        Rain();
         FindObjectOfType<AudioManager>().Play("wave end");
         spawning = false;
         upgrades_text.money_upgrade += player.GetComponent<PlayerInfo>().enemyKilledPerRound;
@@ -124,27 +126,28 @@ public class waves : MonoBehaviour
 
         WinAnimation();
         FindObjectOfType<AudioManager>().SetPriority("music", 0.1f);
+        
+        StartCoroutine(Rain_OFF());
+        light2D.intensity = 1f;
+        particleSystem_rain.gameObject.SetActive(false);
     }
 
     private void Rain()
     {
-        int temp = Random.Range(0, rain_max);
-        Debug.Log(temp);
-        if (temp < 20)
+        int temp = Random.Range(0, 100);
+        Debug.Log("temp: " + temp + "   rainMax: " + rain_max);
+        if (temp < rain_max)
         {
             StartCoroutine(Rain_ON());
-            StartCoroutine(Thunder());
+            StartCoroutine(Thunder_On());
             particleSystem_rain.gameObject.SetActive(true);
-            rain_max = 100;
+            rain_max = 0;
         }
-        else if(temp >= 20)
+        else
         {
-            StartCoroutine(Rain_OFF());
-            Debug.Log("KONIEC THUNDER");
             light2D.intensity = 1f;
             particleSystem_rain.gameObject.SetActive(false);
-            rain_max -= 10;
-
+            rain_max += 5;
         }
     }
 
@@ -157,6 +160,30 @@ public class waves : MonoBehaviour
         }
     }
 
+    IEnumerator Thunder_On()
+    {
+        int inf = 0;
+        while (inf == 0)
+        {
+            yield return new WaitForSeconds(1f);
+            int thunder = Random.Range(0, 10);
+            Debug.Log(thunder);
+            if (thunder < 2) RandomFlash();
+        }
+    }
+
+    private void RandomFlash()
+    {
+        int randX = Random.Range(-10, 10);
+        int randY = Random.Range(-10, 10);
+
+        Vector3 pos = player.transform.position;
+        pos += new Vector3(randX, randY);
+
+        Light2D flash = Instantiate(light2DFlash, pos, Quaternion.identity);
+        StartCoroutine(Flash(flash));
+    }
+
     IEnumerator Rain_OFF()
     {
         while (light2D.shapeLightFalloffSize <= 250f)
@@ -166,37 +193,26 @@ public class waves : MonoBehaviour
         }
     }
 
-    IEnumerator Thunder()
+    IEnumerator Flash(Light2D flash)
     {
-        Debug.Log("THUNDER ON");
-        int inf = 0;
-        while (inf == 0)
-        {
-            yield return new WaitForSeconds(1f);
-            int thunder = Random.Range(0, 10);
-            Debug.Log(thunder);
-            if (thunder < 2) StartCoroutine(Flash());
-        }
-    }
-
-    IEnumerator Flash()
-    {
-        while(light2D.shapeLightFalloffSize <= 250)
+        while(flash.shapeLightFalloffSize <= 250)
         {
             yield return new WaitForSeconds(0.005f);
-            light2D.shapeLightFalloffSize += 20;
-            light2D.intensity += 0.2f;
+            flash.shapeLightFalloffSize += 20;
+            flash.intensity += 0.2f;
         }
-        if (light2D.shapeLightFalloffSize >= 250) StartCoroutine(FlashOff());
+        if (flash.shapeLightFalloffSize >= 250) StartCoroutine(FlashOff(flash));
     }
 
-    IEnumerator FlashOff()
+    IEnumerator FlashOff(Light2D flash)
     {
-        while (light2D.shapeLightFalloffSize >= 50)
+        while (flash.shapeLightFalloffSize >= 0)
         {
             yield return new WaitForSeconds(0.005f);
-            light2D.shapeLightFalloffSize -= 20;
-            light2D.intensity -= 0.2f;
+            flash.shapeLightFalloffSize -= 20;
+            flash.intensity -= 0.2f;
+
+            if (flash.intensity <= 0) flash.intensity = 0;
         }
     }
     private void Update()
