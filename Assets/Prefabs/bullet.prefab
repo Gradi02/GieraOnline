@@ -105,6 +105,7 @@ MonoBehaviour:
   bulletparticle: {fileID: 8732016818668097540}
   spark: {fileID: 3366769980049409461, guid: ac6fd4a55e7c44e49aaebf58b8145ebc, type: 3}
   material: {fileID: 2100000, guid: babcce7d1a9429a40b63659576ca71fd, type: 2}
+  trail: {fileID: 4670090144487408856, guid: ca6677259250ffb40b13bf161c8b1dcc, type: 3}
 --- !u!50 &534636713532068337
 Rigidbody2D:
   serializedVersion: 4

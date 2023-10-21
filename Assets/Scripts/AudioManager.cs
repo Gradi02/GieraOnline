@@ -92,4 +92,30 @@ public class AudioManager : MonoBehaviour
 
         s.prioriti = new_priority;
     }
+
+    public void SetPitch(string name, float new_pitch)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Nie ma takiej muzyczki!!!");
+            return;
+        }
+
+        s.pitch = new_pitch;
+    }
+
+    public float GetPitch(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Nie ma takiej muzyczki!!!");
+            return 0;
+        }
+
+        return s.pitch;
+    }
 }

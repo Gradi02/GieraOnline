@@ -137,7 +137,8 @@ public class waves : MonoBehaviour
 
         WinAnimation();
         FindObjectOfType<AudioManager>().SetPriority("music", 0.1f);
-        
+        FindObjectOfType<AudioManager>().Stop("rain");
+
         StartCoroutine(Rain_OFF());
         light2D.intensity = 1f;
         particleSystem_rain.gameObject.SetActive(false);
@@ -162,9 +163,10 @@ public class waves : MonoBehaviour
     {
         int temp = Random.Range(0, 100);
         Debug.Log("temp: " + temp + "   rainMax: " + rain_max);
-        if (temp < rain_max)
+        if (temp < rain_max) //temp < rain_max
         {
             StartCoroutine(Rain_ON());
+            FindObjectOfType<AudioManager>().Play("rain");
             particleSystem_rain.gameObject.SetActive(true);
             rain_max = 0;
             storm = true;
@@ -194,6 +196,8 @@ public class waves : MonoBehaviour
 
         Vector3 pos = player.transform.position;
         pos += new Vector3(randX, randY);
+
+        FindObjectOfType<AudioManager>().Play("thunder");
 
         Light2D flash = Instantiate(light2DFlash, pos, Quaternion.identity);
         StartCoroutine(Flash(flash));
@@ -417,6 +421,7 @@ public class waves : MonoBehaviour
         }
 
         FindObjectOfType<AudioManager>().SetPriority("music", 0.1f);
+        FindObjectOfType<AudioManager>().Stop("rain");
 
         StartCoroutine(Rain_OFF());
         light2D.intensity = 1f;

@@ -172,6 +172,20 @@ MonoBehaviour:
     source: {fileID: 0}
     type: 0
     prioriti: 0.4
+  - name: rain
+    clip: {fileID: 8300000, guid: ee069abec0dfbff4783cf23140a60f5d, type: 3}
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    type: 0
+    prioriti: 0.3
+  - name: thunder
+    clip: {fileID: 8300000, guid: 3185cda9f84ee514ebc8d959f5462c19, type: 3}
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    type: 0
+    prioriti: 0.6
 --- !u!114 &3074072582767771496
 MonoBehaviour:
   m_ObjectHideFlags: 0

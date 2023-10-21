@@ -19,6 +19,7 @@ public class BulletsManager : MonoBehaviour
 
     private bool death = false;
     public Material material;
+    public GameObject trail;
     void Start()
     {
         Destroy(this.gameObject, 10);
@@ -93,6 +94,7 @@ public class BulletsManager : MonoBehaviour
                 {
                     int chainMax = 2;
                     chainMax += chainArt.GetComponent<ArtefactManager>().GetLevel();
+
                     collision.gameObject.GetComponent<EnemyInfo>().SetChainHit(1, chainMax);
                 }
             }

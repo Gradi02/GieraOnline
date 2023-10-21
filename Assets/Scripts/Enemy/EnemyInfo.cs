@@ -339,6 +339,12 @@ public class EnemyInfo : MonoBehaviour
         Instantiate(particle, transform.position, transform.rotation);
     }
 
+    public bool IsProtected()
+    {
+        if(protection > 0) return true;
+        return false;
+    }
+
     public void Damage(float damageDelta, bool ifCrit, Color normalColor)
     {
         //dmgpopup
