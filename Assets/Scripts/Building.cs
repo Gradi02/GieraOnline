@@ -13,7 +13,8 @@ public class Building : MonoBehaviour
 
     public void BuildWand()
     {
-        buildingUI.SetActive(false);
+        Destroy(buildingUI, 5);
+        GetComponent<waves>().HideBuildingUI();
         GetComponent<waves>().WaveStart();
     }
 }

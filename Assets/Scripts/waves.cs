@@ -48,6 +48,10 @@ public class waves : MonoBehaviour
     public GameObject stormtitle;
     private bool storm = false;
     private float flashTimer = 0;
+
+    public GameObject[] zoom_out;
+    public GameObject[] overlay_zoom;
+    public AnimationClip zoomIn, zoomOut;
     private void Start()
     {
         particleSystem_rain.gameObject.SetActive(false);
@@ -89,6 +93,12 @@ public class waves : MonoBehaviour
         FindObjectOfType<AudioManager>().SetPriority("music", 0.3f);
         Rain();
         player.transform.GetChild(1).Find("rod of discord").transform.GetComponent<MouseDistanceTracker>().SetUsage();
+
+        foreach(GameObject g in overlay_zoom)
+        {
+            g.GetComponent<Animation>().clip = zoomIn;
+            g.GetComponent<Animation>().Play();
+        }
     }
 
     [ContextMenu("timesup")]
@@ -134,6 +144,20 @@ public class waves : MonoBehaviour
         storm = false;
     }
 
+    public void HideBuildingUI()
+    {
+        foreach(GameObject g in zoom_out)
+        {
+            g.GetComponent<Animation>().clip = zoomOut;
+            g.GetComponent<Animation>().Play();
+        }
+
+        foreach(GameObject g in overlay_zoom)
+        {
+            g.transform.localScale = Vector3.zero;
+        }
+    }
+
     private void Rain()
     {
         int temp = Random.Range(0, 100);
@@ -141,7 +165,6 @@ public class waves : MonoBehaviour
         if (temp < rain_max)
         {
             StartCoroutine(Rain_ON());
-            //StartCoroutine(Thunder_On());
             particleSystem_rain.gameObject.SetActive(true);
             rain_max = 0;
             storm = true;
@@ -297,6 +320,11 @@ public class waves : MonoBehaviour
                 i = 0;
                 PlayUI.SetActive(false);
                 //upgradeUI.SetActive(true);
+                foreach (GameObject g in overlay_zoom)
+                {
+                    g.GetComponent<Animation>().clip = zoomOut;
+                    g.GetComponent<Animation>().Play();
+                }
                 GetComponent<Artefacts>().SpawnImg();
             }
         }
@@ -387,6 +415,13 @@ public class waves : MonoBehaviour
         {
             Destroy(b);
         }
+
+        FindObjectOfType<AudioManager>().SetPriority("music", 0.1f);
+
+        StartCoroutine(Rain_OFF());
+        light2D.intensity = 1f;
+        particleSystem_rain.gameObject.SetActive(false);
+        storm = false;
 
         end = true;
     }

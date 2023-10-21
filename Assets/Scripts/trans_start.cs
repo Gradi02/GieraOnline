@@ -22,7 +22,7 @@ public class trans_start : MonoBehaviour
     void Update()
     {
         if (cooldown <= Time.time) transition = true;
-
+        if (trans == null) return;
 
         if (transition)
         {
